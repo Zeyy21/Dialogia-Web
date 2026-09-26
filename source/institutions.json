@@ -1,0 +1,337 @@
+[
+  {
+    "id": "umontreal",
+    "name": {
+      "en": "University of Montreal",
+      "fr": "Université de Montréal"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://www.umontreal.ca/",
+    "logo": "/assets/institutions/umontreal.svg",
+    "logo_source": "https://www.umontreal.ca/typo3temp/udemlessc/lessphp_9477013ded911f281ce354ea476ce0ead34a363a.css?1769692499",
+    "logo_background": "light"
+  },
+  {
+    "id": "uqam",
+    "name": {
+      "en": "University of Quebec in Montreal (UQAM)",
+      "fr": "Université du Québec à Montréal (UQAM)"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://uqam.ca/",
+    "logo": "/assets/institutions/uqam-blue.svg",
+    "logo_source": "Provided official DIALOGIA booklet organiser artwork",
+    "logo_background": "light",
+    "logo_note": "Unchanged source artwork presented through an SVG viewport."
+  },
+  {
+    "id": "ieim",
+    "name": {
+      "en": "Institute of International Studies (IEIM-UQAM)",
+      "fr": "Institut d’études internationales de Montréal (IEIM-UQAM)"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://ieim.uqam.ca/",
+    "logo": "/assets/institutions/ieim.svg",
+    "logo_source": "https://ieim.uqam.ca/wp-content/themes/WP1-Departement-Programme/css/images/ieim-bleu.svg",
+    "logo_background": "light"
+  },
+  {
+    "id": "uqar",
+    "name": {
+      "en": "University of Quebec at Rimouski (UQAR)",
+      "fr": "Université du Québec à Rimouski (UQAR)"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://www.uqar.ca/",
+    "logo": "/assets/institutions/uqar.png",
+    "logo_source": "https://www.uqar.ca/app/uploads/2024/04/uqar-logo-officiel-rgb-bleu-uqar.png",
+    "logo_background": "light"
+  },
+  {
+    "id": "obvia",
+    "name": {
+      "en": "International Observatory on the Societal Impacts of AI and Digital Technology (OBVIA)",
+      "fr": "Observatoire international sur les impacts sociétaux de l’IA et du numérique (OBVIA)"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://www.obvia.ca/",
+    "logo": "/assets/institutions/obvia.svg",
+    "logo_source": "https://www.obvia.ca/",
+    "logo_background": "light"
+  },
+  {
+    "id": "ucly",
+    "name": {
+      "en": "Catholic University of Lyon (UCLy)",
+      "fr": "Université catholique de Lyon (UCLy)"
+    },
+    "country": {
+      "en": "France",
+      "fr": "France"
+    },
+    "url": "https://www.ucly.fr/",
+    "logo": "/assets/institutions/ucly-color.png",
+    "logo_source": "https://www.ucly.fr/wp-content/uploads/2019/11/logo_ucly_couleur_rvb.png",
+    "logo_background": "light"
+  },
+  {
+    "id": "pluriel",
+    "name": {
+      "en": "University Platform for Research on Islam (PLURIEL)",
+      "fr": "Plateforme universitaire de recherche sur l’islam (PLURIEL)"
+    },
+    "country": {
+      "en": "France",
+      "fr": "France"
+    },
+    "url": "https://pluriel.fuce.eu/",
+    "logo": "/assets/institutions/pluriel.png",
+    "logo_source": "https://pluriel.fuce.eu/wp-content/themes/pluriel/img/logo-pluriel-bleu-vert.png",
+    "logo_background": "light"
+  },
+  {
+    "id": "ideo",
+    "name": {
+      "en": "Dominican Institute for Oriental Studies (IDEO), Cairo",
+      "fr": "Institut dominicain d’études orientales (IDEO), Le Caire"
+    },
+    "country": {
+      "en": "Egypt",
+      "fr": "Égypte"
+    },
+    "url": "https://ideo-cairo.org/en/",
+    "logo": "/assets/institutions/ideo.png",
+    "logo_source": "https://ideo-cairo.org/wp-content/uploads/2023/08/logo-IDEO-opaque-1024x387.png",
+    "logo_background": "light"
+  },
+  {
+    "id": "vatican",
+    "name": {
+      "en": "Vatican Apostolic Library",
+      "fr": "Bibliothèque apostolique vaticane"
+    },
+    "country": {
+      "en": "Vatican City",
+      "fr": "Cité du Vatican"
+    },
+    "url": "https://www.vaticanlibrary.va/",
+    "logo": "/assets/institutions/vatican-library.png",
+    "logo_source": "https://www.vaticanlibrary.va/newsletter/202506IT.pdf",
+    "logo_background": "light",
+    "logo_note": "Original embedded PNG extracted from page 3 of the official newsletter."
+  },
+  {
+    "id": "bonn",
+    "name": {
+      "en": "University of Bonn",
+      "fr": "Université de Bonn"
+    },
+    "country": {
+      "en": "Germany",
+      "fr": "Allemagne"
+    },
+    "url": "https://www.uni-bonn.de/en",
+    "logo": "/assets/institutions/bonn.svg",
+    "logo_source": "https://www.uni-bonn.de/en/++theme++unibonn.theme/images/logos/logo_desktop.svg",
+    "logo_background": "light"
+  },
+  {
+    "id": "vechta",
+    "name": {
+      "en": "University of Vechta",
+      "fr": "Université de Vechta"
+    },
+    "country": {
+      "en": "Germany",
+      "fr": "Allemagne"
+    },
+    "url": "https://www.uni-vechta.de/",
+    "logo": "/assets/institutions/vechta.svg",
+    "logo_source": "https://www.uni-vechta.de/",
+    "logo_background": "light"
+  },
+  {
+    "id": "usj",
+    "name": {
+      "en": "Saint Joseph University of Beirut (USJ)",
+      "fr": "Université Saint-Joseph de Beyrouth (USJ)"
+    },
+    "country": {
+      "en": "Lebanon",
+      "fr": "Liban"
+    },
+    "url": "https://usj.edu.lb/fr",
+    "logo": "/assets/institutions/usj.svg",
+    "logo_source": "https://www.usj.edu.lb/chartegraphique/mobile/content/pages/page10.jpg",
+    "logo_background": "light",
+    "logo_note": "Official French/Arabic logo from the university brand guide, displayed through an SVG viewport."
+  },
+  {
+    "id": "aub",
+    "name": {
+      "en": "American University of Beirut (AUB)",
+      "fr": "Université américaine de Beyrouth (AUB)"
+    },
+    "country": {
+      "en": "Lebanon",
+      "fr": "Liban"
+    },
+    "url": "https://www.aub.edu.lb/",
+    "logo": "/assets/institutions/aub.svg",
+    "logo_source": "https://www.aub.edu.lb/communications/logo/PublishingImages/logos.png",
+    "logo_background": "light",
+    "logo_note": "Official AUB logo presented through an SVG viewport; AUBMC logo excluded."
+  },
+  {
+    "id": "antonine",
+    "name": {
+      "en": "Antonine University",
+      "fr": "Université Antonine"
+    },
+    "country": {
+      "en": "Lebanon",
+      "fr": "Liban"
+    },
+    "url": "https://ua.edu.lb/en/home",
+    "logo": "/assets/institutions/antonine.png",
+    "logo_source": "https://ua.edu.lb/images/logo.png",
+    "logo_background": "light"
+  },
+  {
+    "id": "icjs",
+    "name": {
+      "en": "Institute for Islamic, Christian, and Jewish Studies (ICJS), Baltimore",
+      "fr": "Institute for Islamic, Christian, and Jewish Studies (ICJS), Baltimore"
+    },
+    "country": {
+      "en": "United States",
+      "fr": "États-Unis"
+    },
+    "url": "https://icjs.org/",
+    "logo": "/assets/institutions/icjs.svg",
+    "logo_source": "https://icjs.org/",
+    "logo_background": "light"
+  },
+  {
+    "id": "cattolica",
+    "name": {
+      "en": "Università Cattolica del Sacro Cuore, Milan",
+      "fr": "Università Cattolica del Sacro Cuore, Milan"
+    },
+    "country": {
+      "en": "Italy",
+      "fr": "Italie"
+    },
+    "url": "https://www.unicatt.it/",
+    "logo": "/assets/institutions/cattolica.svg",
+    "logo_source": "https://www.unicatt.it/content/dam/siti-web/unicatt/it/logo-unicatt.svg",
+    "logo_background": "light"
+  },
+  {
+    "id": "pisai",
+    "name": {
+      "en": "Pontifical Institute for Arabic and Islamic Studies (PISAI), Rome",
+      "fr": "Institut pontifical d’études arabes et d’islamologie (PISAI), Rome"
+    },
+    "country": {
+      "en": "Italy",
+      "fr": "Italie"
+    },
+    "url": "https://www.pisai.va/",
+    "logo": "/assets/institutions/pisai.png",
+    "logo_source": "https://www.pisai.va/etc/designs/pisai/release/library/main/images/logo/logo-pisai-it-100.png",
+    "logo_background": "dark"
+  },
+  {
+    "id": "insubria",
+    "name": {
+      "en": "University of Insubria",
+      "fr": "Université de l’Insubrie"
+    },
+    "country": {
+      "en": "Italy",
+      "fr": "Italie"
+    },
+    "url": "https://www.uninsubria.it/",
+    "logo": "/assets/institutions/insubria.svg",
+    "logo_source": "https://www.uninsubria.it/themes/custom/uninsubria_base/SigilloAteneoTestoBianco.svg",
+    "logo_background": "dark"
+  },
+  {
+    "id": "redesm",
+    "name": {
+      "en": "REDESM network",
+      "fr": "Réseau REDESM"
+    },
+    "country": {
+      "en": "Italy",
+      "fr": "Italie"
+    },
+    "url": "https://www.redesm.org/",
+    "logo": "/assets/institutions/redesm.png",
+    "logo_source": "https://www.redesm.org/wp-content/uploads/2021/04/redesm.png",
+    "logo_background": "light"
+  },
+  {
+    "id": "kph",
+    "name": {
+      "en": "KPH Vienna/Krems",
+      "fr": "KPH Vienne/Krems"
+    },
+    "country": {
+      "en": "Austria",
+      "fr": "Autriche"
+    },
+    "url": "https://kphvie.ac.at/",
+    "logo": "/assets/institutions/kph.svg",
+    "logo_source": "https://kphvie.ac.at/_assets/d058fbae76fda32738e087690448920c/Pics/kph-langlogo-dt-2025-transparent-rgb.svg",
+    "logo_background": "light",
+    "logo_note": "Current official KPH Wien/Niederösterreich logo; conference name KPH Vienna/Krems is preserved as supplied."
+  },
+  {
+    "id": "vienna",
+    "name": {
+      "en": "University of Vienna",
+      "fr": "Université de Vienne"
+    },
+    "country": {
+      "en": "Austria",
+      "fr": "Autriche"
+    },
+    "url": "https://www.univie.ac.at/",
+    "logo": "/assets/institutions/vienna.svg",
+    "logo_source": "https://www.univie.ac.at/_assets/12d6b27de3745b4c3b247e6ea4f9bbcc/Images/Logos/univie.svg",
+    "logo_background": "light"
+  },
+  {
+    "id": "trends",
+    "name": {
+      "en": "TRENDS Research & Advisory",
+      "fr": "TRENDS Research & Advisory"
+    },
+    "country": {
+      "en": "United Arab Emirates",
+      "fr": "Émirats arabes unis"
+    },
+    "url": "https://trendsgroup.org/research-and-advisory/",
+    "logo": "/assets/institutions/trends.png",
+    "logo_source": "https://trendsgroup.org/wp-content/themes/trends-react-theme/images/logo/Trends-RA-B.png",
+    "logo_background": "light"
+  }
+]

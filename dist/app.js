@@ -35,6 +35,48 @@
   document.querySelectorAll('[data-open-day]').forEach(link => link.addEventListener('click', () => {
     document.getElementById(link.dataset.openDay).open = true;
   }));
+  document.querySelectorAll('[data-carousel]').forEach(carousel => {
+    const track = carousel.querySelector('.institution-track');
+    const cards = [...track.children];
+    const previous = carousel.querySelector('[data-carousel-prev]');
+    const next = carousel.querySelector('[data-carousel-next]');
+    const count = carousel.querySelector('[data-carousel-count]');
+    const progress = carousel.querySelector('[data-carousel-progress]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function update() {
+      if (!track.clientWidth) return;
+      const bounds = track.getBoundingClientRect();
+      const visible = cards.map((card, index) => ({index, bounds: card.getBoundingClientRect()}))
+        .filter(card => card.bounds.right > bounds.left + 5 && card.bounds.left < bounds.right - 5);
+      const first = visible[0]?.index ?? 0;
+      const last = visible.at(-1)?.index ?? first;
+      count.textContent = `${first + 1}${last === first ? '' : '–' + (last + 1)} / ${cards.length}`;
+      progress.style.width = `${(last + 1) / cards.length * 100}%`;
+      previous.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+    }
+    function move(direction) {
+      const stride = cards[1].offsetLeft - cards[0].offsetLeft;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const perPage = Math.max(1, Math.floor((track.clientWidth + gap) / stride));
+      track.scrollBy({left: direction * stride * perPage, behavior: reduceMotion.matches ? 'instant' : 'smooth'});
+    }
+    previous.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    track.addEventListener('scroll', update, {passive: true});
+    track.addEventListener('keydown', event => {
+      if (event.target !== track) return;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        move(event.key === 'ArrowLeft' ? -1 : 1);
+      } else if (event.key === 'Home' || event.key === 'End') {
+        event.preventDefault();
+        track.scrollTo({left: event.key === 'Home' ? 0 : track.scrollWidth, behavior: reduceMotion.matches ? 'instant' : 'smooth'});
+      }
+    });
+    new ResizeObserver(update).observe(track);
+    update();
+  });
   function openHash() {
     const target = document.getElementById(location.hash.slice(1));
     if (target?.matches('details')) target.open = true;

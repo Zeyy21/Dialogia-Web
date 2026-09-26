@@ -10,6 +10,8 @@ from pypdf import PdfReader
 root = Path(__file__).resolve().parents[1]
 doc = html.fromstring((root / 'dist/index.html').read_text())
 sources = {lang: json.loads((root / f'source/{lang}.json').read_text()) for lang in ['en', 'fr']}
+institutions = json.loads((root / 'source/institutions.json').read_text())
+conference_info = json.loads((root / 'source/conference-info.json').read_text())
 passages = doc.xpath('//*[@data-source]')
 for element in passages:
     lang, index = element.attrib['data-source'].split(':')
@@ -26,6 +28,20 @@ def normalized(text):
     return ''.join(c for c in unicodedata.normalize('NFKC', text).casefold() if c.isalnum())
 
 for lang in ['fr', 'en']:
+    language = doc.xpath(f'//*[@data-language="{lang}"]')[0]
+    cards = language.xpath('.//*[@data-institution]')
+    assert [card.attrib['data-institution'] for card in cards] == [i['id'] for i in institutions], f'Incomplete institution list in {lang}'
+    for card, institution in zip(cards, institutions):
+        assert card.xpath('.//h4')[0].text_content() == institution['name'][lang]
+        assert card.xpath('./a/@href') == [institution['url']]
+        assert card.xpath('.//img/@src') == [institution['logo']]
+    assert len(language.xpath('.//header//a[@class="organizer-link"]')) == 4, 'Organising logos must be inside the menu bar'
+    credit = language.xpath('.//*[@class="footer-credit"]/a')[0]
+    assert credit.text_content() == 'Made by Zeyyad Saleh, Cofounder of Syllogos'
+    assert credit.attrib['href'] == 'https://syllogos.io/'
+    for key, text in conference_info[lang].items():
+        node = language.xpath(f'.//*[@data-conference-info="{lang}:{key}"]')
+        assert len(node) == 1 and node[0].text_content() == text, f'Missing or changed conference information: {lang}:{key}'
     indices = {int(e.attrib['data-source'].split(':')[1]) for e in passages if e.attrib['data-source'].startswith(lang + ':')}
     # Cover contents line, repeated Rationale label, and the colour legend in
     # the printed timetable add no information to the corresponding web sections.
@@ -49,6 +65,7 @@ assert not doc.xpath('//a[contains(@href,".docx")]'), 'Old Word download remains
 print('PASS: Every substantive booklet passage is on the page, including all 46 abstracts.')
 print('PASS: Full English and French source text matches the supplied PDFs.')
 print('PASS: Internal links, PDF links, unique IDs and local assets.')
+print('PASS: All 22 represented institutions, header logos, supplied conference information and footer credit.')
 print('Registration:', 'connected' if config['url'] else 'awaiting Google sign-in')
 for lang in ['EN','FR']:
     file = root / f'dist/documents/DIALOGIA-2026-{lang}.pdf'

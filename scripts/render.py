@@ -9,6 +9,8 @@ import json
 
 ROOT = Path(__file__).resolve().parents[1]
 registration = json.loads((ROOT / 'registration.json').read_text())['url']
+institutions = json.loads((ROOT / 'source/institutions.json').read_text())
+conference_info = json.loads((ROOT / 'source/conference-info.json').read_text())
 if registration and not registration.startswith('https://'):
     raise ValueError('Registration must use an HTTPS URL')
 
@@ -19,12 +21,14 @@ UI = {
 
 UI['fr'].update(abstracts='Résumés des communications', show='Afficher', hide='Réduire', program_pdf='Programme (PDF)', official_site='Site officiel')
 UI['en'].update(abstracts='Presentation abstracts', show='Expand', hide='Collapse', program_pdf='Program (PDF)', official_site='Official website')
+UI['fr'].update(international='Une rencontre internationale', represented='Institutions représentées', international_label='Participation internationale', previous='Institutions précédentes', next='Institutions suivantes', carousel='Carrousel', browse='Faites défiler pour découvrir toutes les institutions.', participation='En présentiel et en ligne')
+UI['en'].update(international='An international gathering', represented='Represented institutions', international_label='International participation', previous='Previous institutions', next='Next institutions', carousel='Carousel', browse='Scroll to explore all represented institutions.', participation='In person and online')
 
 ORGANIZERS = [
- ('TRENDS Group', 'https://trendsgroup.org/', '35 125 805 310'),
- ('PLURIEL', 'https://pluriel.fuce.eu/', '910 125 520 310'),
- ('Université de Montréal', 'https://www.umontreal.ca/', '1520 125 575 310'),
- ('UQAM', 'https://uqam.ca/', '2210 125 530 310'),
+ ('TRENDS Group', 'https://trendsgroup.org/', '/assets/institutions/trends-group.png'),
+ ('PLURIEL', 'https://pluriel.fuce.eu/', '/assets/institutions/pluriel.png'),
+ ('Université de Montréal', 'https://www.umontreal.ca/', '/assets/institutions/umontreal.svg'),
+ ('UQAM', 'https://uqam.ca/', '/assets/institutions/uqam-blue.svg'),
 ]
 
 ABSTRACT_AXES = {
@@ -37,6 +41,8 @@ def page(lang):
  ui = UI[lang]
  def s(i, tag='p', cls=''):
   return f'<{tag} data-source="{lang}:{i}" class="{cls}">{escape(p[i])}</{tag}>'
+ def info(key,cls=''):
+  return f'<p data-conference-info="{lang}:{key}" class="{cls}">{escape(conference_info[lang][key])}</p>'
  def anchor(key): return f'{key}-{lang}'
  def toggle():
   return f'<span class="toggle-control"><span class="when-closed">{ui["show"]}</span><span class="when-open">{ui["hide"]}</span><span class="plus" aria-hidden="true"></span></span>'
@@ -75,12 +81,17 @@ def page(lang):
    axes.append(f'<details class="abstract-axis" id="abstract-axis-{axis}-{lang}"><summary><span>{s(start,"span","session-label")}{s(start+1,"span","session-title")}</span>{toggle()}</summary><div class="papers">'+''.join(papers)+'</div></details>')
   return ''.join(axes)
  def logos():
-  links=[]
-  for number,(name,url,box) in enumerate(ORGANIZERS):
-   x,y,width,height=box.split()
-   clip=f'logo-clip-{number}-{lang}'
-   links.append(f'<a class="organizer-link" href="{url}" target="_blank" rel="noopener noreferrer" aria-label="{escape(name)} — {ui["official_site"]}" title="{escape(name)} — {ui["official_site"]}"><svg viewBox="{box}" aria-hidden="true" focusable="false"><defs><clipPath id="{clip}"><rect x="{x}" y="{y}" width="{width}" height="{height}"/></clipPath></defs><image href="/assets/organizing-institutions.png" width="2804" height="561" clip-path="url(#{clip})"/></svg><span class="logo-external" aria-hidden="true">↗</span></a>')
-  return ''.join(links)
+  return ''.join(f'<a class="organizer-link" href="{url}" target="_blank" rel="noopener noreferrer" aria-label="{escape(name)} — {ui["official_site"]}" title="{escape(name)} — {ui["official_site"]}"><img src="{logo}" alt="{escape(name)}" width="130" height="52"></a>' for name,url,logo in ORGANIZERS)
+ def institution_carousel():
+  cards=[]
+  for institution in institutions:
+   name=escape(institution['name'][lang])
+   cards.append(f'<li class="institution-card" data-institution="{institution["id"]}"><a href="{institution["url"]}" target="_blank" rel="noopener noreferrer"><div class="institution-logo {institution["logo_background"]}"><img src="{institution["logo"]}" alt="" loading="lazy" decoding="async" width="240" height="100"></div><div class="institution-card-copy"><p class="institution-country">{escape(institution["country"][lang])}</p><h4>{name}</h4><span class="institution-visit">{ui["official_site"]}<span aria-hidden="true">↗</span></span></div></a></li>')
+  return f'''<div class="institution-carousel" data-carousel role="region" aria-roledescription="{ui['carousel']}" aria-labelledby="institutions-heading-{lang}">
+   <div class="carousel-heading"><div><h3 id="institutions-heading-{lang}">{ui['represented']}</h3><p>{ui['browse']}</p></div><div class="carousel-controls"><button type="button" data-carousel-prev aria-label="{ui['previous']}" aria-controls="institution-track-{lang}"><span aria-hidden="true">←</span></button><button type="button" data-carousel-next aria-label="{ui['next']}" aria-controls="institution-track-{lang}"><span aria-hidden="true">→</span></button></div></div>
+   <ul class="institution-track" id="institution-track-{lang}" tabindex="0" aria-label="{ui['represented']}">{''.join(cards)}</ul>
+   <div class="carousel-footer"><span class="carousel-count" aria-live="polite" aria-atomic="true" data-carousel-count>1 / {len(institutions)}</span><div class="carousel-progress" aria-hidden="true"><span data-carousel-progress></span></div></div>
+  </div>'''
  institution = 348 if lang=='en' else 346
  committee = 342 if lang=='en' else 340
  workshops = 334 if lang=='en' else 332
@@ -90,10 +101,9 @@ def page(lang):
  <a class="skip-link" href="#{anchor('main')}">{ui['skip']}</a>
  <header class="header" id="{anchor('top')}"><div class="shell header-inner">
   <a class="wordmark" href="#{anchor('top')}" aria-label="DIALOGIA 2026">DIALOGIA<span>MONTRÉAL 2026</span></a>
-  <nav aria-label="{ui['nav']}" class="main-nav"><a href="#{anchor('program')}">{ui['programme']}</a><a href="#{anchor('abstracts')}">{ui['abstracts']}</a></nav>
+  <nav class="organizers-row" aria-label="{escape(p[institution])}">{logos()}</nav>
   <div class="header-actions"><div class="language-switch" aria-label="{ui['lang']}"><a href="?lang=fr" data-set-language="fr" lang="fr" aria-label="Français" {'aria-current="true"' if lang=='fr' else ''}>FR</a><span aria-hidden="true">/</span><a href="?lang=en" data-set-language="en" lang="en" aria-label="English" {'aria-current="true"' if lang=='en' else ''}>EN</a></div><div class="header-buttons">{program_button('button button-small button-program',True)}{register('button button-small')}</div></div>
  </div></header>
- <section class="institutions" aria-label="{escape(p[institution])}"><div class="shell"><div class="organizers-row">{logos()}</div>{s(institution,'p','eyebrow')}</div></section>
  <main id="{anchor('main')}">
   <section class="hero"><div class="shell">
    {s(0,'p','eyebrow hero-eyebrow')}
@@ -106,9 +116,10 @@ def page(lang):
   <div class="axes">{s(24,'h3','eyebrow')}<div class="axes-grid">{''.join(f'<div class="axis">{s(i,"span","axis-number")}{s(i+1,"h4")}</div>' for i in [25,27,29,31])}</div></div></div></section>
   <section class="program-section" id="{anchor('program')}"><div class="section shell"><div class="section-rail"><p class="eyebrow">{ui['programme']}</p><span class="section-number" aria-hidden="true">02</span></div><div class="section-content"><div class="section-heading"><h2>{ui['days']}</h2><a class="download-link" href="{download}" download>{ui['download']}<span aria-hidden="true">↓</span></a></div>{s(8,'h3','eyebrow format-label')}{s(9,'p','program-intro')}<div class="schedule">{day(107,163,19)}{day(163,196,20)}{day(196,229,21)}</div>{overview()}<details class="workshop-details" id="workshop-details-{lang}"><summary>{s(workshops,'span','day-title')}{toggle()}</summary><div class="workshop-body">{s(workshops+1)}{s(workshops+2,'h3')}{s(workshops+3)}{s(workshops+4,'h3')}{''.join(s(i) for i in range(workshops+5,committee))}</div></details></div></div></section>
   <section class="section abstracts-section shell" id="{anchor('abstracts')}"><div class="section-rail"><p class="eyebrow">{ui['abstracts']}</p><span class="section-number" aria-hidden="true">03</span></div><div class="section-content"><h2>{ui['abstracts']}</h2><div class="abstracts-list">{abstracts()}</div></div></section>
-  <section class="section practical shell" id="{anchor('practical')}"><div class="section-rail">{s(33,'p','eyebrow')}<span class="section-number" aria-hidden="true">04</span></div><div class="section-content practical-grid"><div><h2>{ui['practical']}</h2>{s(4,'p','practical-date')}{s(5)}{s(6)}<a class="download-link" href="{download}" download>{ui['booklet']} — {ui['doclang']}<span aria-hidden="true">↓</span></a></div><div class="registration-panel" id="{anchor('registration')}"><h3>{ui['registration']}</h3>{s(0,'p','registration-description')}{register()}<p class="registration-status" {'hidden' if registration else ''}>{ui['pending']}</p></div></div></section>
+  <section class="section practical shell" id="{anchor('practical')}"><div class="section-rail">{s(33,'p','eyebrow')}<span class="section-number" aria-hidden="true">04</span></div><div class="section-content practical-grid"><div><h2>{ui['practical']}</h2>{s(4,'p','practical-date')}{s(5)}{s(6)}<a class="download-link" href="{download}" download>{ui['booklet']} — {ui['doclang']}<span aria-hidden="true">↓</span></a></div><div class="registration-panel" id="{anchor('registration')}"><h3>{ui['registration']}</h3><p class="participation-label">{ui['participation']}</p>{info('participation','participation-notice')}{register()}<p class="registration-status" {'hidden' if registration else ''}>{ui['pending']}</p></div></div></section>
+  <section class="international-section" id="{anchor('international')}"><div class="shell international-inner"><div class="international-heading"><p class="eyebrow">{ui['international_label']}</p><h2>{ui['international']}</h2>{info('countries','international-countries')}</div><div class="international-context">{info('overview')}{info('initiative')}</div>{institution_carousel()}</div></section>
  </main>
- <footer class="footer"><div class="shell"><div class="footer-grid"><div class="wordmark">DIALOGIA<span>MONTRÉAL 2026</span></div><div>{s(committee,'h2','eyebrow')}<div class="committee-names">{''.join(s(i,'span') for i in range(committee+1,committee+6))}</div></div><div>{s(institution,'h2','eyebrow')}{''.join(s(i,'p','institution-name') for i in range(institution+1,len(p)))}</div></div><div class="footer-bottom"><a href="{download}" download>{ui['booklet']} · {ui['doclang']}<span aria-hidden="true">↗</span></a><a href="?lang={opposite}" data-set-language="{opposite}" lang="{opposite}">{ui['other']}</a><a href="#{anchor('top')}">{ui['top']} ↑</a></div></div></footer>
+ <footer class="footer"><div class="shell"><div class="footer-grid"><div class="wordmark">DIALOGIA<span>MONTRÉAL 2026</span></div><div>{s(committee,'h2','eyebrow')}<div class="committee-names">{''.join(s(i,'span') for i in range(committee+1,committee+6))}</div></div><div>{s(institution,'h2','eyebrow')}{''.join(s(i,'p','institution-name') for i in range(institution+1,len(p)))}</div></div><div class="footer-bottom"><a href="{download}" download>{ui['booklet']} · {ui['doclang']}<span aria-hidden="true">↗</span></a><a href="?lang={opposite}" data-set-language="{opposite}" lang="{opposite}">{ui['other']}</a><a href="#{anchor('top')}">{ui['top']} ↑</a></div><div class="footer-credit"><a href="https://syllogos.io/" target="_blank" rel="noopener noreferrer" lang="en">Made by Zeyyad Saleh, Cofounder of Syllogos</a></div></div></footer>
  </div>'''
 
 html='''<!doctype html>
