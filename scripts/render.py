@@ -57,6 +57,8 @@ def page(lang):
  ui = UI[lang]
  def s(i, tag='p', cls=''):
   return f'<{tag} data-source="{lang}:{i}" class="{cls}">{escape(p[i])}</{tag}>'
+ def committee_link(i):
+  return f'<a class="committee-link" href="https://pluriel.fuce.eu/en/thematique/interreligious-dialogue-assisted-by-artificial-intelligence/" target="_blank" rel="noopener noreferrer">{s(i,"span")}</a>'
  def info(key,cls=''):
   return f'<p data-conference-info="{lang}:{key}" class="{cls}">{escape(conference_info[lang][key])}</p>'
  def anchor(key): return f'{key}-{lang}'
@@ -140,7 +142,7 @@ def page(lang):
   <section class="section practical shell" id="{anchor('practical')}" tabindex="-1"><div class="section-rail">{s(33,'p','eyebrow')}<span class="section-number" aria-hidden="true">04</span></div><div class="section-content practical-grid"><div><h2>{ui['practical']}</h2>{s(4,'p','practical-date')}{s(5)}{s(6)}<a class="download-link" href="{download}" download>{ui['booklet']} — {ui['doclang']}{icon("download")}</a></div><div class="registration-panel" id="{anchor('registration')}"><h3>{ui['registration']}</h3><p class="participation-label">{ui['participation']}</p>{info('participation','participation-notice')}{register()}<p class="registration-status" {'hidden' if registration else ''}>{ui['pending']}</p></div></div></section>
   <section class="international-section" id="{anchor('international')}" tabindex="-1"><div class="shell international-inner"><div class="international-heading"><p class="eyebrow">{ui['international_label']}</p><h2>{ui['international']}</h2>{info('countries','international-countries')}</div><div class="international-context">{info('overview')}{info('initiative')}</div>{institution_carousel()}</div></section>
  </main>
- <footer class="footer"><div class="shell"><div class="footer-grid"><div class="wordmark">DIALOGIA<span>MONTRÉAL 2026</span></div><div>{s(committee,'h2','eyebrow')}<div class="committee-names">{''.join(s(i,'span') for i in range(committee+1,committee+6))}</div></div><div>{s(institution,'h2','eyebrow')}{''.join(s(i,'p','institution-name') for i in range(institution+1,len(p)))}</div></div><div class="footer-bottom"><a href="{download}" download>{ui['booklet']} · {ui['doclang']}{icon("external")}</a><a href="?lang={opposite}" data-set-language="{opposite}" lang="{opposite}">{ui['other']}</a><a href="#{anchor('top')}">{ui['top']}{icon('up')}</a></div><div class="footer-credit"><a href="https://syllogos.io/" target="_blank" rel="noopener noreferrer" lang="en">Designed by Zeyyad Saleh, Cofounder of Syllogos</a></div></div></footer>
+ <footer class="footer"><div class="shell"><div class="footer-grid"><div class="wordmark">DIALOGIA<span>MONTRÉAL 2026</span></div><div><h2 class="eyebrow">{committee_link(committee)}</h2><div class="committee-names">{''.join(committee_link(i) for i in range(committee+1,committee+6))}</div></div><div>{s(institution,'h2','eyebrow')}{''.join(s(i,'p','institution-name') for i in range(institution+1,len(p)))}</div></div><div class="footer-bottom"><a href="{download}" download>{ui['booklet']} · {ui['doclang']}{icon("external")}</a><a href="?lang={opposite}" data-set-language="{opposite}" lang="{opposite}">{ui['other']}</a><a href="#{anchor('top')}">{ui['top']}{icon('up')}</a></div><div class="footer-credit"><a href="https://syllogos.io/" target="_blank" rel="noopener noreferrer" lang="en">Designed by Zeyyad Saleh, Cofounder of Syllogos</a></div></div></footer>
  </div>'''
 
 html='''<!doctype html>

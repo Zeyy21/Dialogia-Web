@@ -230,6 +230,8 @@ summary > span:first-child { min-width: 0; }
 .footer { background: #f7f9fa; border-top: 1px solid var(--line); padding-top: 38px; }
 .footer-grid { display: grid; gap: 30px; padding-bottom: 30px; }
 .footer .eyebrow { margin-bottom: 16px; }
+.committee-link { text-decoration: underline; text-decoration-color: #a4b7c4; text-underline-offset: 4px; }
+.committee-link:hover { text-decoration-color: currentColor; }
 .committee-names { display: flex; flex-wrap: wrap; gap: 7px 20px; max-width: 350px; }
 .committee-names span, .institution-name { font-size: 14px; line-height: 1.75; color: var(--muted); }
 .institution-name + .institution-name { margin-top: 5px; }
