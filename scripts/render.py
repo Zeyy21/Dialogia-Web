@@ -41,10 +41,10 @@ def icon(name):
  return f'<svg class="icon icon-{name}" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{paths[name]}</svg>'
 
 ORGANIZERS = [
- ('TRENDS Group', 'https://trendsgroup.org/', '/assets/institutions/trends-group.png'),
- ('PLURIEL', 'https://pluriel.fuce.eu/', '/assets/institutions/pluriel.png'),
- ('Université de Montréal', 'https://www.umontreal.ca/', '/assets/institutions/umontreal.svg'),
- ('UQAM', 'https://uqam.ca/', '/assets/institutions/uqam-blue.svg'),
+ ('trends', 'TRENDS Group', 'https://trendsgroup.org/', '/assets/institutions/trends-group.png'),
+ ('pluriel', 'PLURIEL', 'https://pluriel.fuce.eu/', '/assets/institutions/pluriel.png'),
+ ('umontreal', 'Université de Montréal', 'https://www.umontreal.ca/', '/assets/institutions/umontreal.svg'),
+ ('uqam', 'UQAM', 'https://uqam.ca/', '/assets/institutions/uqam-blue.svg'),
 ]
 
 ABSTRACT_AXES = {
@@ -98,7 +98,7 @@ def page(lang):
    axes.append(f'<details class="abstract-axis" id="abstract-axis-{axis}-{lang}"><summary><span>{s(start,"span","session-label")}{s(start+1,"span","session-title")}</span>{toggle()}</summary><div class="papers">'+''.join(papers)+'</div></details>')
   return ''.join(axes)
  def logos():
-  return ''.join(f'<a class="organizer-link" href="{url}" target="_blank" rel="noopener noreferrer" aria-label="{escape(name)} — {ui["official_site"]}" title="{escape(name)} — {ui["official_site"]}"><img src="{logo}" alt="{escape(name)}" width="130" height="52"></a>' for name,url,logo in ORGANIZERS)
+  return ''.join(f'<a class="organizer-link" data-organizer="{key}" href="{url}" target="_blank" rel="noopener noreferrer" aria-label="{escape(name)} — {ui["official_site"]}" title="{escape(name)} — {ui["official_site"]}"><img src="{logo}" alt="{escape(name)}" width="130" height="52"></a>' for key,name,url,logo in ORGANIZERS)
  def institution_carousel():
   cards=[]
   for institution in institutions:
@@ -135,12 +135,12 @@ def page(lang):
   </div></section>
   <section class="section rationale shell" id="{anchor('rationale')}"><div class="section-rail">{s(16,'p','eyebrow')}<span class="section-number" aria-hidden="true">01</span></div><div class="section-content">{s(18,'h2')}{s(19,'p','body-copy')}<details class="rationale-more" id="rationale-more-{lang}"><summary>{ui['full']}{toggle()}</summary><div>{s(20)}{s(21)}{s(22,'h3','eyebrow')}{s(23)}</div></details>
   <div class="axes">{s(24,'h3','eyebrow')}<div class="axes-grid">{''.join(f'<div class="axis">{s(i,"span","axis-number")}{s(i+1,"h4")}</div>' for i in [25,27,29,31])}</div></div></div></section>
-  <section class="program-section" id="{anchor('program')}" tabindex="-1"><div class="section shell"><div class="section-rail"><p class="eyebrow">{ui['programme']}</p><span class="section-number" aria-hidden="true">02</span></div><div class="section-content"><div class="section-heading"><h2>{ui['days']}</h2><a class="download-link" href="{download}" download>{ui['download']}{icon("download")}</a></div>{s(8,'h3','eyebrow format-label')}{s(9,'p','program-intro')}<div class="schedule">{day(107,163,19)}{day(163,196,20)}{day(196,229,21)}</div>{overview()}<details class="workshop-details" id="workshop-details-{lang}"><summary>{s(workshops,'span','day-title')}{toggle()}</summary><div class="workshop-body">{s(workshops+1)}{s(workshops+2,'h3')}{s(workshops+3)}{s(workshops+4,'h3')}{''.join(s(i) for i in range(workshops+5,committee))}</div></details></div></div></section>
+  <section class="program-section" id="{anchor('program')}" tabindex="-1"><div class="section shell"><div class="section-rail"><p class="eyebrow">{ui['programme']}</p><span class="section-number" aria-hidden="true">02</span></div><div class="section-content"><div class="section-heading"><h2>{ui['days']}</h2><a class="download-link" href="{download}" download>{ui['download']}{icon("download")}</a></div>{s(8,'h3','eyebrow format-label')}{s(9,'p','program-intro')}<div class="schedule">{overview()}{day(107,163,19)}{day(163,196,20)}{day(196,229,21)}</div><details class="workshop-details" id="workshop-details-{lang}"><summary>{s(workshops,'span','day-title')}{toggle()}</summary><div class="workshop-body">{s(workshops+1)}{s(workshops+2,'h3')}{s(workshops+3)}{s(workshops+4,'h3')}{''.join(s(i) for i in range(workshops+5,committee))}</div></details></div></div></section>
   <section class="section abstracts-section shell" id="{anchor('abstracts')}" tabindex="-1"><div class="section-rail"><p class="eyebrow">{ui['abstracts']}</p><span class="section-number" aria-hidden="true">03</span></div><div class="section-content"><h2>{ui['abstracts']}</h2><div class="abstracts-list">{abstracts()}</div></div></section>
   <section class="section practical shell" id="{anchor('practical')}" tabindex="-1"><div class="section-rail">{s(33,'p','eyebrow')}<span class="section-number" aria-hidden="true">04</span></div><div class="section-content practical-grid"><div><h2>{ui['practical']}</h2>{s(4,'p','practical-date')}{s(5)}{s(6)}<a class="download-link" href="{download}" download>{ui['booklet']} — {ui['doclang']}{icon("download")}</a></div><div class="registration-panel" id="{anchor('registration')}"><h3>{ui['registration']}</h3><p class="participation-label">{ui['participation']}</p>{info('participation','participation-notice')}{register()}<p class="registration-status" {'hidden' if registration else ''}>{ui['pending']}</p></div></div></section>
   <section class="international-section" id="{anchor('international')}" tabindex="-1"><div class="shell international-inner"><div class="international-heading"><p class="eyebrow">{ui['international_label']}</p><h2>{ui['international']}</h2>{info('countries','international-countries')}</div><div class="international-context">{info('overview')}{info('initiative')}</div>{institution_carousel()}</div></section>
  </main>
- <footer class="footer"><div class="shell"><div class="footer-grid"><div class="wordmark">DIALOGIA<span>MONTRÉAL 2026</span></div><div>{s(committee,'h2','eyebrow')}<div class="committee-names">{''.join(s(i,'span') for i in range(committee+1,committee+6))}</div></div><div>{s(institution,'h2','eyebrow')}{''.join(s(i,'p','institution-name') for i in range(institution+1,len(p)))}</div></div><div class="footer-bottom"><a href="{download}" download>{ui['booklet']} · {ui['doclang']}{icon("external")}</a><a href="?lang={opposite}" data-set-language="{opposite}" lang="{opposite}">{ui['other']}</a><a href="#{anchor('top')}">{ui['top']}{icon('up')}</a></div><div class="footer-credit"><a href="https://syllogos.io/" target="_blank" rel="noopener noreferrer" lang="en">Made by Zeyyad Saleh, Cofounder of Syllogos</a></div></div></footer>
+ <footer class="footer"><div class="shell"><div class="footer-grid"><div class="wordmark">DIALOGIA<span>MONTRÉAL 2026</span></div><div>{s(committee,'h2','eyebrow')}<div class="committee-names">{''.join(s(i,'span') for i in range(committee+1,committee+6))}</div></div><div>{s(institution,'h2','eyebrow')}{''.join(s(i,'p','institution-name') for i in range(institution+1,len(p)))}</div></div><div class="footer-bottom"><a href="{download}" download>{ui['booklet']} · {ui['doclang']}{icon("external")}</a><a href="?lang={opposite}" data-set-language="{opposite}" lang="{opposite}">{ui['other']}</a><a href="#{anchor('top')}">{ui['top']}{icon('up')}</a></div><div class="footer-credit"><a href="https://syllogos.io/" target="_blank" rel="noopener noreferrer" lang="en">Designed by Zeyyad Saleh, Cofounder of Syllogos</a></div></div></footer>
  </div>'''
 
 html='''<!doctype html>

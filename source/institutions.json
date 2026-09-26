@@ -1,5 +1,20 @@
 [
   {
+    "id": "trends",
+    "name": {
+      "en": "TRENDS Research & Advisory",
+      "fr": "TRENDS Research & Advisory"
+    },
+    "country": {
+      "en": "United Arab Emirates",
+      "fr": "Émirats arabes unis"
+    },
+    "url": "https://trendsgroup.org/research-and-advisory/",
+    "logo": "/assets/institutions/trends.png",
+    "logo_source": "https://trendsgroup.org/wp-content/themes/trends-react-theme/images/logo/Trends-RA-B.png",
+    "logo_background": "light"
+  },
+  {
     "id": "umontreal",
     "name": {
       "en": "University of Montreal",
@@ -103,6 +118,21 @@
     "url": "https://pluriel.fuce.eu/",
     "logo": "/assets/institutions/pluriel.png",
     "logo_source": "https://pluriel.fuce.eu/wp-content/themes/pluriel/img/logo-pluriel-bleu-vert.png",
+    "logo_background": "light"
+  },
+  {
+    "id": "centre-thucydide",
+    "name": {
+      "en": "Centre Thucydide (Panthéon-Assas)",
+      "fr": "Centre Thucydide (Panthéon-Assas)"
+    },
+    "country": {
+      "en": "France",
+      "fr": "France"
+    },
+    "url": "https://www.afri-ct.org/",
+    "logo": "/assets/institutions/centre-thucydide.svg",
+    "logo_source": "https://www.afri-ct.org/wp-content/themes/cream-magazine/assets/img/Centre-Thucycide_Logo_Desktop.svg",
     "logo_background": "light"
   },
   {
@@ -317,21 +347,6 @@
     "url": "https://www.univie.ac.at/",
     "logo": "/assets/institutions/vienna.svg",
     "logo_source": "https://www.univie.ac.at/_assets/12d6b27de3745b4c3b247e6ea4f9bbcc/Images/Logos/univie.svg",
-    "logo_background": "light"
-  },
-  {
-    "id": "trends",
-    "name": {
-      "en": "TRENDS Research & Advisory",
-      "fr": "TRENDS Research & Advisory"
-    },
-    "country": {
-      "en": "United Arab Emirates",
-      "fr": "Émirats arabes unis"
-    },
-    "url": "https://trendsgroup.org/research-and-advisory/",
-    "logo": "/assets/institutions/trends.png",
-    "logo_source": "https://trendsgroup.org/wp-content/themes/trends-react-theme/images/logo/Trends-RA-B.png",
     "logo_background": "light"
   }
 ]

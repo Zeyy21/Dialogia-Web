@@ -38,7 +38,7 @@ for lang in ['fr', 'en']:
         assert card.xpath('.//img/@src') == [institution['logo']]
     assert len(language.xpath('.//header//a[@class="organizer-link"]')) == 4, 'Organising logos must be inside the menu bar'
     credit = language.xpath('.//*[@class="footer-credit"]/a')[0]
-    assert credit.text_content() == 'Made by Zeyyad Saleh, Cofounder of Syllogos'
+    assert credit.text_content() == 'Designed by Zeyyad Saleh, Cofounder of Syllogos'
     assert credit.attrib['href'] == 'https://syllogos.io/'
     for key, text in conference_info[lang].items():
         node = language.xpath(f'.//*[@data-conference-info="{lang}:{key}"]')
@@ -66,7 +66,7 @@ assert not doc.xpath('//a[contains(@href,".docx")]'), 'Old Word download remains
 print('PASS: Every substantive booklet passage is on the page, including all 46 abstracts.')
 print('PASS: Full English and French source text matches the supplied PDFs.')
 print('PASS: Internal links, PDF links, unique IDs and local assets.')
-print('PASS: All 22 represented institutions, header logos, supplied conference information and footer credit.')
+print(f'PASS: All {len(institutions)} represented institutions, header logos, supplied conference information and footer credit.')
 print('Registration:', 'connected' if config['url'] else 'awaiting Google sign-in')
 for lang in ['EN','FR']:
     file = root / f'dist/documents/DIALOGIA-2026-{lang}.pdf'
