@@ -4,7 +4,9 @@ A single-page conference website in French and English. The default language is 
 
 ## Official content
 
-The source paragraphs in `source/en.json` and `source/fr.json` were extracted directly from the supplied official DOCX files. The page uses those paragraphs verbatim and includes the complete detailed programme. Abstracts remain available in the original downloadable booklets. The organiser image is the original image embedded in the booklet.
+The source paragraphs in `source/en.json` and `source/fr.json` are verified against the supplied official PDF booklets dated 26 September 2026. The page uses their wording verbatim and includes all substantive content: the scientific rationale, programme overview and detailed schedule, all 23 presentation abstracts in each language, workshop participants, scientific committee and organising institutions. Only the printed contents line, colour legend and a repeated heading are omitted.
+
+The programme buttons open the appropriate PDF at page 3. Every booklet download is an unchanged copy of the supplied PDF. The organiser logos use the original booklet image and link to each institution’s official website.
 
 Only navigation, accessibility, download and registration labels were written for the website. The language switch selects the respective official source; it does not machine-translate conference copy.
 
@@ -30,7 +32,7 @@ Configuration follows [Vercel’s static-site build guidance](https://vercel.com
 - `dist/styles.css`: responsive layout and visual design.
 - `dist/app.js`: language switching and programme navigation.
 - `scripts/render.py`: renders the page from source paragraphs.
-- `scripts/verify.py`: compares every sourced passage with the official text and checks programme completeness, links and assets; requires lxml.
+- `scripts/verify.py`: compares every sourced passage with the official text, checks complete substantive coverage, verifies the source text against both PDFs, and checks links and assets; requires lxml and pypdf.
 
 Serve `dist` with a local HTTP server to preview it. Static hosting serves the same directory. `python3 scripts/render.py` regenerates the page; `python3 scripts/verify.py` checks it.
 
@@ -43,4 +45,4 @@ The website preserves each document's detailed programme. It does not reconcile 
 - **19 October, Session 3:** the summary includes **14 h 00–15 h 45**, while the detailed session heading ends at **15 h 15**, followed by general discussion until **15 h 45**.
 - The introductory format paragraph describes workshops on the afternoon of 20 October; the detailed Workshop 1 starts before noon in both documents.
 
-Resolve these in revised official documents before changing the published wording. Original DOCX downloads are unchanged.
+Resolve these in revised official documents before changing the published wording. The PDF downloads preserve the supplied originals.
