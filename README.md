@@ -12,6 +12,8 @@ Booklet copy remains verbatim in both languages. `source/conference-info.json` c
 
 The carousel supports touch scrolling, previous/next buttons, and the arrow, Home and End keys when its list is focused. It has no automatic movement and respects reduced-motion preferences. The footer includes the requested credit linked to Syllogos.
 
+On phones and tablets, the compact header opens a menu with section links, organising logos and registration. Escape closes the menu and returns focus to its button. The timetable becomes labelled cards on narrow screens. Interface arrows use inline SVGs, so their appearance does not depend on device fonts.
+
 ## Registration
 
 The bilingual Google Form is owned by `zeyyad.saleh2006@gmail.com` and is published for anyone with its link. Name, email address and attendance dates are required; affiliation is optional. Email format is validated. Google sign-in is not required, and response summaries are not shared with respondents.
@@ -24,7 +26,7 @@ Set the verified respondent URL in `registration.json`, then run `python3 script
 
 Import `Zeyy21/Dialogia-Web` into Vercel and leave the Root Directory at the repository root (`.`). The included `vercel.json` selects the **Other** framework preset, skips installation and building, and serves the committed `dist` directory. No environment variables are required.
 
-The site, language switch, registration form link, images and booklet downloads are served as committed. After editing source content, regenerate `dist/index.html` locally and commit it before deploying.
+The site, language switch, registration form link, images and booklet downloads are served as committed. After editing source content, CSS or JavaScript, regenerate `dist/index.html` locally and commit it before deploying. The renderer adds content versions to the CSS and JavaScript URLs so returning visitors receive the new files.
 
 Configuration follows [Vercel’s static-site build guidance](https://vercel.com/docs/builds/configure-a-build#skip-build-step).
 
@@ -32,7 +34,7 @@ Configuration follows [Vercel’s static-site build guidance](https://vercel.com
 
 - `dist/index.html`: generated bilingual page.
 - `dist/styles.css`: responsive layout and visual design.
-- `dist/app.js`: language switching, programme navigation and the accessible institution carousel.
+- `dist/app.js`: mobile menu, language switching, programme navigation and the accessible institution carousel.
 - `source/institutions.json`: represented institutions and the sources of their logo assets.
 - `source/conference-info.json`: additional organiser-supplied event information and its French translation.
 - `scripts/render.py`: renders the page from source paragraphs.

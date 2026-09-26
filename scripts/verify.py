@@ -6,6 +6,7 @@ import hashlib
 import re
 import unicodedata
 from pypdf import PdfReader
+from urllib.parse import urlsplit
 
 root = Path(__file__).resolve().parents[1]
 doc = html.fromstring((root / 'dist/index.html').read_text())
@@ -22,7 +23,7 @@ for url in doc.xpath('//@href | //@src'):
     if url.startswith('#'):
         assert url[1:] in ids, f'Missing anchor {url}'
     elif url.startswith('/'):
-        assert (root / 'dist' / url.split('#')[0].lstrip('/')).is_file(), f'Missing asset {url}'
+        assert (root / 'dist' / urlsplit(url).path.lstrip('/')).is_file(), f'Missing asset {url}'
 
 def normalized(text):
     return ''.join(c for c in unicodedata.normalize('NFKC', text).casefold() if c.isalnum())

@@ -1,7 +1,51 @@
 (() => {
   const titles = {fr: 'DIALOGIA Montréal 2026 — Colloque scientifique', en: 'DIALOGIA Montréal 2026 — Scientific conference'};
+  const headers = [...document.querySelectorAll('.header')];
+  function closeMenus(returnFocus = false) {
+    headers.forEach(header => {
+      if (!header.hasAttribute('data-menu-open')) return;
+      const toggle = header.querySelector('[data-menu-toggle]');
+      header.removeAttribute('data-menu-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', toggle.dataset.openLabel);
+      if (returnFocus) toggle.focus({preventScroll: true});
+    });
+  }
+  headers.forEach(header => {
+    const toggle = header.querySelector('[data-menu-toggle]');
+    toggle.addEventListener('click', () => {
+      const willOpen = !header.hasAttribute('data-menu-open');
+      closeMenus();
+      if (willOpen) {
+        header.setAttribute('data-menu-open', '');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', toggle.dataset.closeLabel);
+        header.querySelector('.section-nav a').focus({preventScroll: true});
+      }
+    });
+    header.querySelector('[data-menu]').addEventListener('click', event => {
+      const link = event.target.closest('a');
+      if (!link) return;
+      const wasOpen = header.hasAttribute('data-menu-open');
+      closeMenus(wasOpen);
+      if (wasOpen && link.hash && link.origin === location.origin && link.pathname === location.pathname) {
+        document.getElementById(link.hash.slice(1))?.focus({preventScroll: true});
+      }
+    });
+    header.addEventListener('focusout', event => {
+      if (event.relatedTarget && !header.contains(event.relatedTarget)) closeMenus();
+    });
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenus(true);
+  });
+  document.addEventListener('pointerdown', event => {
+    if (!event.target.closest('.header')) closeMenus();
+  });
+  window.matchMedia('(min-width: 1200px)').addEventListener('change', () => closeMenus());
   function setLanguage(language, updateUrl = true) {
     if (!['fr', 'en'].includes(language)) return;
+    closeMenus();
     const previous = document.documentElement.lang;
     document.documentElement.lang = language;
     document.title = titles[language];
