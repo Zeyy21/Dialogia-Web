@@ -16,6 +16,14 @@ The bilingual Google Form is owned by `zeyyad.saleh2006@gmail.com` and is publis
 
 Set the verified respondent URL in `registration.json`, then run `python3 scripts/render.py`. Every registration button uses that URL. Until a working form is connected, the page clearly states that its registration link is unavailable.
 
+## Deploy to Vercel
+
+Import `Zeyy21/Dialogia-Web` into Vercel and leave the Root Directory at the repository root (`.`). The included `vercel.json` selects the **Other** framework preset, skips installation and building, and serves the committed `dist` directory. No environment variables are required.
+
+The site, language switch, registration form link, images and booklet downloads are served as committed. After editing source content, regenerate `dist/index.html` locally and commit it before deploying.
+
+Configuration follows [Vercel’s static-site build guidance](https://vercel.com/docs/builds/configure-a-build#skip-build-step).
+
 ## Editing and validation
 
 - `dist/index.html`: generated bilingual page.

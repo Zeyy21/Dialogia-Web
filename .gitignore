@@ -3,3 +3,4 @@
 .work/
 *.tar.gz
 __pycache__/
+.vercel/
