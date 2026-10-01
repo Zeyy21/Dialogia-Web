@@ -359,9 +359,9 @@
       "fr": "Italie"
     },
     "url": "https://www.uninsubria.it/",
-    "logo": "/assets/institutions/insubria.svg",
-    "logo_source": "https://www.uninsubria.it/themes/custom/uninsubria_base/SigilloAteneoTestoBianco.svg",
-    "logo_background": "dark"
+    "logo": "/assets/institutions/insubria-color.svg",
+    "logo_source": "User-provided SigilloAteneoTestoColori.svg",
+    "logo_background": "light"
   },
   {
     "id": "redesm",
@@ -374,8 +374,8 @@
       "fr": "Italie"
     },
     "url": "https://www.redesm.org/",
-    "logo": "/assets/institutions/redesm.png",
-    "logo_source": "https://www.redesm.org/wp-content/uploads/2021/04/redesm.png",
+    "logo": "/assets/institutions/redesm-logo.jpg",
+    "logo_source": "User-provided REDESM-Logo_200.jpg",
     "logo_background": "light"
   },
   {
