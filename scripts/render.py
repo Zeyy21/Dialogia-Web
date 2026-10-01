@@ -1,4 +1,4 @@
-"""Render the bilingual page from paragraphs verified against the official PDFs.
+"""Render the bilingual page from the final French booklet and English translations.
 
 Conference text is selected by paragraph index, never rewritten. data-source
 attributes let verify.py compare every displayed passage against its source.
@@ -26,6 +26,8 @@ UI['fr'].update(international='Une rencontre internationale', represented='Insti
 UI['en'].update(international='An international gathering', represented='Represented institutions', international_label='International participation', previous='Previous institutions', next='Next institutions', carousel='Carousel', browse='Scroll to explore all represented institutions.', participation='In person and online')
 UI['fr'].update(menu='Menu', close_menu='Fermer le menu', institutions='Institutions')
 UI['en'].update(menu='Menu', close_menu='Close menu', institutions='Institutions')
+# Only a final French booklet was supplied; both pages link to that edition.
+UI['en'].update(doclang='French', download='Download the booklet (French)')
 
 def icon(name):
  paths = {
@@ -48,8 +50,8 @@ ORGANIZERS = [
 ]
 
 ABSTRACT_AXES = {
- 'en': [(229,253,[231,235,239,242,247]),(253,284,[255,264,267,270,273,278]),(284,306,[286,289,294,298,303]),(306,334,[308,312,315,318,321,326,329])],
- 'fr': [(229,253,[231,235,239,242,247]),(253,283,[255,264,267,270,273,278]),(283,305,[285,288,293,297,302]),(305,332,[307,311,314,317,320,324,327])],
+ 'en': [(235,259,[237,241,245,248,253]),(259,290,[261,270,273,276,279,284]),(290,312,[292,295,300,304,309]),(312,345,[314,318,323,326,329,332,337,340])],
+ 'fr': [(235,259,[237,241,245,248,253]),(259,289,[261,270,273,276,279,284]),(289,311,[291,294,299,303,308]),(311,343,[313,317,322,325,328,331,335,338])],
 }
 
 def page(lang):
@@ -66,15 +68,15 @@ def page(lang):
   return f'<span class="toggle-control"><span class="when-closed">{ui["show"]}</span><span class="when-open">{ui["hide"]}</span><span class="plus" aria-hidden="true"></span></span>'
  def program_button(cls='button button-program', short=False):
   label = ui['program_pdf'] if short else f'<span class="button-label-full">{ui["overview"]}</span><span class="button-label-short">{ui["programme"]}</span>'
-  return f'<a class="{cls}" data-program-pdf href="{download}#page=3" target="_blank" rel="noopener noreferrer" aria-label="{ui["overview"]} (PDF)">{label}{icon("external")}</a>'
+  return f'<a class="{cls}" data-program-pdf href="{download}#page=4" target="_blank" rel="noopener noreferrer" aria-label="{ui["overview"]} (PDF · {ui["doclang"]})">{label}{icon("external")}</a>'
  def register(cls='button'):
   href = registration or '#' + anchor('registration')
   external = ' target="_blank" rel="noopener noreferrer"' if registration else ''
   return f'<a class="{cls}" data-registration href="{escape(href, quote=True)}"{external}>{ui["register"]}{icon("external")}</a>'
  def session(start, stop):
-  return f'<details class="session" id="session-{start}-{lang}"><summary><span>'+s(start,'span','session-label')+s(start+1,'span','session-title')+'</span>'+toggle()+'</summary><div class="session-body">'+''.join(s(i,'p','speaker' if '—' in p[i] and i<184 else '') for i in range(start+2,stop))+'</div></details>'
+  return f'<details class="session" id="session-{start}-{lang}"><summary><span>'+s(start,'span','session-label')+s(start+1,'span','session-title')+'</span>'+toggle()+'</summary><div class="session-body">'+''.join(s(i,'p','speaker' if '—' in p[i] and i<190 else '') for i in range(start+2,stop))+'</div></details>'
  def day(start,stop,num):
-  sessions = {111:126,126:143,143:158,165:186,186:196,198:207,207:229}
+  sessions = {113:128,128:145,145:160,171:192,192:202,204:213,213:235}
   content=[]
   i=start+2
   while i<stop:
@@ -111,10 +113,11 @@ def page(lang):
    <ul class="institution-track" id="institution-track-{lang}" tabindex="0" aria-label="{ui['represented']}">{''.join(cards)}</ul>
    <div class="carousel-footer"><span class="carousel-count" aria-live="polite" aria-atomic="true" data-carousel-count>1 / {len(institutions)}</span><div class="carousel-progress" aria-hidden="true"><span data-carousel-progress></span></div></div>
   </div>'''
- institution = 348 if lang=='en' else 346
- committee = 342 if lang=='en' else 340
- workshops = 334 if lang=='en' else 332
- download=f'/documents/DIALOGIA-2026-{lang.upper()}.pdf'
+ institution = 359 if lang=='en' else 357
+ committee = 353 if lang=='en' else 351
+ workshops = 345 if lang=='en' else 343
+ booklet = ROOT / 'dist/documents/DIALOGIA-2026-FR.pdf'
+ download = '/documents/DIALOGIA-2026-FR.pdf?v=' + hashlib.sha256(booklet.read_bytes()).hexdigest()[:12]
  opposite='en' if lang=='fr' else 'fr'
  return f'''<div data-language="{lang}" id="{anchor('top')}">
  <a class="skip-link" href="#{anchor('main')}">{ui['skip']}</a>
@@ -137,10 +140,10 @@ def page(lang):
   </div></section>
   <section class="section rationale shell" id="{anchor('rationale')}"><div class="section-rail">{s(16,'p','eyebrow')}<span class="section-number" aria-hidden="true">01</span></div><div class="section-content">{s(18,'h2')}{s(19,'p','body-copy')}<details class="rationale-more" id="rationale-more-{lang}"><summary>{ui['full']}{toggle()}</summary><div>{s(20)}{s(21)}{s(22,'h3','eyebrow')}{s(23)}</div></details>
   <div class="axes">{s(24,'h3','eyebrow')}<div class="axes-grid">{''.join(f'<div class="axis">{s(i,"span","axis-number")}{s(i+1,"h4")}</div>' for i in [25,27,29,31])}</div></div></div></section>
-  <section class="program-section" id="{anchor('program')}" tabindex="-1"><div class="section shell"><div class="section-rail"><p class="eyebrow">{ui['programme']}</p><span class="section-number" aria-hidden="true">02</span></div><div class="section-content"><div class="section-heading"><h2>{ui['days']}</h2><a class="download-link" href="{download}" download>{ui['download']}{icon("download")}</a></div>{s(8,'h3','eyebrow format-label')}{s(9,'p','program-intro')}<div class="schedule">{overview()}{day(107,163,19)}{day(163,196,20)}{day(196,229,21)}</div><details class="workshop-details" id="workshop-details-{lang}"><summary>{s(workshops,'span','day-title')}{toggle()}</summary><div class="workshop-body">{s(workshops+1)}{s(workshops+2,'h3')}{s(workshops+3)}{s(workshops+4,'h3')}{''.join(s(i) for i in range(workshops+5,committee))}</div></details></div></div></section>
+  <section class="program-section" id="{anchor('program')}" tabindex="-1"><div class="section shell"><div class="section-rail"><p class="eyebrow">{ui['programme']}</p><span class="section-number" aria-hidden="true">02</span></div><div class="section-content"><div class="section-heading"><h2>{ui['days']}</h2><a class="download-link" href="{download}" download>{ui['download']}{icon("download")}</a></div>{s(8,'h3','eyebrow format-label')}{s(9,'p','program-intro')}<div class="schedule">{overview()}{day(107,169,19)}{day(169,202,20)}{day(202,235,21)}</div><details class="workshop-details" id="workshop-details-{lang}"><summary>{s(workshops,'span','day-title')}{toggle()}</summary><div class="workshop-body">{s(workshops+1)}{s(workshops+2,'h3')}{s(workshops+3)}{s(workshops+4,'h3')}{''.join(s(i) for i in range(workshops+5,committee))}</div></details></div></div></section>
   <section class="section abstracts-section shell" id="{anchor('abstracts')}" tabindex="-1"><div class="section-rail"><p class="eyebrow">{ui['abstracts']}</p><span class="section-number" aria-hidden="true">03</span></div><div class="section-content"><h2>{ui['abstracts']}</h2><div class="abstracts-list">{abstracts()}</div></div></section>
   <section class="section practical shell" id="{anchor('practical')}" tabindex="-1"><div class="section-rail">{s(33,'p','eyebrow')}<span class="section-number" aria-hidden="true">04</span></div><div class="section-content practical-grid"><div><h2>{ui['practical']}</h2>{s(4,'p','practical-date')}{s(5)}{s(6)}<a class="download-link" href="{download}" download>{ui['booklet']} — {ui['doclang']}{icon("download")}</a></div><div class="registration-panel" id="{anchor('registration')}"><h3>{ui['registration']}</h3><p class="participation-label">{ui['participation']}</p>{info('participation','participation-notice')}{register()}<p class="registration-status" {'hidden' if registration else ''}>{ui['pending']}</p></div></div></section>
-  <section class="international-section" id="{anchor('international')}" tabindex="-1"><div class="shell international-inner"><div class="international-heading"><p class="eyebrow">{ui['international_label']}</p><h2>{ui['international']}</h2>{info('countries','international-countries')}</div><div class="international-context">{info('overview')}{info('initiative')}</div>{institution_carousel()}</div></section>
+  <section class="international-section" id="{anchor('international')}" tabindex="-1"><div class="shell international-inner"><div class="international-heading"><p class="eyebrow">{ui['international_label']}</p><h2>{ui['international']}</h2>{info('attendance','international-countries')}{info('countries','international-countries')}</div><div class="international-context">{info('overview')}{info('initiative')}</div>{institution_carousel()}</div></section>
  </main>
  <footer class="footer"><div class="shell"><div class="footer-grid"><div class="wordmark">DIALOGIA<span>MONTRÉAL 2026</span></div><div><h2 class="eyebrow">{committee_link(committee)}</h2><div class="committee-names">{''.join(committee_link(i) for i in range(committee+1,committee+6))}</div></div><div>{s(institution,'h2','eyebrow')}{''.join(s(i,'p','institution-name') for i in range(institution+1,len(p)))}</div></div><div class="footer-bottom"><a href="{download}" download>{ui['booklet']} · {ui['doclang']}{icon("external")}</a><a href="?lang={opposite}" data-set-language="{opposite}" lang="{opposite}">{ui['other']}</a><a href="#{anchor('top')}">{ui['top']}{icon('up')}</a></div><div class="footer-credit"><a href="https://syllogos.io/" target="_blank" rel="noopener noreferrer" lang="en">Designed by Zeyyad Saleh, Cofounder of Syllogos</a></div></div></footer>
  </div>'''
@@ -157,4 +160,4 @@ for asset in ['styles.css', 'app.js']:
  version = hashlib.sha256((ROOT / 'dist' / asset).read_bytes()).hexdigest()[:12]
  html = html.replace(f'"/{asset}"', f'"/{asset}?v={version}"')
 (ROOT/'dist/index.html').write_text(html)
-print('Rendered both languages directly from the official source paragraphs.')
+print('Rendered the final French programme and its updated English translation.')

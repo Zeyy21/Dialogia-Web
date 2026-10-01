@@ -9,7 +9,7 @@
       "en": "United Arab Emirates",
       "fr": "Émirats arabes unis"
     },
-    "url": "https://trendsgroup.org/research-and-advisory/",
+    "url": "https://trendsgroup.org/",
     "logo": "/assets/institutions/trends-group.png",
     "logo_source": "https://trendsgroup.org/wp-content/themes/trends-react-theme/images/logo/TG-En-B.png",
     "logo_background": "light"
@@ -73,6 +73,21 @@
     "url": "https://www.uqar.ca/",
     "logo": "/assets/institutions/uqar.png",
     "logo_source": "https://www.uqar.ca/app/uploads/2024/04/uqar-logo-officiel-rgb-bleu-uqar.png",
+    "logo_background": "light"
+  },
+  {
+    "id": "ulaval",
+    "name": {
+      "en": "Université Laval",
+      "fr": "Université Laval"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://www.ulaval.ca/",
+    "logo": "/assets/institutions/ulaval.svg",
+    "logo_source": "https://www.ulaval.ca/",
     "logo_background": "light"
   },
   {
@@ -179,21 +194,6 @@
     "url": "https://www.uni-bonn.de/en",
     "logo": "/assets/institutions/bonn.svg",
     "logo_source": "https://www.uni-bonn.de/en/++theme++unibonn.theme/images/logos/logo_desktop.svg",
-    "logo_background": "light"
-  },
-  {
-    "id": "vechta",
-    "name": {
-      "en": "University of Vechta",
-      "fr": "Université de Vechta"
-    },
-    "country": {
-      "en": "Germany",
-      "fr": "Allemagne"
-    },
-    "url": "https://www.uni-vechta.de/",
-    "logo": "/assets/institutions/vechta.svg",
-    "logo_source": "https://www.uni-vechta.de/",
     "logo_background": "light"
   },
   {
@@ -321,8 +321,8 @@
   {
     "id": "kph",
     "name": {
-      "en": "KPH Vienna/Krems",
-      "fr": "KPH Vienne/Krems"
+      "en": "KPH Wien/Niederösterreich",
+      "fr": "KPH Wien/Niederösterreich"
     },
     "country": {
       "en": "Austria",

@@ -6,7 +6,7 @@ import hashlib
 import re
 import unicodedata
 from pypdf import PdfReader
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs
 
 root = Path(__file__).resolve().parents[1]
 doc = html.fromstring((root / 'dist/index.html').read_text())
@@ -27,6 +27,18 @@ for url in doc.xpath('//@href | //@src'):
 
 def normalized(text):
     return ''.join(c for c in unicodedata.normalize('NFKC', text).casefold() if c.isalnum())
+
+booklet = root / 'dist/documents/DIALOGIA-2026-FR.pdf'
+booklet_hash = hashlib.sha256(booklet.read_bytes()).hexdigest()
+pages = [p.extract_text() or '' for p in PdfReader(booklet).pages]
+assert len(pages) == 16, 'Expected the 16-page final French booklet'
+assert 'PROGRAMME EN UN COUP' in pages[3], 'The programme PDF link must open the overview'
+# Pages 2–15 contain the complete programme and abstracts. Page 1 repeats
+# the cover information and adds attendance; page 16 lists institutions.
+body = [re.sub(r'^DIALOGIA MONTRÉAL.*\n\d+\s*\n', '', p) for p in pages[1:15]]
+french_body = sources['fr'][:7] + sources['fr'][8:]
+assert normalized(' '.join(body)) == normalized(' '.join(french_body)), 'Final French PDF/source mismatch'
+assert normalized(conference_info['fr']['attendance']) in normalized(pages[0]), 'Missing final cover attendance'
 
 for lang in ['fr', 'en']:
     language = doc.xpath(f'//*[@data-language="{lang}"]')[0]
@@ -50,21 +62,44 @@ for lang in ['fr', 'en']:
     required = set(range(len(sources[lang]))) - redundant_print_labels
     assert required.issubset(indices), f'Missing booklet content in {lang}: {required-indices}'
     papers=doc.xpath(f'//*[@data-language="{lang}"]//details[contains(concat(" ",normalize-space(@class)," ")," paper ")]')
-    assert len(papers)==23, f'Expected all 23 abstracts in {lang}'
-    pdf=root/f'dist/documents/DIALOGIA-2026-{lang.upper()}.pdf'
-    pages=[p.extract_text() or '' for p in PdfReader(pdf).pages]
-    pages=[re.sub(r'^DIALOGIA MONTRÉAL.*\n\d+\s*\n','',p) for p in pages]
-    pages[0]=re.sub(r'^\s*MONTRÉAL.*\n','',pages[0])
-    # Ignore PDF line wrapping, punctuation encoding and repeated page headers;
-    # compare the complete document in order, with no missing or extra words.
-    assert normalized(' '.join(pages))==normalized(' '.join(sources[lang])), f'PDF/source mismatch in {lang}'
+    assert len(papers)==24, f'Expected all 24 abstracts in {lang}'
+    assert [len(axis.xpath('.//details[@class="paper"]')) for axis in language.xpath('.//details[@class="abstract-axis"]')] == [5, 6, 5, 8]
+    assert 'Wassim Salman' not in language.text_content(), 'Outdated speaker spelling'
+    for name in ['Gilles Bibeau', 'Solange Lefebvre', 'Jean-François Roussel', 'Sultan Al Hosani']:
+        assert name in language.text_content(), f'Missing participant: {name}'
+    lyse = [paper for paper in papers if 'Lyse Langlois' in paper.xpath('./summary')[0].text_content()]
+    assert len(lyse) == 1 and len(lyse[0].xpath('./div/p')) == 3, 'Incomplete Lyse Langlois abstract'
+    assert len(language.xpath('.//details[@class="day"]')) == 3
+    assert len(language.xpath('.//details[@class="session"]')) == 7
+    for link in language.xpath('.//a[contains(@href,"/documents/")]'):
+        url = urlsplit(link.attrib['href'])
+        assert url.path == '/documents/DIALOGIA-2026-FR.pdf', 'A superseded booklet is still linked'
+        assert parse_qs(url.query).get('v') == [booklet_hash[:12]], 'Stale PDF cache version'
+        if 'data-program-pdf' in link.attrib:
+            assert url.fragment == 'page=4', 'Wrong programme overview page'
+
+# English additions are translations of the final French edition, not a new
+# official English PDF. Check the facts most likely to drift between languages.
+timings = {}
+authors = {}
+for lang in ['fr', 'en']:
+    programme = doc.xpath(f'//*[@id="program-{lang}"]')[0].text_content()
+    timings[lang] = [re.sub(r'\s+', '', t).lower() for t in re.findall(r'\b\d{1,2}\s*[hH]\s*\d{2}', programme)]
+    authors[lang] = [re.split(r' · |, PhD|\. Centre', node.text_content())[0].strip() for node in doc.xpath(f'//*[@data-language="{lang}"]//*[@class="paper-author"]')]
+assert timings['fr'] == timings['en'], 'French and English programme times differ'
+assert authors['fr'] == authors['en'], 'French and English abstract authors differ'
+assert len({item['id'] for item in institutions}) == len(institutions), 'Duplicate institution'
+assert 'ulaval' in {item['id'] for item in institutions}
+assert 'vechta' not in {item['id'] for item in institutions}, 'Institution absent from the final booklet'
+assert next(item for item in institutions if item['id'] == 'trends')['name'] == {'en': 'TRENDS Group', 'fr': 'TRENDS Group'}
 config = json.loads((root/'registration.json').read_text())
 if config['url']:
     assert all(a.attrib['href'] == config['url'] for a in doc.xpath('//*[@data-registration]'))
-print(f'PASS: {len(passages)} displayed passages match the official text exactly.')
+print(f'PASS: {len(passages)} displayed passages match the bilingual source text exactly.')
 assert not doc.xpath('//a[contains(@href,".docx")]'), 'Old Word download remains'
-print('PASS: Every substantive booklet passage is on the page, including all 46 abstracts.')
-print('PASS: Full English and French source text matches the supplied PDFs.')
+print('PASS: Every substantive booklet passage is on the page, including 24 abstracts per language.')
+print('PASS: Full French programme and abstract text matches the final PDF; English times and authors agree.')
+print('PASS: All booklet links use the final French PDF; programme buttons open page 4.')
 print('PASS: Internal links, PDF links, unique IDs and local assets.')
 print(f'PASS: All {len(institutions)} represented institutions, header logos, supplied conference information and footer credit.')
 print('Registration:', 'connected' if config['url'] else 'awaiting Google sign-in')
