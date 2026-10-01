@@ -12,7 +12,9 @@ The four organising institution logos remain linked inside the menu bar. The car
 
 `source/conference-info.json` contains the final cover's attendance statement (28 academics, 24 institutions, 10 countries) and the earlier organiser-supplied context: represented countries, the research initiative and launches, online participation, required registration and the 70-person venue capacity. `source/institutions.json` records bilingual institution names, countries, official websites and logo provenance. Logos retain their original artwork and colours; SVG viewports isolate UQAM, AUB and USJ from their official composite artwork without altering it. Université Laval's SVG is taken from its official website.
 
-The final update adds Gilles Bibeau's opening address, Lyse Langlois's title and full abstract, the cross-session discussion participants and discussants, and Sultan Al Hosani in the workshop roster. It also applies the final schedule, Wasim Salman spelling, Wael Saleh affiliation and abstract corrections. CSS and JavaScript are unchanged.
+TRENDS Global uses its official high-resolution artwork with an SVG viewport excluding empty margins. IÉR uses the original square artwork from the GEDCIQ presentation (page 2). Chaire Raoul-Dandurand uses the organiser-supplied `CRD_fr_cmyk.png` unchanged. These three logos fill their existing logo areas while retaining their native proportions.
+
+The final update adds Gilles Bibeau's opening address, Lyse Langlois's title and full abstract, the cross-session discussion participants and discussants, and Sultan Al Hosani in the workshop roster. It also applies the final schedule, Wasim Salman spelling, Wael Saleh affiliation and abstract corrections.
 
 The carousel supports touch scrolling, previous/next buttons, and the arrow, Home and End keys when its list is focused. It has no automatic movement and respects reduced-motion preferences. The programme overview appears before the three daily schedules. The footer reads “Designed by Zeyyad Saleh, Cofounder of Syllogos” and links to Syllogos.
 

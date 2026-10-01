@@ -25,8 +25,8 @@
       "fr": "Émirats arabes unis"
     },
     "url": "https://trendsgroup.org/trends-global/",
-    "logo": "/assets/institutions/trends-global.png",
-    "logo_source": "/documents/DIALOGIA-2026-FR.pdf#page=16",
+    "logo": "/assets/institutions/trends-global.svg",
+    "logo_source": "https://trendsgroup.org/wp-content/themes/trends-react-theme/images/logo/Trends-Global-B.png",
     "logo_background": "light"
   },
   {
@@ -55,8 +55,8 @@
       "fr": "Canada"
     },
     "url": "https://etudes-religieuses.umontreal.ca/",
-    "logo": "/assets/institutions/ier.jpg",
-    "logo_source": "/documents/DIALOGIA-2026-FR.pdf#page=16",
+    "logo": "/assets/institutions/ier-square.png",
+    "logo_source": "https://gedciq.org/sites/default/files/upload/document/monographies/fgoulet-17-novembre.pdf#page=2",
     "logo_background": "light"
   },
   {
@@ -116,8 +116,8 @@
       "fr": "Canada"
     },
     "url": "https://dandurand.uqam.ca/",
-    "logo": "/assets/institutions/dandurand.jpg",
-    "logo_source": "/documents/DIALOGIA-2026-FR.pdf#page=16",
+    "logo": "/assets/institutions/dandurand.png",
+    "logo_source": "User-provided CRD_fr_cmyk.png",
     "logo_background": "light"
   },
   {

@@ -217,6 +217,8 @@ summary > span:first-child { min-width: 0; }
 .institution-logo { display: flex; align-items: center; justify-content: center; height: 88px; padding: 10px; margin-bottom: 20px; background: #fff; border-radius: 2px; flex-shrink: 0; }
 .institution-logo.dark { background: #173f63; }
 .institution-logo img { display: block; width: 100%; height: 100%; max-width: 220px; object-fit: contain; }
+.institution-card:is([data-institution="trends-global"], [data-institution="ier"], [data-institution="dandurand"]) .institution-logo { padding: 0; }
+.institution-card:is([data-institution="trends-global"], [data-institution="dandurand"]) .institution-logo img { max-width: 100%; }
 .institution-card-copy { display: flex; flex-direction: column; flex: 1; }
 .institution-country { font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: #5d7686; margin-bottom: 9px; }
 .institution-card h4 { font: normal 18px/1.4 var(--serif); overflow-wrap: anywhere; }
