@@ -15,6 +15,21 @@
     "logo_background": "light"
   },
   {
+    "id": "trends-global",
+    "name": {
+      "en": "TRENDS Global",
+      "fr": "TRENDS Global"
+    },
+    "country": {
+      "en": "United Arab Emirates",
+      "fr": "Émirats arabes unis"
+    },
+    "url": "https://trendsgroup.org/trends-global/",
+    "logo": "/assets/institutions/trends-global.png",
+    "logo_source": "/documents/DIALOGIA-2026-FR.pdf#page=16",
+    "logo_background": "light"
+  },
+  {
     "id": "umontreal",
     "name": {
       "en": "University of Montreal",
@@ -27,6 +42,36 @@
     "url": "https://www.umontreal.ca/",
     "logo": "/assets/institutions/umontreal.svg",
     "logo_source": "https://www.umontreal.ca/typo3temp/udemlessc/lessphp_9477013ded911f281ce354ea476ce0ead34a363a.css?1769692499",
+    "logo_background": "light"
+  },
+  {
+    "id": "ier",
+    "name": {
+      "en": "Institute of Religious Studies (IÉR), University of Montreal",
+      "fr": "Institut d’études religieuses (IÉR), Université de Montréal"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://etudes-religieuses.umontreal.ca/",
+    "logo": "/assets/institutions/ier.jpg",
+    "logo_source": "/documents/DIALOGIA-2026-FR.pdf#page=16",
+    "logo_background": "light"
+  },
+  {
+    "id": "cirres",
+    "name": {
+      "en": "Interdisciplinary Research Centre on Religions and Spiritualities (CIRRES)",
+      "fr": "Centre interdisciplinaire de recherche sur les religions et les spiritualités (CIRRES)"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://www.cirres.umontreal.ca/",
+    "logo": "/assets/institutions/cirres.png",
+    "logo_source": "/documents/DIALOGIA-2026-FR.pdf#page=16",
     "logo_background": "light"
   },
   {
@@ -58,6 +103,21 @@
     "url": "https://ieim.uqam.ca/",
     "logo": "/assets/institutions/ieim.svg",
     "logo_source": "https://ieim.uqam.ca/wp-content/themes/WP1-Departement-Programme/css/images/ieim-bleu.svg",
+    "logo_background": "light"
+  },
+  {
+    "id": "dandurand",
+    "name": {
+      "en": "Raoul-Dandurand Chair in Strategic and Diplomatic Studies (UQAM)",
+      "fr": "Chaire Raoul-Dandurand en études stratégiques et diplomatiques (UQAM)"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://dandurand.uqam.ca/",
+    "logo": "/assets/institutions/dandurand.jpg",
+    "logo_source": "/documents/DIALOGIA-2026-FR.pdf#page=16",
     "logo_background": "light"
   },
   {
