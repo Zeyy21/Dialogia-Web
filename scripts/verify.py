@@ -37,7 +37,14 @@ assert 'PROGRAMME EN UN COUP' in pages[3], 'The programme PDF link must open the
 # the cover information and adds attendance; page 16 lists institutions.
 body = [re.sub(r'^DIALOGIA MONTRÉAL.*\n\d+\s*\n', '', p) for p in pages[1:15]]
 french_body = sources['fr'][:7] + sources['fr'][8:]
-assert normalized(' '.join(body)) == normalized(' '.join(french_body)), 'Final French PDF/source mismatch'
+# Apply the organiser's website corrections to the original print text before
+# comparing; the supplied downloadable booklet remains the original edition.
+booklet_body = ' '.join(body)
+booklet_body = booklet_body.replace('Discussants', 'Discutants').replace(
+    'Solange Lefebvre',
+    'Roselyne Mavungu — Centre de prévention de la radicalisation menant à la violence (CPRMV) à Montréal',
+)
+assert normalized(booklet_body) == normalized(' '.join(french_body)), 'Final French PDF/source mismatch after organiser corrections'
 assert normalized(conference_info['fr']['attendance']) in normalized(pages[0]), 'Missing final cover attendance'
 
 for lang in ['fr', 'en']:
@@ -65,7 +72,7 @@ for lang in ['fr', 'en']:
     assert len(papers)==24, f'Expected all 24 abstracts in {lang}'
     assert [len(axis.xpath('.//details[@class="paper"]')) for axis in language.xpath('.//details[@class="abstract-axis"]')] == [5, 6, 5, 8]
     assert 'Wassim Salman' not in language.text_content(), 'Outdated speaker spelling'
-    for name in ['Gilles Bibeau', 'Solange Lefebvre', 'Jean-François Roussel', 'Sultan Al Hosani']:
+    for name in ['Gilles Bibeau', 'Roselyne Mavungu', 'Jean-François Roussel', 'Sultan Al Hosani']:
         assert name in language.text_content(), f'Missing participant: {name}'
     lyse = [paper for paper in papers if 'Lyse Langlois' in paper.xpath('./summary')[0].text_content()]
     assert len(lyse) == 1 and len(lyse[0].xpath('./div/p')) == 3, 'Incomplete Lyse Langlois abstract'
@@ -98,7 +105,7 @@ if config['url']:
 print(f'PASS: {len(passages)} displayed passages match the bilingual source text exactly.')
 assert not doc.xpath('//a[contains(@href,".docx")]'), 'Old Word download remains'
 print('PASS: Every substantive booklet passage is on the page, including 24 abstracts per language.')
-print('PASS: Full French programme and abstract text matches the final PDF; English times and authors agree.')
+print('PASS: French programme and abstracts match the final PDF with organiser corrections; English times and authors agree.')
 print('PASS: All booklet links use the final French PDF; programme buttons open page 4.')
 print('PASS: Internal links, PDF links, unique IDs and local assets.')
 print(f'PASS: All {len(institutions)} represented institutions, header logos, supplied conference information and footer credit.')
