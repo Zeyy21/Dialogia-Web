@@ -15,18 +15,48 @@
     "logo_background": "light"
   },
   {
-    "id": "trends-global",
+    "id": "pluriel",
     "name": {
-      "en": "TRENDS Global",
-      "fr": "TRENDS Global"
+      "en": "University Platform for Research on Islam (PLURIEL)",
+      "fr": "Plateforme universitaire de recherche sur l’islam (PLURIEL)"
     },
     "country": {
-      "en": "United Arab Emirates",
-      "fr": "Émirats arabes unis"
+      "en": "France",
+      "fr": "France"
     },
-    "url": "https://trendsgroup.org/trends-global/",
-    "logo": "/assets/institutions/trends-global.svg",
-    "logo_source": "https://trendsgroup.org/wp-content/themes/trends-react-theme/images/logo/Trends-Global-B.png",
+    "url": "https://pluriel.fuce.eu/",
+    "logo": "/assets/institutions/pluriel.png",
+    "logo_source": "https://pluriel.fuce.eu/wp-content/themes/pluriel/img/logo-pluriel-bleu-vert.png",
+    "logo_background": "light"
+  },
+  {
+    "id": "dandurand",
+    "name": {
+      "en": "Raoul-Dandurand Chair in Strategic and Diplomatic Studies (UQAM)",
+      "fr": "Chaire Raoul-Dandurand en études stratégiques et diplomatiques (UQAM)"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://dandurand.uqam.ca/",
+    "logo": "/assets/institutions/dandurand.png",
+    "logo_source": "User-provided CRD_fr_cmyk.png",
+    "logo_background": "light"
+  },
+  {
+    "id": "ieim",
+    "name": {
+      "en": "Institute of International Studies (IEIM-UQAM)",
+      "fr": "Institut d’études internationales de Montréal (IEIM-UQAM)"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://ieim.uqam.ca/",
+    "logo": "/assets/institutions/ieim.svg",
+    "logo_source": "https://ieim.uqam.ca/wp-content/themes/WP1-Departement-Programme/css/images/ieim-bleu.svg",
     "logo_background": "light"
   },
   {
@@ -45,33 +75,18 @@
     "logo_background": "light"
   },
   {
-    "id": "ier",
+    "id": "trends-global",
     "name": {
-      "en": "Institute of Religious Studies (IÉR), University of Montreal",
-      "fr": "Institut d’études religieuses (IÉR), Université de Montréal"
+      "en": "TRENDS Global",
+      "fr": "TRENDS Global"
     },
     "country": {
-      "en": "Canada",
-      "fr": "Canada"
+      "en": "United Arab Emirates",
+      "fr": "Émirats arabes unis"
     },
-    "url": "https://etudes-religieuses.umontreal.ca/",
-    "logo": "/assets/institutions/ier-square.png",
-    "logo_source": "https://gedciq.org/sites/default/files/upload/document/monographies/fgoulet-17-novembre.pdf#page=2",
-    "logo_background": "light"
-  },
-  {
-    "id": "cirres",
-    "name": {
-      "en": "Interdisciplinary Research Centre on Religions and Spiritualities (CIRRES)",
-      "fr": "Centre interdisciplinaire de recherche sur les religions et les spiritualités (CIRRES)"
-    },
-    "country": {
-      "en": "Canada",
-      "fr": "Canada"
-    },
-    "url": "https://www.cirres.umontreal.ca/",
-    "logo": "/assets/institutions/cirres.png",
-    "logo_source": "/documents/DIALOGIA-2026-FR.pdf#page=16",
+    "url": "https://trendsgroup.org/trends-global/",
+    "logo": "/assets/institutions/trends-global.svg",
+    "logo_source": "https://trendsgroup.org/wp-content/themes/trends-react-theme/images/logo/Trends-Global-B.png",
     "logo_background": "light"
   },
   {
@@ -89,36 +104,6 @@
     "logo_source": "Provided official DIALOGIA booklet organiser artwork",
     "logo_background": "light",
     "logo_note": "Unchanged source artwork presented through an SVG viewport."
-  },
-  {
-    "id": "ieim",
-    "name": {
-      "en": "Institute of International Studies (IEIM-UQAM)",
-      "fr": "Institut d’études internationales de Montréal (IEIM-UQAM)"
-    },
-    "country": {
-      "en": "Canada",
-      "fr": "Canada"
-    },
-    "url": "https://ieim.uqam.ca/",
-    "logo": "/assets/institutions/ieim.svg",
-    "logo_source": "https://ieim.uqam.ca/wp-content/themes/WP1-Departement-Programme/css/images/ieim-bleu.svg",
-    "logo_background": "light"
-  },
-  {
-    "id": "dandurand",
-    "name": {
-      "en": "Raoul-Dandurand Chair in Strategic and Diplomatic Studies (UQAM)",
-      "fr": "Chaire Raoul-Dandurand en études stratégiques et diplomatiques (UQAM)"
-    },
-    "country": {
-      "en": "Canada",
-      "fr": "Canada"
-    },
-    "url": "https://dandurand.uqam.ca/",
-    "logo": "/assets/institutions/dandurand.png",
-    "logo_source": "User-provided CRD_fr_cmyk.png",
-    "logo_background": "light"
   },
   {
     "id": "uqar",
@@ -178,21 +163,6 @@
     "url": "https://www.ucly.fr/",
     "logo": "/assets/institutions/ucly-color.png",
     "logo_source": "https://www.ucly.fr/wp-content/uploads/2019/11/logo_ucly_couleur_rvb.png",
-    "logo_background": "light"
-  },
-  {
-    "id": "pluriel",
-    "name": {
-      "en": "University Platform for Research on Islam (PLURIEL)",
-      "fr": "Plateforme universitaire de recherche sur l’islam (PLURIEL)"
-    },
-    "country": {
-      "en": "France",
-      "fr": "France"
-    },
-    "url": "https://pluriel.fuce.eu/",
-    "logo": "/assets/institutions/pluriel.png",
-    "logo_source": "https://pluriel.fuce.eu/wp-content/themes/pluriel/img/logo-pluriel-bleu-vert.png",
     "logo_background": "light"
   },
   {
@@ -407,6 +377,36 @@
     "url": "https://www.univie.ac.at/",
     "logo": "/assets/institutions/vienna.svg",
     "logo_source": "https://www.univie.ac.at/_assets/12d6b27de3745b4c3b247e6ea4f9bbcc/Images/Logos/univie.svg",
+    "logo_background": "light"
+  },
+  {
+    "id": "ier",
+    "name": {
+      "en": "Institute of Religious Studies (IÉR), University of Montreal",
+      "fr": "Institut d’études religieuses (IÉR), Université de Montréal"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://etudes-religieuses.umontreal.ca/",
+    "logo": "/assets/institutions/ier-square.png",
+    "logo_source": "https://gedciq.org/sites/default/files/upload/document/monographies/fgoulet-17-novembre.pdf#page=2",
+    "logo_background": "light"
+  },
+  {
+    "id": "cirres",
+    "name": {
+      "en": "Interdisciplinary Research Centre on Religions and Spiritualities (CIRRES)",
+      "fr": "Centre interdisciplinaire de recherche sur les religions et les spiritualités (CIRRES)"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://www.cirres.umontreal.ca/",
+    "logo": "/assets/institutions/cirres.png",
+    "logo_source": "/documents/DIALOGIA-2026-FR.pdf#page=16",
     "logo_background": "light"
   }
 ]
