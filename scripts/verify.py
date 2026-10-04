@@ -48,6 +48,10 @@ booklet_body = booklet_body.replace(
     'Jean-François Roussel',
     'Jean-François Roussel — Institut d’études religieuses de l’Université de Montréal',
 )
+booklet_body = booklet_body.replace(
+    '15 h 15 – 15 h 45 Discussion générale',
+    'Ali Mostafa - UCLY Titre à confirmer prochainement 15 h 15 – 15 h 45 Discussion générale',
+)
 assert normalized(booklet_body) == normalized(' '.join(french_body)), 'Final French PDF/source mismatch after organiser corrections'
 assert normalized(conference_info['fr']['attendance']) in normalized(pages[0]), 'Missing final cover attendance'
 
@@ -81,7 +85,7 @@ for lang in ['fr', 'en']:
     lyse = [paper for paper in papers if 'Lyse Langlois' in paper.xpath('./summary')[0].text_content()]
     assert len(lyse) == 1 and len(lyse[0].xpath('./div/p')) == 3, 'Incomplete Lyse Langlois abstract'
     assert len(language.xpath('.//details[@class="day"]')) == 3
-    assert len(language.xpath('.//details[@class="session"]')) == 7
+    assert len(language.xpath('.//details[@class="session"]')) == 8
     for link in language.xpath('.//a[contains(@href,"/documents/")]'):
         url = urlsplit(link.attrib['href'])
         assert url.path == '/documents/DIALOGIA-2026-FR.pdf', 'A superseded booklet is still linked'

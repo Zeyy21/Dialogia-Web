@@ -18,6 +18,8 @@ The final update adds Gilles Bibeau's opening address, Lyse Langlois's title and
 
 The organiser's 3 October website correction replaces Solange Lefebvre with Roselyne Mavungu — Centre de prévention de la radicalisation menant à la violence (CPRMV) à Montréal in both languages, and uses “Discutants” for the French heading. Jean-François Roussel’s affiliation is listed as Institut d’études religieuses de l’Université de Montréal in both languages. The downloadable print booklet remains unchanged; verification accounts for these specific website corrections.
 
+The organiser’s 4 October website update adds Ali Mostafa - UCLY after Renée Hattar in Session 3, with a title to be confirmed shortly in both languages. The cross-cutting discussion has its own expand/collapse control. Session 3 moderator Emmanuel Pisani is bold, and presentation titles use regular weight even when they contain em dashes. The downloadable booklet remains unchanged.
+
 The carousel supports touch scrolling, previous/next buttons, and the arrow, Home and End keys when its list is focused. It has no automatic movement and respects reduced-motion preferences. The programme overview appears before the three daily schedules. The footer reads “Designed by Zeyyad Saleh, Cofounder of Syllogos” and links to Syllogos.
 
 On phones and tablets, the compact header opens a menu with section links, organising logos and registration. Escape closes the menu and returns focus to its button. The timetable becomes labelled cards on narrow screens. Interface arrows use inline SVGs, so their appearance does not depend on device fonts.
