@@ -44,6 +44,10 @@ booklet_body = booklet_body.replace('Discussants', 'Discutants').replace(
     'Solange Lefebvre',
     'Roselyne Mavungu — Centre de prévention de la radicalisation menant à la violence (CPRMV) à Montréal',
 )
+booklet_body = booklet_body.replace(
+    'Jean-François Roussel',
+    'Jean-François Roussel — Institut d’études religieuses de l’Université de Montréal',
+)
 assert normalized(booklet_body) == normalized(' '.join(french_body)), 'Final French PDF/source mismatch after organiser corrections'
 assert normalized(conference_info['fr']['attendance']) in normalized(pages[0]), 'Missing final cover attendance'
 

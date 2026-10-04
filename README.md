@@ -16,7 +16,7 @@ TRENDS Global uses its official high-resolution artwork with an SVG viewport exc
 
 The final update adds Gilles Bibeau's opening address, Lyse Langlois's title and full abstract, the cross-session discussion participants and discussants, and Sultan Al Hosani in the workshop roster. It also applies the final schedule, Wasim Salman spelling, Wael Saleh affiliation and abstract corrections.
 
-The organiser's 3 October website correction replaces Solange Lefebvre with Roselyne Mavungu — Centre de prévention de la radicalisation menant à la violence (CPRMV) à Montréal in both languages, and uses “Discutants” for the French heading. The downloadable print booklet remains unchanged; verification accounts for these specific website corrections.
+The organiser's 3 October website correction replaces Solange Lefebvre with Roselyne Mavungu — Centre de prévention de la radicalisation menant à la violence (CPRMV) à Montréal in both languages, and uses “Discutants” for the French heading. Jean-François Roussel’s affiliation is listed as Institut d’études religieuses de l’Université de Montréal in both languages. The downloadable print booklet remains unchanged; verification accounts for these specific website corrections.
 
 The carousel supports touch scrolling, previous/next buttons, and the arrow, Home and End keys when its list is focused. It has no automatic movement and respects reduced-motion preferences. The programme overview appears before the three daily schedules. The footer reads “Designed by Zeyyad Saleh, Cofounder of Syllogos” and links to Syllogos.
 
