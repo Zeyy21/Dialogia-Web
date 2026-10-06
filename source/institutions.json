@@ -196,6 +196,21 @@
     "logo_background": "light"
   },
   {
+    "id": "cprmv",
+    "name": {
+      "en": "Centre for the Prevention of Radicalization Leading to Violence (CPRLV)",
+      "fr": "Centre de prévention de la radicalisation menant à la violence (CPRMV)"
+    },
+    "country": {
+      "en": "Canada",
+      "fr": "Canada"
+    },
+    "url": "https://info-radical.org/",
+    "logo": "/assets/institutions/cprmv.jpeg",
+    "logo_source": "User-provided WhatsApp Image 2026-10-06 at 2.57.15 AM.jpeg",
+    "logo_background": "light"
+  },
+  {
     "id": "vatican",
     "name": {
       "en": "Vatican Apostolic Library",
