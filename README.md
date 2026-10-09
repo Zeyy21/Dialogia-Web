@@ -4,25 +4,17 @@ A single-page conference website in French and English. The default language is 
 
 ## Official content
 
-The website follows the final French print booklet supplied on 1 October 2026, `DIALOGIA_Montreal_2026_Livret_FR_FINAL_IMPRESSION.pdf` (16 pages). `source/fr.json` preserves its scientific rationale, programme overview, detailed schedule, all 24 presentation abstracts, discussion and workshop participants, scientific committee and organising institutions. The repeated cover, printed contents line, colour legend and repeated heading are not duplicated on the page. The cover's attendance statement appears in the international section, and the participating institutions appear in the existing carousel.
+The website follows the revised French and English booklets dated **10 October 2026**, supplied on **9 October 2026**. `source/fr.json` and `source/en.json` are imported directly from their respective official DOCX files. Each language preserves its document's titles, scientific rationale, programme overview, detailed schedule, 24 presentation abstracts, discussion and workshop participants, scientific committee and organising institutions. Repeated print-only labels are omitted; the attendance statement appears in the international section, and participating institutions appear in the carousel.
 
-`source/en.json` retains the previously supplied English text where it still agrees with the final French edition, with translations of the additions and corrections. No final English PDF was supplied. Both language versions link to the unchanged final French PDF, with French labels on English download links. Programme buttons open its overview on page 4. PDF URLs include a content version so returning visitors receive the final edition. The earlier English PDF remains in the repository for reference and is no longer linked from the website.
+Each language downloads its unchanged official Word booklet: `dist/documents/DIALOGIA-2026-FR.docx` or `dist/documents/DIALOGIA-2026-EN.docx`. `source/booklets.json` records the original filenames, public paths and SHA-256 hashes. Download URLs include a content version. Programme buttons open the matching language's on-page overview. Earlier PDFs remain in the repository as historical files and are not linked; PDF conversion products are internal QA artifacts only.
 
-The four organising institution logos remain linked inside the menu bar. The carousel has 28 distinct institution and research-centre cards: 27 from the final booklet's visual roster plus the organiser-requested CPRMV, including logos embedded as images: Chaire Raoul-Dandurand, IÉR, CIRRES, TRENDS Global and Université Laval. Centre Thucydide appears once despite being pictured twice in the booklet. Vechta, absent from the final booklet, has been removed, and KPH now uses the booklet's Wien/Niederösterreich name. The organiser-requested TRENDS Group name and logo remain first; TRENDS Global has its own linked card. The cover's stated total of 24 institutions is preserved as supplied.
+The four organising institution logos remain linked inside the menu bar. The carousel has 28 distinct institution and research-centre cards, including CPRMV, Chaire Raoul-Dandurand, IÉR, CIRRES, TRENDS Global and Université Laval. Centre Thucydide appears once despite being pictured twice in the booklet. Vechta is absent, and KPH uses the booklet's Wien/Niederösterreich name. The organiser-requested TRENDS Group name and logo remain first; TRENDS Global has its own linked card. The cover's stated total of 24 institutions is preserved as supplied.
 
 `source/conference-info.json` contains the final cover's attendance statement (28 academics, 24 institutions, 10 countries) and the earlier organiser-supplied context: represented countries, the research initiative and launches, online participation, required registration and the 70-person venue capacity. `source/institutions.json` records bilingual institution names, countries, official websites and logo provenance. Logos retain their original artwork and colours; SVG viewports isolate UQAM, AUB and USJ from their official composite artwork without altering it. Université Laval's SVG is taken from its official website.
 
 TRENDS Global uses its official high-resolution artwork with an SVG viewport excluding empty margins. IÉR uses the original square artwork from the GEDCIQ presentation (page 2). Chaire Raoul-Dandurand uses the organiser-supplied `CRD_fr_cmyk.png` unchanged. These three logos fill their existing logo areas while retaining their native proportions.
 
-The final update adds Gilles Bibeau's opening address, Lyse Langlois's title and full abstract, the cross-session discussion participants and discussants, and Sultan Al Hosani in the workshop roster. It also applies the final schedule, Wasim Salman spelling, Wael Saleh affiliation and abstract corrections.
-
-The organiser's 3 October website correction replaces Solange Lefebvre with Roselyne Mavungu — Centre de prévention de la radicalisation menant à la violence (CPRMV) à Montréal in both languages, and uses “Discutants” for the French heading. Jean-François Roussel’s affiliation is listed as Institut d’études religieuses de l’Université de Montréal in both languages. The downloadable print booklet remains unchanged; verification accounts for these specific website corrections.
-
-The organiser’s 4 October website update adds Ali Mostafa - UCLY after Renée Hattar in Session 3, with a title to be confirmed shortly in both languages. The cross-cutting discussion has its own expand/collapse control. Session 3 moderator Emmanuel Pisani is bold, and presentation titles use regular weight even when they contain em dashes. The downloadable booklet remains unchanged.
-
-The organiser’s 6 October update adds CPRMV as the 14th represented institution in both languages, using the supplied logo and its official website link.
-
-The carousel supports touch scrolling, previous/next buttons, and the arrow, Home and End keys when its list is focused. It has no automatic movement and respects reduced-motion preferences. The programme overview appears before the three daily schedules. The footer reads “Designed by Zeyyad Saleh, Cofounder of Syllogos” and links to Syllogos.
+The carousel supports touch scrolling, previous/next buttons, and the arrow, Home and End keys when its list is focused. It has no automatic movement and respects reduced-motion preferences. The programme overview appears before the three daily schedules; the cross-cutting discussion has its own expand/collapse control. The footer reads “Designed by Zeyyad Saleh, Cofounder of Syllogos” and links to Syllogos.
 
 On phones and tablets, the compact header opens a menu with section links, organising logos and registration. Escape closes the menu and returns focus to its button. The timetable becomes labelled cards on narrow screens. Interface arrows use inline SVGs, so their appearance does not depend on device fonts.
 
@@ -47,19 +39,32 @@ Configuration follows [Vercel’s static-site build guidance](https://vercel.com
 - `dist/index.html`: generated bilingual page.
 - `dist/styles.css`: responsive layout and visual design.
 - `dist/app.js`: mobile menu, language switching, programme navigation and the accessible institution carousel.
+- `source/fr.json` and `source/en.json`: passages imported from each official language edition.
+- `source/booklets.json`: original booklet filenames, public paths and SHA-256 hashes.
 - `source/institutions.json`: represented institutions and the sources of their logo assets.
 - `source/conference-info.json`: additional organiser-supplied event information and its French translation.
+- `scripts/import_booklets.py`: imports both DOCX sources and copies the unchanged originals into `dist/documents`.
 - `scripts/render.py`: renders the page from source paragraphs.
-- `scripts/verify.py`: checks every displayed source passage, complete French PDF coverage, 24 abstracts in each language, matching bilingual timings and authors, final booklet links, and local assets; requires lxml and pypdf.
+- `scripts/verify.py`: checks both DOCX hashes, exact source fidelity, substantive content coverage, 24 abstracts per language, matching timings and authors, language-specific downloads, programme anchors and local assets; requires lxml.
 
-Serve `dist` with a local HTTP server to preview it. Static hosting serves the same directory. `python3 scripts/render.py` regenerates the page; `python3 scripts/verify.py` checks it.
+To replace the official booklets, run:
 
-## Programme discrepancies requiring an organiser decision
+```sh
+python3 scripts/import_booklets.py --fr /path/to/revised-fr.docx --en /path/to/revised-en.docx
+python3 scripts/render.py
+python3 scripts/verify.py
+```
 
-The website preserves the final French document's wording and timing in both languages:
+Serve `dist` with a local HTTP server to preview it. Static hosting serves the same directory. For changes that do not replace the booklets, run the renderer and verifier only.
 
-- **20 October:** the final booklet resolves the previous timing differences. Session 4 is **9 h 00–11 h 15**, including discussion at **11 h 00–11 h 15**; coffee is **11 h 15–11 h 30**; Workshop 1 starts at **11 h 30**.
-- **19 October, Session 3:** the summary includes **14 h 00–15 h 45**, while the detailed session heading ends at **15 h 15**, followed by general discussion until **15 h 45**.
-- The introductory format paragraph describes workshops on the afternoon of 20 October; the detailed Workshop 1 starts before noon in both documents.
+## Source inconsistencies
 
-The remaining differences are preserved from the final booklet; they have not been silently reconciled. The French PDF download is an unchanged copy of the supplied final document.
+Each website language preserves its own official document. The following differences require an organiser decision before changing the source wording:
+
+- **Workshop 1:** both titles specify **14 texts and videos**, but the independent evaluation refers to **9**. The French and English objectives also differ.
+- **Workshop 3:** the two editions have different titles, objectives and activity descriptions. At **13 h 45**, French describes oversight and ethical principles, while English describes knowledge architecture. At **14 h 30**, French lists a roadmap; English labels governance and responsible development but retains a French description about knowledge organisation and user experience. At **15 h 30**, French lists ethical governance and English lists a general debrief.
+- **19 October, Session 3:** the overview covers **14 h 00–15 h 45**, while the detailed session heading ends at **15 h 15**, followed by discussion until **15 h 45**.
+- **20 October:** the introductory format paragraph places workshops in the afternoon, although Workshop 1 begins at **11 h 30** in both editions.
+- **21 October:** the overview groups special activities, debrief and closing under **15 h 30–17 h 30**; the detailed programme places special activities at **17 h 00** and official closing at **17 h 30**.
+
+These source differences are documented rather than reconciled during import. Verification checks shared times and authors while retaining language-specific wording.

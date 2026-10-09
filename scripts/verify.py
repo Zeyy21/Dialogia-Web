@@ -5,7 +5,7 @@ import json
 import hashlib
 import re
 import unicodedata
-from pypdf import PdfReader
+from booklets import read_booklet, source_passages
 from urllib.parse import urlsplit, parse_qs
 
 root = Path(__file__).resolve().parents[1]
@@ -13,6 +13,7 @@ doc = html.fromstring((root / 'dist/index.html').read_text())
 sources = {lang: json.loads((root / f'source/{lang}.json').read_text()) for lang in ['en', 'fr']}
 institutions = json.loads((root / 'source/institutions.json').read_text())
 conference_info = json.loads((root / 'source/conference-info.json').read_text())
+booklets = json.loads((root / 'source/booklets.json').read_text())
 passages = doc.xpath('//*[@data-source]')
 for element in passages:
     lang, index = element.attrib['data-source'].split(':')
@@ -28,34 +29,13 @@ for url in doc.xpath('//@href | //@src'):
 def normalized(text):
     return ''.join(c for c in unicodedata.normalize('NFKC', text).casefold() if c.isalnum())
 
-booklet = root / 'dist/documents/DIALOGIA-2026-FR.pdf'
-booklet_hash = hashlib.sha256(booklet.read_bytes()).hexdigest()
-pages = [p.extract_text() or '' for p in PdfReader(booklet).pages]
-assert len(pages) == 16, 'Expected the 16-page final French booklet'
-assert 'PROGRAMME EN UN COUP' in pages[3], 'The programme PDF link must open the overview'
-# Pages 2–15 contain the complete programme and abstracts. Page 1 repeats
-# the cover information and adds attendance; page 16 lists institutions.
-body = [re.sub(r'^DIALOGIA MONTRÉAL.*\n\d+\s*\n', '', p) for p in pages[1:15]]
-french_body = sources['fr'][:7] + sources['fr'][8:]
-# Apply the organiser's website corrections to the original print text before
-# comparing; the supplied downloadable booklet remains the original edition.
-booklet_body = ' '.join(body)
-booklet_body = booklet_body.replace('Discussants', 'Discutants').replace(
-    'Solange Lefebvre',
-    'Roselyne Mavungu — Centre de prévention de la radicalisation menant à la violence (CPRMV) à Montréal',
-)
-booklet_body = booklet_body.replace(
-    'Jean-François Roussel',
-    'Jean-François Roussel — Institut d’études religieuses de l’Université de Montréal',
-)
-booklet_body = booklet_body.replace(
-    '15 h 15 – 15 h 45 Discussion générale',
-    'Ali Mostafa - UCLY Titre à confirmer prochainement 15 h 15 – 15 h 45 Discussion générale',
-)
-assert normalized(booklet_body) == normalized(' '.join(french_body)), 'Final French PDF/source mismatch after organiser corrections'
-assert normalized(conference_info['fr']['attendance']) in normalized(pages[0]), 'Missing final cover attendance'
-
 for lang in ['fr', 'en']:
+    booklet = root / 'dist' / booklets[lang]['path'].lstrip('/')
+    booklet_hash = hashlib.sha256(booklet.read_bytes()).hexdigest()
+    assert booklet_hash == booklets[lang]['sha256'], f'Official {lang} file was modified'
+    paragraphs = read_booklet(booklet)
+    assert sources[lang] == source_passages(paragraphs, lang), f'{lang} DOCX/source mismatch'
+    assert normalized(conference_info[lang]['attendance']) in normalized(' '.join(paragraphs[:7])), f'Missing {lang} cover attendance'
     language = doc.xpath(f'//*[@data-language="{lang}"]')[0]
     cards = language.xpath('.//*[@data-institution]')
     assert [card.attrib['data-institution'] for card in cards] == [i['id'] for i in institutions], f'Incomplete institution list in {lang}'
@@ -88,13 +68,15 @@ for lang in ['fr', 'en']:
     assert len(language.xpath('.//details[@class="session"]')) == 8
     for link in language.xpath('.//a[contains(@href,"/documents/")]'):
         url = urlsplit(link.attrib['href'])
-        assert url.path == '/documents/DIALOGIA-2026-FR.pdf', 'A superseded booklet is still linked'
-        assert parse_qs(url.query).get('v') == [booklet_hash[:12]], 'Stale PDF cache version'
-        if 'data-program-pdf' in link.attrib:
-            assert url.fragment == 'page=4', 'Wrong programme overview page'
+        assert url.path == booklets[lang]['path'], f'Wrong language or superseded booklet linked in {lang}'
+        assert parse_qs(url.query).get('v') == [booklet_hash[:12]], 'Stale booklet cache version'
+        assert 'download' in link.attrib, 'Booklet link should download the official Word file'
+    overview_links = language.xpath('.//a[@data-open-details]')
+    assert len(overview_links) == 2, 'Missing programme navigation buttons'
+    assert all(a.attrib['href'] == f'#overview-{lang}' and a.attrib['data-open-details'] == f'overview-{lang}' for a in overview_links)
+    assert not language.xpath('.//a[contains(@href,".pdf")]'), 'Superseded PDF is still linked'
 
-# English additions are translations of the final French edition, not a new
-# official English PDF. Check the facts most likely to drift between languages.
+# Preserve language-specific wording while checking shared timings and speakers.
 timings = {}
 authors = {}
 for lang in ['fr', 'en']:
@@ -111,13 +93,12 @@ config = json.loads((root/'registration.json').read_text())
 if config['url']:
     assert all(a.attrib['href'] == config['url'] for a in doc.xpath('//*[@data-registration]'))
 print(f'PASS: {len(passages)} displayed passages match the bilingual source text exactly.')
-assert not doc.xpath('//a[contains(@href,".docx")]'), 'Old Word download remains'
 print('PASS: Every substantive booklet passage is on the page, including 24 abstracts per language.')
-print('PASS: French programme and abstracts match the final PDF with organiser corrections; English times and authors agree.')
-print('PASS: All booklet links use the final French PDF; programme buttons open page 4.')
-print('PASS: Internal links, PDF links, unique IDs and local assets.')
+print('PASS: Both programmes and abstracts match their revised official DOCX; times and authors agree.')
+print('PASS: Downloads use unchanged language-matched Word originals; programme buttons open the website overview.')
+print('PASS: Internal links, booklet links, unique IDs and local assets.')
 print(f'PASS: All {len(institutions)} represented institutions, header logos, supplied conference information and footer credit.')
 print('Registration:', 'connected' if config['url'] else 'awaiting Google sign-in')
 for lang in ['EN','FR']:
-    file = root / f'dist/documents/DIALOGIA-2026-{lang}.pdf'
+    file = root / f'dist/documents/DIALOGIA-2026-{lang}.docx'
     print(f'{lang} booklet SHA-256: {hashlib.sha256(file.read_bytes()).hexdigest()}')

@@ -76,8 +76,8 @@
       setLanguage(link.dataset.setLanguage);
     });
   });
-  document.querySelectorAll('[data-open-day]').forEach(link => link.addEventListener('click', () => {
-    document.getElementById(link.dataset.openDay).open = true;
+  document.querySelectorAll('[data-open-day], [data-open-details]').forEach(link => link.addEventListener('click', () => {
+    document.getElementById(link.dataset.openDetails || link.dataset.openDay).open = true;
   }));
   document.querySelectorAll('[data-carousel]').forEach(carousel => {
     const track = carousel.querySelector('.institution-track');
