@@ -57,8 +57,22 @@ for lang in ['fr', 'en']:
     required = set(range(len(sources[lang]))) - redundant_print_labels
     assert required.issubset(indices), f'Missing booklet content in {lang}: {required-indices}'
     papers=doc.xpath(f'//*[@data-language="{lang}"]//details[contains(concat(" ",normalize-space(@class)," ")," paper ")]')
-    assert len(papers)==24, f'Expected all 24 abstracts in {lang}'
-    assert [len(axis.xpath('.//details[@class="paper"]')) for axis in language.xpath('.//details[@class="abstract-axis"]')] == [5, 6, 5, 8]
+    assert len(papers)==25, f'Expected all 25 abstracts in {lang}'
+    assert [len(axis.xpath('.//details[@class="paper"]')) for axis in language.xpath('.//details[@class="abstract-axis"]')] == [6, 6, 5, 8]
+    jaume = [paper for paper in papers if paper.xpath('./summary//span[@class="paper-author"]')[0].text_content().startswith('Jaume Flaquer Garcia')]
+    assert len(jaume) == 1, f'Missing or duplicated Jaume abstract in {lang}'
+    assert papers[papers.index(jaume[0]) + 1].xpath('./summary//span[@class="paper-author"]')[0].text_content().startswith('Raphaël Georgy'), f'Jaume abstract must precede Raphaël in {lang}'
+    expected_title = ('La prédication à l’épreuve de l’intelligence artificielle' if lang == 'fr'
+                      else 'Preaching in the Age of Artificial Intelligence: Challenges and Implications')
+    assert jaume[0].xpath('./summary//span[@class="paper-title"]')[0].text_content() == expected_title
+    assert len(jaume[0].xpath('./div/p')) == (1 if lang == 'fr' else 4), f'Incomplete Jaume abstract in {lang}'
+    session_one = language.xpath('.//details[@class="session"]')[0]
+    programme_speakers = [node.text_content() for node in session_one.xpath('.//p[@class="speaker"]')]
+    assert sum(name.startswith('Jaume Flaquer Garcia') for name in programme_speakers) == 1
+    jaume_position = next(i for i, name in enumerate(programme_speakers) if name.startswith('Jaume Flaquer Garcia'))
+    assert programme_speakers[jaume_position + 1].startswith('Raphaël Georgy'), f'Jaume must precede Raphaël in Session 1 in {lang}'
+    jaume_programme = session_one.xpath('.//p[@class="speaker" and starts-with(text(),"Jaume Flaquer Garcia")]')[0]
+    assert jaume_programme.getnext().text_content() == 'Preaching in the Age of Artificial Intelligence: Challenges and Implications'
     assert 'Wassim Salman' not in language.text_content(), 'Outdated speaker spelling'
     for name in ['Gilles Bibeau', 'Roselyne Mavungu', 'Jean-François Roussel', 'Sultan Al Hosani']:
         assert name in language.text_content(), f'Missing participant: {name}'
@@ -82,7 +96,7 @@ authors = {}
 for lang in ['fr', 'en']:
     programme = doc.xpath(f'//*[@id="program-{lang}"]')[0].text_content()
     timings[lang] = [re.sub(r'\s+', '', t).lower() for t in re.findall(r'\b\d{1,2}\s*[hH]\s*\d{2}', programme)]
-    authors[lang] = [re.split(r' · |, PhD|\. Centre', node.text_content())[0].strip() for node in doc.xpath(f'//*[@data-language="{lang}"]//*[@class="paper-author"]')]
+    authors[lang] = [re.split(r' · |\s*—\s*|, PhD|\. Centre', node.text_content())[0].strip() for node in doc.xpath(f'//*[@data-language="{lang}"]//*[@class="paper-author"]')]
 assert timings['fr'] == timings['en'], 'French and English programme times differ'
 assert authors['fr'] == authors['en'], 'French and English abstract authors differ'
 assert len({item['id'] for item in institutions}) == len(institutions), 'Duplicate institution'
@@ -93,7 +107,8 @@ config = json.loads((root/'registration.json').read_text())
 if config['url']:
     assert all(a.attrib['href'] == config['url'] for a in doc.xpath('//*[@data-registration]'))
 print(f'PASS: {len(passages)} displayed passages match the bilingual source text exactly.')
-print('PASS: Every substantive booklet passage is on the page, including 24 abstracts per language.')
+print('PASS: Every substantive booklet passage is on the page, including 25 abstracts per language.')
+print('PASS: Jaume Flaquer Garcia precedes Raphaël Georgy in both programmes and abstract lists.')
 print('PASS: Both programmes and abstracts match their revised official DOCX; times and authors agree.')
 print('PASS: Downloads use unchanged language-matched Word originals; programme buttons open the website overview.')
 print('PASS: Internal links, booklet links, unique IDs and local assets.')

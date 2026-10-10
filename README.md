@@ -4,7 +4,9 @@ A single-page conference website in French and English. The default language is 
 
 ## Official content
 
-The website follows the revised French and English booklets dated **10 October 2026**, supplied on **9 October 2026**. `source/fr.json` and `source/en.json` are imported directly from their respective official DOCX files. Each language preserves its document's titles, scientific rationale, programme overview, detailed schedule, 24 presentation abstracts, discussion and workshop participants, scientific committee and organising institutions. Repeated print-only labels are omitted; the attendance statement appears in the international section, and participating institutions appear in the carousel.
+The website follows the revised French and English booklets dated **10 October 2026**, the **“-2” editions supplied on 10 October 2026**. `source/fr.json` and `source/en.json` are imported directly from their respective official DOCX files. Each language preserves its document's titles, scientific rationale, programme overview, detailed schedule, 25 presentation abstracts, discussion and workshop participants, scientific committee and organising institutions. Repeated print-only labels are omitted; the attendance statement appears in the international section, and participating institutions appear in the carousel.
+
+The second revision adds Jaume Flaquer Garcia — Loyola University / PLURIEL immediately before Raphaël Georgy in Session 1 and the Axis 1 abstracts. Both programmes use “Preaching in the Age of Artificial Intelligence: Challenges and Implications”, as supplied; his French abstract uses “La prédication à l’épreuve de l’intelligence artificielle”. The full French abstract and all four English paragraphs are included. The official cover counts remain unchanged in the supplied booklets.
 
 Each language downloads its unchanged official Word booklet: `dist/documents/DIALOGIA-2026-FR.docx` or `dist/documents/DIALOGIA-2026-EN.docx`. `source/booklets.json` records the original filenames, public paths and SHA-256 hashes. Download URLs include a content version. Programme buttons open the matching language's on-page overview. Earlier PDFs remain in the repository as historical files and are not linked; PDF conversion products are internal QA artifacts only.
 
@@ -45,7 +47,7 @@ Configuration follows [Vercel’s static-site build guidance](https://vercel.com
 - `source/conference-info.json`: additional organiser-supplied event information and its French translation.
 - `scripts/import_booklets.py`: imports both DOCX sources and copies the unchanged originals into `dist/documents`.
 - `scripts/render.py`: renders the page from source paragraphs.
-- `scripts/verify.py`: checks both DOCX hashes, exact source fidelity, substantive content coverage, 24 abstracts per language, matching timings and authors, language-specific downloads, programme anchors and local assets; requires lxml.
+- `scripts/verify.py`: checks both DOCX hashes, exact source fidelity, substantive content coverage, 25 abstracts per language, matching timings and authors, language-specific downloads, programme anchors and local assets; requires lxml.
 
 To replace the official booklets, run:
 

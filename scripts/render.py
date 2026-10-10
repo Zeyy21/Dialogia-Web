@@ -49,20 +49,20 @@ ORGANIZERS = [
 ]
 
 ABSTRACT_AXES = {
- 'en': [(237,261,[239,243,247,250,255]),(261,291,[263,272,275,278,281,286]),(291,313,[293,296,301,305,310]),(313,343,[315,319,324,327,330,333,337,340])],
- 'fr': [(235,259,[237,241,245,248,253]),(259,289,[261,270,273,276,279,284]),(289,311,[291,294,299,303,308]),(311,341,[313,317,322,325,328,331,335,338])],
+ 'en': [(239,269,[241,245,249,255,258,263]),(269,299,[271,280,283,286,289,294]),(299,321,[301,304,309,313,318]),(321,351,[323,327,332,335,338,341,345,348])],
+ 'fr': [(237,264,[239,243,247,250,253,258]),(264,294,[266,275,278,281,284,289]),(294,316,[296,299,304,308,313]),(316,346,[318,322,327,330,333,336,340,343])],
 }
 
 # Speaker rows are explicit: presentation titles may also contain em dashes.
-SPEAKER_PARAGRAPHS = {116, 118, 120, 122, 124, 131, 133, 135, 137, 139, 141,
-                      148, 150, 152, 154, 156, 158, 176, 178, 180, 182, 184, 186, 188, 190}
+SPEAKER_PARAGRAPHS = {116, 118, 120, 122, 124, 126, 133, 135, 137, 139, 141, 143,
+                      150, 152, 154, 156, 158, 160, 178, 180, 182, 184, 186, 188, 190, 192}
 
 def page(lang):
  p = json.loads((ROOT / 'source' / f'{lang}.json').read_text())
  ui = UI[lang]
  def s(i, tag='p', cls=''):
   text = escape(p[i])
-  if i == 147:
+  if i == 149:
    text = text.replace('Emmanuel Pisani', '<strong>Emmanuel Pisani</strong>')
   return f'<{tag} data-source="{lang}:{i}" class="{cls}">{text}</{tag}>'
  def committee_link(i):
@@ -82,7 +82,7 @@ def page(lang):
  def session(start, stop):
   return f'<details class="session" id="session-{start}-{lang}"><summary><span>'+s(start,'span','session-label')+s(start+1,'span','session-title')+'</span>'+toggle()+'</summary><div class="session-body">'+''.join(s(i,'p','speaker' if i in SPEAKER_PARAGRAPHS else '') for i in range(start+2,stop))+'</div></details>'
  def day(start,stop,num):
-  sessions = {113:128,128:145,145:162,162:169,173:194,194:204,206:214,214:ABSTRACT_AXES[lang][0][0]}
+  sessions = {113:130,130:147,147:164,164:171,175:196,196:206,208:216,216:ABSTRACT_AXES[lang][0][0]}
   content=[]
   i=start+2
   while i<stop:
@@ -147,7 +147,7 @@ def page(lang):
   </div></section>
   <section class="section rationale shell" id="{anchor('rationale')}"><div class="section-rail">{s(16,'p','eyebrow')}<span class="section-number" aria-hidden="true">01</span></div><div class="section-content">{s(18,'h2')}{s(19,'p','body-copy')}<details class="rationale-more" id="rationale-more-{lang}"><summary>{ui['full']}{toggle()}</summary><div>{s(20)}{s(21)}{s(22,'h3','eyebrow')}{s(23)}</div></details>
   <div class="axes">{s(24,'h3','eyebrow')}<div class="axes-grid">{''.join(f'<div class="axis">{s(i,"span","axis-number")}{s(i+1,"h4")}</div>' for i in [25,27,29,31])}</div></div></div></section>
-  <section class="program-section" id="{anchor('program')}" tabindex="-1"><div class="section shell"><div class="section-rail"><p class="eyebrow">{ui['programme']}</p><span class="section-number" aria-hidden="true">02</span></div><div class="section-content"><div class="section-heading"><h2>{ui['days']}</h2><a class="download-link" href="{download}" download>{ui['download']}{icon("download")}</a></div>{s(8,'h3','eyebrow format-label')}{s(9,'p','program-intro')}<div class="schedule">{overview()}{day(107,171,19)}{day(171,204,20)}{day(204,ABSTRACT_AXES[lang][0][0],21)}</div><details class="workshop-details" id="workshop-details-{lang}"><summary>{s(workshops,'span','day-title')}{toggle()}</summary><div class="workshop-body">{s(workshops+1)}{s(workshops+2,'h3')}{s(workshops+3)}{s(workshops+4,'h3')}{''.join(s(i) for i in range(workshops+5,committee))}</div></details></div></div></section>
+  <section class="program-section" id="{anchor('program')}" tabindex="-1"><div class="section shell"><div class="section-rail"><p class="eyebrow">{ui['programme']}</p><span class="section-number" aria-hidden="true">02</span></div><div class="section-content"><div class="section-heading"><h2>{ui['days']}</h2><a class="download-link" href="{download}" download>{ui['download']}{icon("download")}</a></div>{s(8,'h3','eyebrow format-label')}{s(9,'p','program-intro')}<div class="schedule">{overview()}{day(107,173,19)}{day(173,206,20)}{day(206,ABSTRACT_AXES[lang][0][0],21)}</div><details class="workshop-details" id="workshop-details-{lang}"><summary>{s(workshops,'span','day-title')}{toggle()}</summary><div class="workshop-body">{s(workshops+1)}{s(workshops+2,'h3')}{s(workshops+3)}{s(workshops+4,'h3')}{''.join(s(i) for i in range(workshops+5,committee))}</div></details></div></div></section>
   <section class="section abstracts-section shell" id="{anchor('abstracts')}" tabindex="-1"><div class="section-rail"><p class="eyebrow">{ui['abstracts']}</p><span class="section-number" aria-hidden="true">03</span></div><div class="section-content"><h2>{ui['abstracts']}</h2><div class="abstracts-list">{abstracts()}</div></div></section>
   <section class="section practical shell" id="{anchor('practical')}" tabindex="-1"><div class="section-rail">{s(33,'p','eyebrow')}<span class="section-number" aria-hidden="true">04</span></div><div class="section-content practical-grid"><div><h2>{ui['practical']}</h2>{s(4,'p','practical-date')}{s(5)}{s(6)}<a class="download-link" href="{download}" download>{ui['booklet']} — {ui['doclang']}{icon("download")}</a></div><div class="registration-panel" id="{anchor('registration')}"><h3>{ui['registration']}</h3><p class="participation-label">{ui['participation']}</p>{info('participation','participation-notice')}{register()}<p class="registration-status" {'hidden' if registration else ''}>{ui['pending']}</p></div></div></section>
   <section class="international-section" id="{anchor('international')}" tabindex="-1"><div class="shell international-inner"><div class="international-heading"><p class="eyebrow">{ui['international_label']}</p><h2>{ui['international']}</h2>{info('attendance','international-countries')}{info('countries','international-countries')}</div><div class="international-context">{info('overview')}{info('initiative')}</div>{institution_carousel()}</div></section>
