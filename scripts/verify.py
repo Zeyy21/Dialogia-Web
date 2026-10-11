@@ -12,6 +12,12 @@ root = Path(__file__).resolve().parents[1]
 doc = html.fromstring((root / 'dist/index.html').read_text())
 sources = {lang: json.loads((root / f'source/{lang}.json').read_text()) for lang in ['en', 'fr']}
 institutions = json.loads((root / 'source/institutions.json').read_text())
+speakers = json.loads((root / 'source/speakers.json').read_text())
+people = speakers['people']
+assert len(people) == len({p['id'] for p in people}) == len({p['source_media'] for p in people}) == 30, 'Expected 30 unique speaker portraits'
+for person in people:
+    portrait = root / 'dist' / person['portrait'].lstrip('/')
+    assert hashlib.sha256(portrait.read_bytes()).hexdigest() == person['portrait_sha256'], f'Changed portrait: {person["name"]}'
 conference_info = json.loads((root / 'source/conference-info.json').read_text())
 booklets = json.loads((root / 'source/booklets.json').read_text())
 programme_corrections = json.loads((root / 'source/programme-corrections.json').read_text())
@@ -48,6 +54,17 @@ for lang in ['fr', 'en']:
     assert sources[lang] == expected_passages, f'{lang} base DOCX and approved programme corrections/source mismatch'
     assert normalized(conference_info[lang]['attendance']) in normalized(' '.join(paragraphs[:7])), f'Missing {lang} cover attendance'
     language = doc.xpath(f'//*[@data-language="{lang}"]')[0]
+    profiles = language.xpath('.//*[@data-person]')
+    assert [profile.attrib['data-person'] for profile in profiles] == [p['id'] for p in people], f'Incomplete speaker gallery in {lang}'
+    for profile, person in zip(profiles, people):
+        assert profile.xpath('.//h3')[0].text_content() == person['name']
+        assert profile.xpath('.//img/@src') == [person['portrait']], f'Portrait/name mismatch: {person["name"]}'
+        assert profile.xpath('.//img/@alt') == [person['name']]
+        assert profile.xpath('.//*[@class="speaker-affiliation"]')[0].text_content() == person['affiliation'][lang]
+        assert profile.xpath('.//*[@class="speaker-roles"]')[0].text_content() == ' · '.join(speakers['roles'][role][lang] for role in person['roles'])
+    gallery = language.xpath(f'.//*[@id="speakers-{lang}"]')[0]
+    assert gallery.getnext().attrib['id'] == f'international-{lang}', 'Speaker gallery must precede institutions'
+    assert language.xpath(f'.//nav[@class="section-nav"]/a[@href="#speakers-{lang}"]'), 'Missing speaker navigation'
     cards = language.xpath('.//*[@data-institution]')
     assert [card.attrib['data-institution'] for card in cards] == [i['id'] for i in institutions], f'Incomplete institution list in {lang}'
     for card, institution in zip(cards, institutions):
@@ -126,6 +143,7 @@ print('PASS: Both programmes and abstracts match the preserved DOCX text plus ap
 print('PASS: Downloads use unchanged language-matched final PDFs; programme buttons open the website overview.')
 print('PASS: Internal links, booklet links, unique IDs and local assets.')
 print(f'PASS: All {len(institutions)} represented institutions, header logos, supplied conference information and footer credit.')
+print(f'PASS: All {len(people)} unique speaker profiles, bilingual captions and matching portrait hashes.')
 print('Registration:', 'connected' if config['url'] else 'awaiting Google sign-in')
 for lang in ['EN','FR']:
     file = root / 'dist' / booklets[lang.lower()]['path'].lstrip('/')

@@ -1,0 +1,804 @@
+{
+  "source": {
+    "filename": "Montreal_2026_Speakers_11-10-2026.docx",
+    "sha256": "d80078776f5b59f64e42d2cd8414ae28dcc94e0ba85bbb56b86abe32af16f671",
+    "note": "One profile per distinct portrait, in first-appearance order. Repeated roles and affiliations are combined. The source cover states 32 contributors but contains 30 distinct portrait/name pairs. Programme text and conference totals remain controlled by the official booklets."
+  },
+  "roles": {
+    "opening": {
+      "fr": "Allocution d’ouverture",
+      "en": "Opening speaker"
+    },
+    "speaker": {
+      "fr": "Communication",
+      "en": "Speaker"
+    },
+    "moderator": {
+      "fr": "Modération",
+      "en": "Moderator"
+    },
+    "discussant": {
+      "fr": "Discussion transversale",
+      "en": "Discussant"
+    },
+    "facilitator": {
+      "fr": "Animation des ateliers",
+      "en": "Workshop facilitator"
+    },
+    "participant": {
+      "fr": "Participation aux ateliers",
+      "en": "Workshop participant"
+    }
+  },
+  "people": [
+    {
+      "id": "gilles-bibeau",
+      "name": "Gilles Bibeau",
+      "roles": [
+        "opening"
+      ],
+      "affiliation": {
+        "en": "University of Montreal (UdeM)",
+        "fr": "Université de Montréal (UdeM)"
+      },
+      "portrait": "/assets/speakers/gilles-bibeau.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "ad26cb024a40068cd57c4a7316f4f90ab084aa800a92a447419700da84bcbb60",
+      "source_media": "word/media/image1.jpg",
+      "source_media_sha256": "536347ea0f58bf2c5ac1a42477378bc1a10c69c8e518e8814857b348d9f73724",
+      "appearances": [
+        {
+          "image_paragraph": 13,
+          "caption": "OPENING SPEAKER  Gilles Bibeau",
+          "affiliation": "University of Montreal (UdeM)",
+          "role": "opening"
+        }
+      ]
+    },
+    {
+      "id": "patrice-brodeur",
+      "name": "Patrice Brodeur",
+      "roles": [
+        "moderator",
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "University of Montreal (UdeM)",
+        "fr": "Université de Montréal (UdeM)"
+      },
+      "portrait": "/assets/speakers/patrice-brodeur.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "8d56bd9586492437cc7455aee3bda51a655f8f2cc394eee9f3ab9bfd8196fae3",
+      "source_media": "word/media/image2.jpg",
+      "source_media_sha256": "9bf793dd61c4ddee325f24cacacfe1243a5067ad10f7146df7e56f602371b5e9",
+      "appearances": [
+        {
+          "image_paragraph": 19,
+          "caption": "MODERATOR  Patrice Brodeur",
+          "affiliation": "University of Montreal (UdeM)",
+          "role": "moderator"
+        },
+        {
+          "image_paragraph": 58,
+          "caption": "Patrice Brodeur",
+          "affiliation": "University of Montreal (UdeM)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "michel-younes",
+      "name": "Michel Younès",
+      "roles": [
+        "speaker",
+        "moderator"
+      ],
+      "affiliation": {
+        "en": "Catholic University of Lyon (UCLy)",
+        "fr": "Université catholique de Lyon (UCLy)"
+      },
+      "portrait": "/assets/speakers/michel-younes.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "2ecef23a7ed84e4664f85be48d12795f172a76abf9dd7cd46e941dfe56464e12",
+      "source_media": "word/media/image3.jpg",
+      "source_media_sha256": "d2441fe5e743f3717f1de3f13365e8cde89a91846a5d07486a9eb8e057a2b0f7",
+      "appearances": [
+        {
+          "image_paragraph": 23,
+          "caption": "Michel Younès",
+          "affiliation": "Catholic University of Lyon (UCLy)",
+          "role": "speaker"
+        },
+        {
+          "image_paragraph": 50,
+          "caption": "MODERATOR  Michel Younès",
+          "affiliation": "Catholic University of Lyon (UCLy)",
+          "role": "moderator"
+        }
+      ]
+    },
+    {
+      "id": "jean-druel",
+      "name": "Jean Druel",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Dominican Institute for Oriental Studies (IDEO)",
+        "fr": "Institut dominicain d’études orientales (IDEO)"
+      },
+      "portrait": "/assets/speakers/jean-druel.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "35219c516601491051693c1762e3061f9d047da382a25e44c02a2429a519f36d",
+      "source_media": "word/media/image4.jpg",
+      "source_media_sha256": "d20a43f2584ae0d587b08f9456b7f6c4331e1853b075689fd68e5936efeef984",
+      "appearances": [
+        {
+          "image_paragraph": 27,
+          "caption": "Jean Druel",
+          "affiliation": "Dominican Institute for Oriental Studies (IDEO)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "jaume-flaquer-garcia",
+      "name": "Jaume Flaquer Garcia",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Loyola University",
+        "fr": "Université Loyola"
+      },
+      "portrait": "/assets/speakers/jaume-flaquer-garcia.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "058461b65b7366f9f98583cca60564909bdd947720b7d515dfef3122417f495f",
+      "source_media": "word/media/image5.jpg",
+      "source_media_sha256": "3682ae0e8408eda8dce70027807dbb9bfb4efa56d82474b666220d2de83b9514",
+      "appearances": [
+        {
+          "image_paragraph": 31,
+          "caption": "Jaume Flaquer Garcia",
+          "affiliation": "Loyola University",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "raphael-georgy",
+      "name": "Raphaël Georgy",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "PLURIEL",
+        "fr": "PLURIEL"
+      },
+      "portrait": "/assets/speakers/raphael-georgy.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "4e0cf4a181b6a4f794c43a2ea438f8a2e293aab60655b169e24ff314835df89f",
+      "source_media": "word/media/image6.jpg",
+      "source_media_sha256": "19f649a008582fb096dfb68149998f3b15026cec0c66667cce1e7bc422fcbe07",
+      "appearances": [
+        {
+          "image_paragraph": 35,
+          "caption": "Raphaël Georgy",
+          "affiliation": "PLURIEL",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "adrien-de-fouchier",
+      "name": "Adrien de Fouchier",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Vatican Apostolic Library",
+        "fr": "Bibliothèque apostolique vaticane"
+      },
+      "portrait": "/assets/speakers/adrien-de-fouchier.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "d877cf324e299a5a6a0686b8eb32a88ab352b9c4b89461ff5116a1b162d0f25c",
+      "source_media": "word/media/image7.jpg",
+      "source_media_sha256": "39486f3d5ca2c8fbf5f1b6cfa81c671d67ddf8a57d9292168661d13c96a58781",
+      "appearances": [
+        {
+          "image_paragraph": 39,
+          "caption": "Adrien de Fouchier",
+          "affiliation": "Vatican Apostolic Library",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "wael-saleh",
+      "name": "Wael Saleh",
+      "roles": [
+        "speaker",
+        "moderator",
+        "facilitator"
+      ],
+      "affiliation": {
+        "en": "TRENDS / Université du Québec à Montréal (UQAM)",
+        "fr": "TRENDS / Université du Québec à Montréal (UQAM)"
+      },
+      "portrait": "/assets/speakers/wael-saleh.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "4e380ab18eaa4b31c3a3b571184ceafd5ca2344c1c659ef0f6ed5a01a353524d",
+      "source_media": "word/media/image8.jpg",
+      "source_media_sha256": "58f99d828aceb16d251817d9fe7721e97af9dcbdee1048742993dcfbd092c49a",
+      "appearances": [
+        {
+          "image_paragraph": 43,
+          "caption": "Wael Saleh",
+          "affiliation": "Trends",
+          "role": "speaker"
+        },
+        {
+          "image_paragraph": 124,
+          "caption": "MODERATOR  Wael Saleh",
+          "affiliation": "Université du Québec à Montréal (UQAM)",
+          "role": "moderator"
+        },
+        {
+          "image_paragraph": 169,
+          "caption": "Wael Saleh",
+          "affiliation": "TRENDS",
+          "role": "facilitator"
+        }
+      ]
+    },
+    {
+      "id": "raja-sakrani",
+      "name": "Raja Sakrani",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "University of Bonn",
+        "fr": "Université de Bonn"
+      },
+      "portrait": "/assets/speakers/raja-sakrani.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "23d1402203e9237ff0dd080940c9df7eaa444c541f944aec7879de76289a4a80",
+      "source_media": "word/media/image9.jpg",
+      "source_media_sha256": "3277eb2d3e581cf32968d88aa9cde72c34f67d1bfcfe3c0989a69b9482f55e97",
+      "appearances": [
+        {
+          "image_paragraph": 54,
+          "caption": "Raja Sakrani",
+          "affiliation": "University of Bonn",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "eissa-ali-almannaei",
+      "name": "Eissa Ali AlMannaei",
+      "roles": [
+        "speaker",
+        "facilitator"
+      ],
+      "affiliation": {
+        "en": "TRENDS Research & Advisory",
+        "fr": "TRENDS Research & Advisory"
+      },
+      "portrait": "/assets/speakers/eissa-ali-almannaei.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "466c2a608f72c5eaf0e7a3d6337c3380d8e117b107f803ed9624da06bc0936f9",
+      "source_media": "word/media/image10.jpg",
+      "source_media_sha256": "72c00113827b39e5d30da275d2f865ff4da52898a65968cbf66db40ee5986a9a",
+      "appearances": [
+        {
+          "image_paragraph": 62,
+          "caption": "Eissa Ali AlMannaei",
+          "affiliation": "TRENDS Research & Advisory",
+          "role": "speaker"
+        },
+        {
+          "image_paragraph": 172,
+          "caption": "Eissa Ali AlMannaei",
+          "affiliation": "TRENDS",
+          "role": "facilitator"
+        }
+      ]
+    },
+    {
+      "id": "anne-de-luca",
+      "name": "Anne de Luca",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Thucydide Center (Panthéon-Assas)",
+        "fr": "Centre Thucydide (Panthéon-Assas)"
+      },
+      "portrait": "/assets/speakers/anne-de-luca.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "cfdc3ed0be8a68d99cc95a0cf4b51d078a2a1dceeb2d345d263d57d969e805bd",
+      "source_media": "word/media/image11.jpg",
+      "source_media_sha256": "c01bcbea58a5b96ffb959959ccaa81b8453b8e3e21aee6ab892fa0de16a95461",
+      "appearances": [
+        {
+          "image_paragraph": 66,
+          "caption": "Anne de Luca",
+          "affiliation": "Thucydide Center (Panthéon-Assas)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "anthony-j-el-beainy",
+      "name": "Anthony J. El Beainy",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Saint Joseph University of Beirut",
+        "fr": "Université Saint-Joseph de Beyrouth"
+      },
+      "portrait": "/assets/speakers/anthony-j-el-beainy.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "6ab0f32eb11a2acbd1647848e1b57df77d05b1592b094b0f511f09f617979b72",
+      "source_media": "word/media/image12.jpg",
+      "source_media_sha256": "7c1693fc9cfffc83b72a28b5b7e7e5d64cc7007b89678b9406b20a56f1a09c18",
+      "appearances": [
+        {
+          "image_paragraph": 70,
+          "caption": "Anthony J. El Beainy",
+          "affiliation": "Saint Joseph University of Beirut",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "chadi-el-kahwaji",
+      "name": "Chadi El Kahwaji",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Saint Joseph University of Beirut",
+        "fr": "Université Saint-Joseph de Beyrouth"
+      },
+      "portrait": "/assets/speakers/chadi-el-kahwaji.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "4e9b078153f2879254ed74d5fefd63b95e021eb890a2844e9b18f1ffbedaa82c",
+      "source_media": "word/media/image13.jpg",
+      "source_media_sha256": "c0f3175703d375dee4b68288084f5fdff02c0727b396b41744088df5cea2d637",
+      "appearances": [
+        {
+          "image_paragraph": 74,
+          "caption": "Chadi El Kahwaji",
+          "affiliation": "Saint Joseph University of Beirut",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "emmanuel-pisani",
+      "name": "Emmanuel Pisani",
+      "roles": [
+        "moderator",
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Dominican Institute for Oriental Studies (IDEO)",
+        "fr": "Institut dominicain d’études orientales (IDEO)"
+      },
+      "portrait": "/assets/speakers/emmanuel-pisani.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "220377a08d5e122ee43eaa287b58567939509fb5771781c423bd9fbf68acd585",
+      "source_media": "word/media/image14.jpg",
+      "source_media_sha256": "72ab4084b97c65f1b89d933f544efc32f62e8df7d0cd2736279a14a40f8136c9",
+      "appearances": [
+        {
+          "image_paragraph": 82,
+          "caption": "MODERATOR  Emmanuel Pisani",
+          "affiliation": "Dominican Institute for Oriental Studies (IDEO)",
+          "role": "moderator"
+        },
+        {
+          "image_paragraph": 140,
+          "caption": "Emmanuel Pisani",
+          "affiliation": "Dominican Institute for Oriental Studies (IDEO)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "heather-miller-rubens",
+      "name": "Heather Miller Rubens",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Institute for Islamic, Christian, and Jewish Studies (ICJS)",
+        "fr": "Institute for Islamic, Christian, and Jewish Studies (ICJS)"
+      },
+      "portrait": "/assets/speakers/heather-miller-rubens.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "201b30d2c6581341afd82e94749a35cbcc33756db1ac8ba374116df2f0dc42b0",
+      "source_media": "word/media/image15.jpg",
+      "source_media_sha256": "ca76219c00e0e53be6b351cc43833bca6aa4d97cd6a70071d458d3d0cb87a6fa",
+      "appearances": [
+        {
+          "image_paragraph": 86,
+          "caption": "Heather Miller Rubens",
+          "affiliation": "Institute for Islamic, Christian, and Jewish Studies (ICJS)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "karim-kardady",
+      "name": "Karim Kardady",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "University of Montreal (UdeM)",
+        "fr": "Université de Montréal (UdeM)"
+      },
+      "portrait": "/assets/speakers/karim-kardady.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "715fc7e9f89dca9c20f2952188e6a34bce39bbfd780af37ce63e5aedf6a498d1",
+      "source_media": "word/media/image16.jpg",
+      "source_media_sha256": "f76d83eb628b6a706d0d54bf3115e420af9b2a07b4067198747b73287260176c",
+      "appearances": [
+        {
+          "image_paragraph": 90,
+          "caption": "Karim Kardady",
+          "affiliation": "University of Montreal (UdeM)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "hamad-al-hosani",
+      "name": "Hamad Al Hosani",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "TRENDS Research & Advisory",
+        "fr": "TRENDS Research & Advisory"
+      },
+      "portrait": "/assets/speakers/hamad-al-hosani.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "ae21dd8f4c0665f2cb460a42f594be20a8bbdcd959bfcb251abb9d05ad18ec40",
+      "source_media": "word/media/image17.jpg",
+      "source_media_sha256": "e0009efd7894c90a8881f8d0898e94a3265e529415b26f216f26205bd7fe5c43",
+      "appearances": [
+        {
+          "image_paragraph": 94,
+          "caption": "Hamad Al Hosani",
+          "affiliation": "TRENDS Research & Advisory",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "andre-daher",
+      "name": "André Daher",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Antonine University",
+        "fr": "Université Antonine"
+      },
+      "portrait": "/assets/speakers/andre-daher.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "2285d07a6c240b8b77263f5e0ac92b2a72f9d6682777a0c3b69a6e5c979e7ac3",
+      "source_media": "word/media/image18.jpg",
+      "source_media_sha256": "1b557ce6af754ce0883daeafbe77792287a4049b687b641726143ac425071742",
+      "appearances": [
+        {
+          "image_paragraph": 98,
+          "caption": "André Daher",
+          "affiliation": "Antonine University",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "renee-hattar",
+      "name": "Renée Hattar",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Università Cattolica del Sacro Cuore",
+        "fr": "Università Cattolica del Sacro Cuore"
+      },
+      "portrait": "/assets/speakers/renee-hattar.webp",
+      "portrait_position": "50% 25%",
+      "portrait_sha256": "766785bb486ca0bb3c96807ac969889f11463e4f5d156e21fe098d34261ea66f",
+      "source_media": "word/media/image19.png",
+      "source_media_sha256": "c7417167b2e95c7a52c245b03a926864aec57d44376ce66a96af27bd78742f5f",
+      "appearances": [
+        {
+          "image_paragraph": 102,
+          "caption": "Renée Hattar",
+          "affiliation": "Università Cattolica del Sacro Cuore",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "ali-mostafa",
+      "name": "Ali Mostafa",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Catholic University of Lyon (UCLy)",
+        "fr": "Université catholique de Lyon (UCLy)"
+      },
+      "portrait": "/assets/speakers/ali-mostafa.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "f44a8d32eb7738bc31e728887529c600909df060a382b7477c767aaf85fc77c6",
+      "source_media": "word/media/image20.jpg",
+      "source_media_sha256": "4b48f43764ddd42570fbe8a1dfdde91add3e682d2beeaf9a981389478174dfad",
+      "appearances": [
+        {
+          "image_paragraph": 106,
+          "caption": "Ali Mostafa",
+          "affiliation": "Catholic University of Lyon (UCLy)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "roselyne-mavungu",
+      "name": "Roselyne Mavungu",
+      "roles": [
+        "discussant"
+      ],
+      "affiliation": {
+        "en": "Montreal Centre for the Prevention of Radicalization Leading to Violence (CPRMV)",
+        "fr": "Centre de prévention de la radicalisation menant à la violence (CPRMV)"
+      },
+      "portrait": "/assets/speakers/roselyne-mavungu.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "e776132d3153635b0252eacf9999981352219e69571b5a48f98f80209911c67d",
+      "source_media": "word/media/image21.jpg",
+      "source_media_sha256": "ea219ccb896b7b90b84c288a2f05e56dd951b5f63a663dcf30d53f4c2b65f67b",
+      "appearances": [
+        {
+          "image_paragraph": 111,
+          "caption": "Roselyne Mavungu",
+          "affiliation": "Montreal Centre for the Prevention of Radicalization Leading to Violence (CPRMV)",
+          "role": "discussant"
+        }
+      ]
+    },
+    {
+      "id": "jean-francois-roussel",
+      "name": "Jean-François Roussel",
+      "roles": [
+        "discussant"
+      ],
+      "affiliation": {
+        "en": "University of Montreal (UdeM)",
+        "fr": "Université de Montréal (UdeM)"
+      },
+      "portrait": "/assets/speakers/jean-francois-roussel.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "3e010297c1e9262c369c56b1991017829f8d3b22d75b9033d1bcb947269d9d77",
+      "source_media": "word/media/image22.jpg",
+      "source_media_sha256": "2d493bb152c0c0ae5e5b28eedb552d71c76fb4411b7df3a3e773cee02f1c9d08",
+      "appearances": [
+        {
+          "image_paragraph": 115,
+          "caption": "Jean-François Roussel",
+          "affiliation": "University of Montreal (UdeM)",
+          "role": "discussant"
+        }
+      ]
+    },
+    {
+      "id": "violaine-lemay",
+      "name": "Violaine Lemay",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "University of Montreal (UdeM)",
+        "fr": "Université de Montréal (UdeM)"
+      },
+      "portrait": "/assets/speakers/violaine-lemay.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "282d9e29992cf2f443aeb49893970d4c3637d2e32aaac79526e9fb07dbcfff78",
+      "source_media": "word/media/image23.jpg",
+      "source_media_sha256": "8488f6853fe89f7d6045ce1f0efd909328ceb9e71c20e9c84772118e048e7663",
+      "appearances": [
+        {
+          "image_paragraph": 128,
+          "caption": "Violaine Lemay",
+          "affiliation": "University of Montreal (UdeM)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "lyse-langlois",
+      "name": "Lyse Langlois",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Université Laval",
+        "fr": "Université Laval"
+      },
+      "portrait": "/assets/speakers/lyse-langlois.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "18852d475b50fd75d4408734205f4fdc0f248cec76ffb72bca1af32c67795837",
+      "source_media": "word/media/image24.jpg",
+      "source_media_sha256": "c6112902e5b8cd29d9fff7c4760a92233ce5e3acef2918ea4948b8bdc6eb04f6",
+      "appearances": [
+        {
+          "image_paragraph": 132,
+          "caption": "Lyse Langlois",
+          "affiliation": "Université Laval",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "wasim-salman",
+      "name": "Wasim Salman",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Pontifical Institute for Arabic and Islamic Studies (PISAI)",
+        "fr": "Institut pontifical d’études arabes et d’islamologie (PISAI)"
+      },
+      "portrait": "/assets/speakers/wasim-salman.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "24eced214efc8a81ca1b2abd6c919ab5491b2f45a6c78a84775c35eef07fddb2",
+      "source_media": "word/media/image25.jpg",
+      "source_media_sha256": "6b4a7e3c266ad47bcff6e0e7281b6e1183be536dfe1f427e2c297d56a9f208f3",
+      "appearances": [
+        {
+          "image_paragraph": 136,
+          "caption": "Wasim Salman",
+          "affiliation": "Pontifical Institute for Arabic and Islamic Studies (PISAI)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "antonio-angelucci",
+      "name": "Antonio Angelucci",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Università degli Studi dell’Insubria",
+        "fr": "Università degli Studi dell’Insubria"
+      },
+      "portrait": "/assets/speakers/antonio-angelucci.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "c157dcfa2b13fd1c7c6cb931f96eaee07ae24476c5b2f4f7bac3a1d24a04f7e2",
+      "source_media": "word/media/image26.jpg",
+      "source_media_sha256": "1ad3d351bf54ac68caa45d4ebfa167e1bf05663f49d6c7898de4cc6dfecd6318",
+      "appearances": [
+        {
+          "image_paragraph": 144,
+          "caption": "Antonio Angelucci",
+          "affiliation": "Università degli Studi dell’Insubria",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "karsten-lehmann",
+      "name": "Karsten Lehmann",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "KPH Wien/Niederösterreich",
+        "fr": "KPH Wien/Niederösterreich"
+      },
+      "portrait": "/assets/speakers/karsten-lehmann.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "eae176aab6f52d06ba7e6e2875292a08dcdab1f5cde751f17650534a9b010abb",
+      "source_media": "word/media/image27.jpg",
+      "source_media_sha256": "db43a9784b545ff53aee643cab97c350a91333b034b8c0546eae30186e941cec",
+      "appearances": [
+        {
+          "image_paragraph": 148,
+          "caption": "Karsten Lehmann",
+          "affiliation": "KPH Wien/Niederösterreich",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "hazar-haidar",
+      "name": "Hazar Haidar",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Université du Québec à Rimouski (UQAR)",
+        "fr": "Université du Québec à Rimouski (UQAR)"
+      },
+      "portrait": "/assets/speakers/hazar-haidar.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "658cb7ee45d98d5c6c8501fcb49fa0b6094b6d87383d0be131ddecfff0e27ef0",
+      "source_media": "word/media/image28.jpg",
+      "source_media_sha256": "4fe2d5cb9530407cca67c887e21a84164ab97fb80ebffabeef3c1b4ea97700d4",
+      "appearances": [
+        {
+          "image_paragraph": 152,
+          "caption": "Hazar Haidar",
+          "affiliation": "Université du Québec à Rimouski (UQAR)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "zeyyad-saleh",
+      "name": "Zeyyad Saleh",
+      "roles": [
+        "speaker",
+        "facilitator"
+      ],
+      "affiliation": {
+        "en": "University of Montreal (UdeM)",
+        "fr": "Université de Montréal (UdeM)"
+      },
+      "portrait": "/assets/speakers/zeyyad-saleh.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "624cba475bef3bda179b8f4c4fec08a24272e79f232a80ffff6fe4a6905a2acb",
+      "source_media": "word/media/image29.jpg",
+      "source_media_sha256": "f362203a4e03a3f03a43ee5968a8b87b2b05b74567216570f85c735a7b8b792d",
+      "appearances": [
+        {
+          "image_paragraph": 156,
+          "caption": "Zeyyad Saleh",
+          "affiliation": "University of Montreal (UdeM)",
+          "role": "speaker"
+        },
+        {
+          "image_paragraph": 166,
+          "caption": "Zeyyad Saleh",
+          "affiliation": "University of Montreal (UdeM)",
+          "role": "facilitator"
+        }
+      ]
+    },
+    {
+      "id": "sultan-al-hosani",
+      "name": "Sultan Al Hosani",
+      "roles": [
+        "participant"
+      ],
+      "affiliation": {
+        "en": "TRENDS",
+        "fr": "TRENDS"
+      },
+      "portrait": "/assets/speakers/sultan-al-hosani.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "265560bcbc6318fa42db8112b2caea6da459d7a6251e85e8b4541f88ed394ce8",
+      "source_media": "word/media/image30.jpg",
+      "source_media_sha256": "0a6d4817ff69de954e82c13db401485695c070113d0ebdf326e4ea462059d491",
+      "appearances": [
+        {
+          "image_paragraph": 176,
+          "caption": "PARTICIPANT  Sultan Al Hosani",
+          "affiliation": "Trends",
+          "role": "participant"
+        }
+      ]
+    }
+  ]
+}

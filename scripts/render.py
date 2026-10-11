@@ -11,6 +11,7 @@ import hashlib
 ROOT = Path(__file__).resolve().parents[1]
 registration = json.loads((ROOT / 'registration.json').read_text())['url']
 institutions = json.loads((ROOT / 'source/institutions.json').read_text())
+speakers = json.loads((ROOT / 'source/speakers.json').read_text())
 conference_info = json.loads((ROOT / 'source/conference-info.json').read_text())
 booklets = json.loads((ROOT / 'source/booklets.json').read_text())
 if registration and not registration.startswith('https://'):
@@ -27,6 +28,8 @@ UI['fr'].update(international='Une rencontre internationale', represented='Insti
 UI['en'].update(international='An international gathering', represented='Represented institutions', international_label='International participation', previous='Previous institutions', next='Next institutions', carousel='Carousel', browse='Scroll to explore all represented institutions.', participation='In person and online')
 UI['fr'].update(menu='Menu', close_menu='Fermer le menu', institutions='Institutions')
 UI['en'].update(menu='Menu', close_menu='Close menu', institutions='Institutions')
+UI['fr'].update(people='Intervenants et participants', people_intro='Les visages du colloque, des discussions et des ateliers de recherche.', people_browse='Faites défiler pour découvrir les participants.', people_previous='Participants précédents', people_next='Participants suivants')
+UI['en'].update(people='Speakers & participants', people_intro='Meet the people taking part in the conference, discussions and research workshops.', people_browse='Scroll to discover the participants.', people_previous='Previous participants', people_next='Next participants')
 
 def icon(name):
  paths = {
@@ -116,9 +119,23 @@ def page(lang):
    cards.append(f'<li class="institution-card" data-institution="{institution["id"]}"><a href="{institution["url"]}" target="_blank" rel="noopener noreferrer"><div class="institution-logo {institution["logo_background"]}"><img src="{institution["logo"]}" alt="" loading="lazy" decoding="async" width="240" height="100"></div><div class="institution-card-copy"><p class="institution-country">{escape(institution["country"][lang])}</p><h4>{name}</h4><span class="institution-visit">{ui["official_site"]}{icon("external")}</span></div></a></li>')
   return f'''<div class="institution-carousel" data-carousel role="region" aria-roledescription="{ui['carousel']}" aria-labelledby="institutions-heading-{lang}">
    <div class="carousel-heading"><div><h3 id="institutions-heading-{lang}">{ui['represented']}</h3><p>{ui['browse']}</p></div><div class="carousel-controls"><button type="button" data-carousel-prev aria-label="{ui['previous']}" aria-controls="institution-track-{lang}">{icon("left")}</button><button type="button" data-carousel-next aria-label="{ui['next']}" aria-controls="institution-track-{lang}">{icon("right")}</button></div></div>
-   <ul class="institution-track" id="institution-track-{lang}" tabindex="0" aria-label="{ui['represented']}">{''.join(cards)}</ul>
+   <ul class="institution-track" data-carousel-track id="institution-track-{lang}" tabindex="0" aria-label="{ui['represented']}">{''.join(cards)}</ul>
    <div class="carousel-footer"><span class="carousel-count" aria-live="polite" aria-atomic="true" data-carousel-count>1 / {len(institutions)}</span><div class="carousel-progress" aria-hidden="true"><span data-carousel-progress></span></div></div>
   </div>'''
+ def speaker_gallery():
+  cards=[]
+  for person in speakers['people']:
+   name=escape(person['name'])
+   roles=' · '.join(escape(speakers['roles'][role][lang]) for role in person['roles'])
+   cards.append(f'''<li class="speaker-card" data-person="{person['id']}">
+    <div class="speaker-portrait"><img src="{person['portrait']}" alt="{name}" loading="lazy" decoding="async" width="550" height="{825 if person['id']=='renee-hattar' else 640}" style="object-position: {person['portrait_position']}"></div>
+    <div class="speaker-caption"><h3>{name}</h3><p class="speaker-roles">{roles}</p><p class="speaker-affiliation">{escape(person['affiliation'][lang])}</p></div>
+   </li>''')
+  return f'''<section class="speakers-section" id="{anchor('speakers')}" tabindex="-1" aria-labelledby="speakers-heading-{lang}"><div class="shell speakers-inner" data-carousel role="region" aria-roledescription="{ui['carousel']}" aria-labelledby="speakers-heading-{lang}">
+   <div class="speakers-heading"><div><h2 id="speakers-heading-{lang}">{ui['people']}</h2><p class="speakers-intro">{ui['people_intro']}</p></div><div class="carousel-controls" data-carousel-controls hidden><button type="button" data-carousel-prev aria-label="{ui['people_previous']}" aria-controls="speaker-track-{lang}">{icon('left')}</button><button type="button" data-carousel-next aria-label="{ui['people_next']}" aria-controls="speaker-track-{lang}">{icon('right')}</button></div></div>
+   <ul class="speaker-track" data-carousel-track id="speaker-track-{lang}" tabindex="0" aria-label="{ui['people']}" aria-describedby="speaker-hint-{lang}">{''.join(cards)}</ul>
+   <div class="speakers-footer"><p id="speaker-hint-{lang}">{ui['people_browse']}</p><span class="carousel-count" aria-live="polite" aria-atomic="true" data-carousel-count hidden>1 / {len(speakers['people'])}</span></div>
+  </div></section>'''
  institution = p.index('ORGANIZING INSTITUTIONS' if lang=='en' else 'INSTITUTIONS ORGANISATRICES')
  committee = p.index('* SCIENTIFIC COMMITTEE' if lang=='en' else '* COMITÉ SCIENTIFIQUE')
  workshops = p.index('WORKSHOPS' if lang=='en' else 'ATELIERS')
@@ -132,7 +149,7 @@ def page(lang):
  <header class="header"><div class="shell header-inner">
   <a class="wordmark" href="#{anchor('top')}" aria-label="DIALOGIA 2026">DIALOGIA<span>MONTRÉAL 2026</span></a>
   <div class="menu-panel" id="{anchor('menu')}" data-menu>
-   <nav class="section-nav" aria-label="{ui['nav']}">{''.join(f'<a href="#{anchor(key)}">{ui[label]}{icon("right")}</a>' for key,label in [('program','programme'),('abstracts','abstracts'),('practical','practical'),('international','institutions')])}</nav>
+   <nav class="section-nav" aria-label="{ui['nav']}">{''.join(f'<a href="#{anchor(key)}">{ui[label]}{icon("right")}</a>' for key,label in [('program','programme'),('abstracts','abstracts'),('practical','practical'),('speakers','people'),('international','institutions')])}</nav>
    <div class="menu-organizers"><p class="eyebrow">{escape(p[institution])}</p><nav class="organizers-row" aria-label="{escape(p[institution])}">{logos()}</nav></div>
    <div class="header-buttons">{program_button('button button-small button-program',True)}{register('button button-small')}</div>
   </div>
@@ -151,6 +168,7 @@ def page(lang):
   <section class="program-section" id="{anchor('program')}" tabindex="-1"><div class="section shell"><div class="section-rail"><p class="eyebrow">{ui['programme']}</p><span class="section-number" aria-hidden="true">02</span></div><div class="section-content"><div class="section-heading"><h2>{ui['days']}</h2><a class="download-link" href="{download}" download>{ui['download']}{icon("download")}</a></div>{s(8,'h3','eyebrow format-label')}{s(9,'p','program-intro')}<div class="schedule">{overview()}{day(107,173,19)}{day(173,206,20)}{day(206,ABSTRACT_AXES[lang][0][0],21)}</div><details class="workshop-details" id="workshop-details-{lang}"><summary>{s(workshops,'span','day-title')}{toggle()}</summary><div class="workshop-body">{s(workshops+1)}{s(workshops+2,'h3')}{s(workshops+3)}{s(workshops+4,'h3')}{''.join(s(i) for i in range(workshops+5,committee))}</div></details></div></div></section>
   <section class="section abstracts-section shell" id="{anchor('abstracts')}" tabindex="-1"><div class="section-rail"><p class="eyebrow">{ui['abstracts']}</p><span class="section-number" aria-hidden="true">03</span></div><div class="section-content"><h2>{ui['abstracts']}</h2><div class="abstracts-list">{abstracts()}</div></div></section>
   <section class="section practical shell" id="{anchor('practical')}" tabindex="-1"><div class="section-rail">{s(33,'p','eyebrow')}<span class="section-number" aria-hidden="true">04</span></div><div class="section-content practical-grid"><div><h2>{ui['practical']}</h2>{s(4,'p','practical-date')}{s(5)}{s(6)}<a class="download-link" href="{download}" download>{ui['booklet']} — {ui['doclang']}{icon("download")}</a></div><div class="registration-panel" id="{anchor('registration')}"><h3>{ui['registration']}</h3><p class="participation-label">{ui['participation']}</p>{info('participation','participation-notice')}{register()}<p class="registration-status" {'hidden' if registration else ''}>{ui['pending']}</p></div></div></section>
+  {speaker_gallery()}
   <section class="international-section" id="{anchor('international')}" tabindex="-1"><div class="shell international-inner"><div class="international-heading"><p class="eyebrow">{ui['international_label']}</p><h2>{ui['international']}</h2>{info('attendance','international-countries')}{info('countries','international-countries')}</div><div class="international-context">{info('overview')}{info('initiative')}</div>{institution_carousel()}</div></section>
  </main>
  <footer class="footer"><div class="shell"><div class="footer-grid"><div class="wordmark">DIALOGIA<span>MONTRÉAL 2026</span></div><div><h2 class="eyebrow">{committee_link(committee)}</h2><div class="committee-names">{''.join(committee_link(i) for i in range(committee+1,committee+6))}</div></div><div>{s(institution,'h2','eyebrow')}{''.join(s(i,'p','institution-name') for i in range(institution+1,len(p)))}</div></div><div class="footer-bottom"><a href="{download}" download>{ui['booklet']} · {ui['doclang']}{icon("external")}</a><a href="?lang={opposite}" data-set-language="{opposite}" lang="{opposite}">{ui['other']}</a><a href="#{anchor('top')}">{ui['top']}{icon('up')}</a></div><div class="footer-credit"><a href="https://syllogos.io/" target="_blank" rel="noopener noreferrer" lang="en">Designed by Zeyyad Saleh, Cofounder of Syllogos</a></div></div></footer>

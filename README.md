@@ -18,6 +18,10 @@ TRENDS Global uses its official high-resolution artwork with an SVG viewport exc
 
 The carousel supports touch scrolling, previous/next buttons, and the arrow, Home and End keys when its list is focused. It has no automatic movement and respects reduced-motion preferences. The programme overview appears before the three daily schedules; the cross-cutting discussion has its own expand/collapse control. The footer reads “Designed by Zeyyad Saleh, Cofounder of Syllogos” and links to Syllogos.
 
+The **Speakers & participants / Intervenants et participants** gallery appears immediately before the international institutions section. Its navy background, large colour portraits, serif names and unboxed captions distinguish people from institution logo cards. It reuses the carousel's touch, button and keyboard controls, with no automatic movement. The compact navigation includes a link to the gallery. Portraits remain scrollable without JavaScript, and all profiles appear in print.
+
+`source/speakers.json` records 30 distinct portrait/name pairs extracted from the organiser-supplied `Montreal_2026_Speakers_11-10-2026.docx`, in first-appearance order. Repeated appearances merge roles and affiliations into one profile. It includes French and English captions, the source document hash, embedded media paths and hashes, source paragraph references, and public portrait hashes. The embedded portraits are resized to 550 pixels wide and compressed as WebP, retaining their colour and proportions (about 1 MB in total), and loaded lazily. The document's cover states 32 named contributors, but only 30 distinct portrait/name pairs are present; no missing people are inferred and the official booklet's programme and attendance totals are unchanged.
+
 On phones and tablets, the compact header opens a menu with section links, organising logos and registration. Escape closes the menu and returns focus to its button. The timetable becomes labelled cards on narrow screens. Interface arrows use inline SVGs, so their appearance does not depend on device fonts.
 
 ## Registration
@@ -45,10 +49,12 @@ Configuration follows [Vercel’s static-site build guidance](https://vercel.com
 - `source/booklets.json`: final PDF filenames, public paths and SHA-256 hashes, plus retained DOCX text-source provenance.
 - `source/programme-corrections.json`: organiser-authorised website text replacements dated 11 October 2026.
 - `source/institutions.json`: represented institutions and the sources of their logo assets.
+- `source/speakers.json`: portrait/name matches, bilingual affiliations and roles, and source provenance.
+- `dist/assets/speakers/`: optimised portraits extracted from the supplied speaker document.
 - `source/conference-info.json`: additional organiser-supplied event information and its French translation.
 - `scripts/import_booklets.py`: replaces PDF downloads without changing the curated website text, or imports DOCX sources and copies unchanged originals into `dist/documents`.
 - `scripts/render.py`: renders the page from source paragraphs.
-- `scripts/verify.py`: checks PDF and DOCX hashes, exact source fidelity with the recorded organiser corrections, substantive content coverage, 25 abstracts per language, matching timings and authors, language-specific PDF downloads, programme anchors and local assets; requires lxml.
+- `scripts/verify.py`: checks PDF and DOCX hashes, exact source fidelity with the recorded organiser corrections, substantive content coverage, 25 abstracts per language, matching timings and authors, language-specific PDF downloads, programme anchors, all 30 speaker profiles and portrait hashes, and local assets; requires lxml.
 
 To replace the official booklets, run:
 

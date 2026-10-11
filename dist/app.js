@@ -80,12 +80,14 @@
     document.getElementById(link.dataset.openDetails || link.dataset.openDay).open = true;
   }));
   document.querySelectorAll('[data-carousel]').forEach(carousel => {
-    const track = carousel.querySelector('.institution-track');
+    const track = carousel.querySelector('[data-carousel-track]');
     const cards = [...track.children];
     const previous = carousel.querySelector('[data-carousel-prev]');
     const next = carousel.querySelector('[data-carousel-next]');
     const count = carousel.querySelector('[data-carousel-count]');
     const progress = carousel.querySelector('[data-carousel-progress]');
+    carousel.querySelector('[data-carousel-controls]')?.removeAttribute('hidden');
+    count.removeAttribute('hidden');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     function update() {
       if (!track.clientWidth) return;
@@ -95,11 +97,12 @@
       const first = visible[0]?.index ?? 0;
       const last = visible.at(-1)?.index ?? first;
       count.textContent = `${first + 1}${last === first ? '' : '–' + (last + 1)} / ${cards.length}`;
-      progress.style.width = `${(last + 1) / cards.length * 100}%`;
+      if (progress) progress.style.width = `${(last + 1) / cards.length * 100}%`;
       previous.disabled = track.scrollLeft <= 2;
       next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
     }
     function move(direction) {
+      if (cards.length < 2) return;
       const stride = cards[1].offsetLeft - cards[0].offsetLeft;
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
       const perPage = Math.max(1, Math.floor((track.clientWidth + gap) / stride));
