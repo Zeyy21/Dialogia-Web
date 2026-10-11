@@ -2,7 +2,7 @@
   "source": {
     "filename": "Montreal_2026_Speakers_11-10-2026.docx",
     "sha256": "d80078776f5b59f64e42d2cd8414ae28dcc94e0ba85bbb56b86abe32af16f671",
-    "note": "One profile per distinct portrait, in first-appearance order. Repeated roles and affiliations are combined. The source cover states 32 contributors but contains 30 distinct portrait/name pairs. Programme text and conference totals remain controlled by the official booklets."
+    "note": "One profile per distinct portrait. Display order follows the organiser’s requested first eight participants, then the remaining people in document first-appearance order. Repeated roles and affiliations are combined. The source cover states 32 contributors but contains 30 distinct portrait/name pairs. Programme text and conference totals remain controlled by the official booklets."
   },
   "roles": {
     "opening": {
@@ -32,26 +32,102 @@
   },
   "people": [
     {
-      "id": "gilles-bibeau",
-      "name": "Gilles Bibeau",
+      "id": "wael-saleh",
+      "name": "Wael Saleh",
       "roles": [
-        "opening"
+        "speaker",
+        "moderator",
+        "facilitator"
       ],
       "affiliation": {
-        "en": "University of Montreal (UdeM)",
-        "fr": "Université de Montréal (UdeM)"
+        "en": "TRENDS / Université du Québec à Montréal (UQAM)",
+        "fr": "TRENDS / Université du Québec à Montréal (UQAM)"
       },
-      "portrait": "/assets/speakers/gilles-bibeau.webp",
+      "portrait": "/assets/speakers/wael-saleh.webp",
       "portrait_position": "50% 50%",
-      "portrait_sha256": "ad26cb024a40068cd57c4a7316f4f90ab084aa800a92a447419700da84bcbb60",
-      "source_media": "word/media/image1.jpg",
-      "source_media_sha256": "536347ea0f58bf2c5ac1a42477378bc1a10c69c8e518e8814857b348d9f73724",
+      "portrait_sha256": "4e380ab18eaa4b31c3a3b571184ceafd5ca2344c1c659ef0f6ed5a01a353524d",
+      "source_media": "word/media/image8.jpg",
+      "source_media_sha256": "58f99d828aceb16d251817d9fe7721e97af9dcbdee1048742993dcfbd092c49a",
       "appearances": [
         {
-          "image_paragraph": 13,
-          "caption": "OPENING SPEAKER  Gilles Bibeau",
-          "affiliation": "University of Montreal (UdeM)",
-          "role": "opening"
+          "image_paragraph": 43,
+          "caption": "Wael Saleh",
+          "affiliation": "Trends",
+          "role": "speaker"
+        },
+        {
+          "image_paragraph": 124,
+          "caption": "MODERATOR  Wael Saleh",
+          "affiliation": "Université du Québec à Montréal (UQAM)",
+          "role": "moderator"
+        },
+        {
+          "image_paragraph": 169,
+          "caption": "Wael Saleh",
+          "affiliation": "TRENDS",
+          "role": "facilitator"
+        }
+      ]
+    },
+    {
+      "id": "michel-younes",
+      "name": "Michel Younès",
+      "roles": [
+        "speaker",
+        "moderator"
+      ],
+      "affiliation": {
+        "en": "Catholic University of Lyon (UCLy)",
+        "fr": "Université catholique de Lyon (UCLy)"
+      },
+      "portrait": "/assets/speakers/michel-younes.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "2ecef23a7ed84e4664f85be48d12795f172a76abf9dd7cd46e941dfe56464e12",
+      "source_media": "word/media/image3.jpg",
+      "source_media_sha256": "d2441fe5e743f3717f1de3f13365e8cde89a91846a5d07486a9eb8e057a2b0f7",
+      "appearances": [
+        {
+          "image_paragraph": 23,
+          "caption": "Michel Younès",
+          "affiliation": "Catholic University of Lyon (UCLy)",
+          "role": "speaker"
+        },
+        {
+          "image_paragraph": 50,
+          "caption": "MODERATOR  Michel Younès",
+          "affiliation": "Catholic University of Lyon (UCLy)",
+          "role": "moderator"
+        }
+      ]
+    },
+    {
+      "id": "emmanuel-pisani",
+      "name": "Emmanuel Pisani",
+      "roles": [
+        "moderator",
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Dominican Institute for Oriental Studies (IDEO)",
+        "fr": "Institut dominicain d’études orientales (IDEO)"
+      },
+      "portrait": "/assets/speakers/emmanuel-pisani.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "220377a08d5e122ee43eaa287b58567939509fb5771781c423bd9fbf68acd585",
+      "source_media": "word/media/image14.jpg",
+      "source_media_sha256": "72ab4084b97c65f1b89d933f544efc32f62e8df7d0cd2736279a14a40f8136c9",
+      "appearances": [
+        {
+          "image_paragraph": 82,
+          "caption": "MODERATOR  Emmanuel Pisani",
+          "affiliation": "Dominican Institute for Oriental Studies (IDEO)",
+          "role": "moderator"
+        },
+        {
+          "image_paragraph": 140,
+          "caption": "Emmanuel Pisani",
+          "affiliation": "Dominican Institute for Oriental Studies (IDEO)",
+          "role": "speaker"
         }
       ]
     },
@@ -87,33 +163,105 @@
       ]
     },
     {
-      "id": "michel-younes",
-      "name": "Michel Younès",
+      "id": "violaine-lemay",
+      "name": "Violaine Lemay",
       "roles": [
-        "speaker",
-        "moderator"
+        "speaker"
       ],
       "affiliation": {
-        "en": "Catholic University of Lyon (UCLy)",
-        "fr": "Université catholique de Lyon (UCLy)"
+        "en": "University of Montreal (UdeM)",
+        "fr": "Université de Montréal (UdeM)"
       },
-      "portrait": "/assets/speakers/michel-younes.webp",
+      "portrait": "/assets/speakers/violaine-lemay.webp",
       "portrait_position": "50% 50%",
-      "portrait_sha256": "2ecef23a7ed84e4664f85be48d12795f172a76abf9dd7cd46e941dfe56464e12",
-      "source_media": "word/media/image3.jpg",
-      "source_media_sha256": "d2441fe5e743f3717f1de3f13365e8cde89a91846a5d07486a9eb8e057a2b0f7",
+      "portrait_sha256": "282d9e29992cf2f443aeb49893970d4c3637d2e32aaac79526e9fb07dbcfff78",
+      "source_media": "word/media/image23.jpg",
+      "source_media_sha256": "8488f6853fe89f7d6045ce1f0efd909328ceb9e71c20e9c84772118e048e7663",
       "appearances": [
         {
-          "image_paragraph": 23,
-          "caption": "Michel Younès",
-          "affiliation": "Catholic University of Lyon (UCLy)",
+          "image_paragraph": 128,
+          "caption": "Violaine Lemay",
+          "affiliation": "University of Montreal (UdeM)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "gilles-bibeau",
+      "name": "Gilles Bibeau",
+      "roles": [
+        "opening"
+      ],
+      "affiliation": {
+        "en": "University of Montreal (UdeM)",
+        "fr": "Université de Montréal (UdeM)"
+      },
+      "portrait": "/assets/speakers/gilles-bibeau.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "ad26cb024a40068cd57c4a7316f4f90ab084aa800a92a447419700da84bcbb60",
+      "source_media": "word/media/image1.jpg",
+      "source_media_sha256": "536347ea0f58bf2c5ac1a42477378bc1a10c69c8e518e8814857b348d9f73724",
+      "appearances": [
+        {
+          "image_paragraph": 13,
+          "caption": "OPENING SPEAKER  Gilles Bibeau",
+          "affiliation": "University of Montreal (UdeM)",
+          "role": "opening"
+        }
+      ]
+    },
+    {
+      "id": "wasim-salman",
+      "name": "Wasim Salman",
+      "roles": [
+        "speaker"
+      ],
+      "affiliation": {
+        "en": "Pontifical Institute for Arabic and Islamic Studies (PISAI)",
+        "fr": "Institut pontifical d’études arabes et d’islamologie (PISAI)"
+      },
+      "portrait": "/assets/speakers/wasim-salman.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "24eced214efc8a81ca1b2abd6c919ab5491b2f45a6c78a84775c35eef07fddb2",
+      "source_media": "word/media/image25.jpg",
+      "source_media_sha256": "6b4a7e3c266ad47bcff6e0e7281b6e1183be536dfe1f427e2c297d56a9f208f3",
+      "appearances": [
+        {
+          "image_paragraph": 136,
+          "caption": "Wasim Salman",
+          "affiliation": "Pontifical Institute for Arabic and Islamic Studies (PISAI)",
+          "role": "speaker"
+        }
+      ]
+    },
+    {
+      "id": "zeyyad-saleh",
+      "name": "Zeyyad Saleh",
+      "roles": [
+        "speaker",
+        "facilitator"
+      ],
+      "affiliation": {
+        "en": "University of Montreal (UdeM)",
+        "fr": "Université de Montréal (UdeM)"
+      },
+      "portrait": "/assets/speakers/zeyyad-saleh.webp",
+      "portrait_position": "50% 50%",
+      "portrait_sha256": "624cba475bef3bda179b8f4c4fec08a24272e79f232a80ffff6fe4a6905a2acb",
+      "source_media": "word/media/image29.jpg",
+      "source_media_sha256": "f362203a4e03a3f03a43ee5968a8b87b2b05b74567216570f85c735a7b8b792d",
+      "appearances": [
+        {
+          "image_paragraph": 156,
+          "caption": "Zeyyad Saleh",
+          "affiliation": "University of Montreal (UdeM)",
           "role": "speaker"
         },
         {
-          "image_paragraph": 50,
-          "caption": "MODERATOR  Michel Younès",
-          "affiliation": "Catholic University of Lyon (UCLy)",
-          "role": "moderator"
+          "image_paragraph": 166,
+          "caption": "Zeyyad Saleh",
+          "affiliation": "University of Montreal (UdeM)",
+          "role": "facilitator"
         }
       ]
     },
@@ -210,44 +358,6 @@
           "caption": "Adrien de Fouchier",
           "affiliation": "Vatican Apostolic Library",
           "role": "speaker"
-        }
-      ]
-    },
-    {
-      "id": "wael-saleh",
-      "name": "Wael Saleh",
-      "roles": [
-        "speaker",
-        "moderator",
-        "facilitator"
-      ],
-      "affiliation": {
-        "en": "TRENDS / Université du Québec à Montréal (UQAM)",
-        "fr": "TRENDS / Université du Québec à Montréal (UQAM)"
-      },
-      "portrait": "/assets/speakers/wael-saleh.webp",
-      "portrait_position": "50% 50%",
-      "portrait_sha256": "4e380ab18eaa4b31c3a3b571184ceafd5ca2344c1c659ef0f6ed5a01a353524d",
-      "source_media": "word/media/image8.jpg",
-      "source_media_sha256": "58f99d828aceb16d251817d9fe7721e97af9dcbdee1048742993dcfbd092c49a",
-      "appearances": [
-        {
-          "image_paragraph": 43,
-          "caption": "Wael Saleh",
-          "affiliation": "Trends",
-          "role": "speaker"
-        },
-        {
-          "image_paragraph": 124,
-          "caption": "MODERATOR  Wael Saleh",
-          "affiliation": "Université du Québec à Montréal (UQAM)",
-          "role": "moderator"
-        },
-        {
-          "image_paragraph": 169,
-          "caption": "Wael Saleh",
-          "affiliation": "TRENDS",
-          "role": "facilitator"
         }
       ]
     },
@@ -374,37 +484,6 @@
           "image_paragraph": 74,
           "caption": "Chadi El Kahwaji",
           "affiliation": "Saint Joseph University of Beirut",
-          "role": "speaker"
-        }
-      ]
-    },
-    {
-      "id": "emmanuel-pisani",
-      "name": "Emmanuel Pisani",
-      "roles": [
-        "moderator",
-        "speaker"
-      ],
-      "affiliation": {
-        "en": "Dominican Institute for Oriental Studies (IDEO)",
-        "fr": "Institut dominicain d’études orientales (IDEO)"
-      },
-      "portrait": "/assets/speakers/emmanuel-pisani.webp",
-      "portrait_position": "50% 50%",
-      "portrait_sha256": "220377a08d5e122ee43eaa287b58567939509fb5771781c423bd9fbf68acd585",
-      "source_media": "word/media/image14.jpg",
-      "source_media_sha256": "72ab4084b97c65f1b89d933f544efc32f62e8df7d0cd2736279a14a40f8136c9",
-      "appearances": [
-        {
-          "image_paragraph": 82,
-          "caption": "MODERATOR  Emmanuel Pisani",
-          "affiliation": "Dominican Institute for Oriental Studies (IDEO)",
-          "role": "moderator"
-        },
-        {
-          "image_paragraph": 140,
-          "caption": "Emmanuel Pisani",
-          "affiliation": "Dominican Institute for Oriental Studies (IDEO)",
           "role": "speaker"
         }
       ]
@@ -602,30 +681,6 @@
       ]
     },
     {
-      "id": "violaine-lemay",
-      "name": "Violaine Lemay",
-      "roles": [
-        "speaker"
-      ],
-      "affiliation": {
-        "en": "University of Montreal (UdeM)",
-        "fr": "Université de Montréal (UdeM)"
-      },
-      "portrait": "/assets/speakers/violaine-lemay.webp",
-      "portrait_position": "50% 50%",
-      "portrait_sha256": "282d9e29992cf2f443aeb49893970d4c3637d2e32aaac79526e9fb07dbcfff78",
-      "source_media": "word/media/image23.jpg",
-      "source_media_sha256": "8488f6853fe89f7d6045ce1f0efd909328ceb9e71c20e9c84772118e048e7663",
-      "appearances": [
-        {
-          "image_paragraph": 128,
-          "caption": "Violaine Lemay",
-          "affiliation": "University of Montreal (UdeM)",
-          "role": "speaker"
-        }
-      ]
-    },
-    {
       "id": "lyse-langlois",
       "name": "Lyse Langlois",
       "roles": [
@@ -645,30 +700,6 @@
           "image_paragraph": 132,
           "caption": "Lyse Langlois",
           "affiliation": "Université Laval",
-          "role": "speaker"
-        }
-      ]
-    },
-    {
-      "id": "wasim-salman",
-      "name": "Wasim Salman",
-      "roles": [
-        "speaker"
-      ],
-      "affiliation": {
-        "en": "Pontifical Institute for Arabic and Islamic Studies (PISAI)",
-        "fr": "Institut pontifical d’études arabes et d’islamologie (PISAI)"
-      },
-      "portrait": "/assets/speakers/wasim-salman.webp",
-      "portrait_position": "50% 50%",
-      "portrait_sha256": "24eced214efc8a81ca1b2abd6c919ab5491b2f45a6c78a84775c35eef07fddb2",
-      "source_media": "word/media/image25.jpg",
-      "source_media_sha256": "6b4a7e3c266ad47bcff6e0e7281b6e1183be536dfe1f427e2c297d56a9f208f3",
-      "appearances": [
-        {
-          "image_paragraph": 136,
-          "caption": "Wasim Salman",
-          "affiliation": "Pontifical Institute for Arabic and Islamic Studies (PISAI)",
           "role": "speaker"
         }
       ]
@@ -746,37 +777,6 @@
       ]
     },
     {
-      "id": "zeyyad-saleh",
-      "name": "Zeyyad Saleh",
-      "roles": [
-        "speaker",
-        "facilitator"
-      ],
-      "affiliation": {
-        "en": "University of Montreal (UdeM)",
-        "fr": "Université de Montréal (UdeM)"
-      },
-      "portrait": "/assets/speakers/zeyyad-saleh.webp",
-      "portrait_position": "50% 50%",
-      "portrait_sha256": "624cba475bef3bda179b8f4c4fec08a24272e79f232a80ffff6fe4a6905a2acb",
-      "source_media": "word/media/image29.jpg",
-      "source_media_sha256": "f362203a4e03a3f03a43ee5968a8b87b2b05b74567216570f85c735a7b8b792d",
-      "appearances": [
-        {
-          "image_paragraph": 156,
-          "caption": "Zeyyad Saleh",
-          "affiliation": "University of Montreal (UdeM)",
-          "role": "speaker"
-        },
-        {
-          "image_paragraph": 166,
-          "caption": "Zeyyad Saleh",
-          "affiliation": "University of Montreal (UdeM)",
-          "role": "facilitator"
-        }
-      ]
-    },
-    {
       "id": "sultan-al-hosani",
       "name": "Sultan Al Hosani",
       "roles": [
@@ -800,5 +800,18 @@
         }
       ]
     }
-  ]
+  ],
+  "display_order": {
+    "priority": [
+      "wael-saleh",
+      "michel-younes",
+      "emmanuel-pisani",
+      "patrice-brodeur",
+      "violaine-lemay",
+      "gilles-bibeau",
+      "wasim-salman",
+      "zeyyad-saleh"
+    ],
+    "basis": "Organiser request on 11 October 2026: Wael, Michel, Emmanuel, Brodeur, Violaine, Bibeau, Wasim, Zeyyad; remaining participants retain their relative order."
+  }
 }
