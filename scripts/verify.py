@@ -1,6 +1,7 @@
 """Check source fidelity, internal links and public assets before publishing."""
 from pathlib import Path
 from lxml import html
+from pypdf import PdfReader
 import json
 import hashlib
 import re
@@ -52,7 +53,11 @@ for lang in ['fr', 'en']:
         assert isinstance(replacement, str) and replacement.strip(), f'Empty {lang} programme correction: {index}'
         expected_passages[int(index)] = replacement
     assert sources[lang] == expected_passages, f'{lang} base DOCX and approved programme corrections/source mismatch'
-    assert normalized(conference_info[lang]['attendance']) in normalized(' '.join(paragraphs[:7])), f'Missing {lang} cover attendance'
+    cover_text = PdfReader(booklet).pages[0].extract_text()
+    assert normalized(conference_info[lang]['attendance']) in normalized(cover_text), f'Attendance must match the current {lang} PDF cover'
+    country_count = int(re.search(r'\d+', conference_info[lang]['countries']).group())
+    assert country_count == len({item['country'][lang] for item in institutions}), f'Country list total disagrees with represented institutions in {lang}'
+    assert all(normalized(item['country'][lang]) in normalized(conference_info[lang]['countries']) for item in institutions), f'Missing represented country in {lang}'
     language = doc.xpath(f'//*[@data-language="{lang}"]')[0]
     profiles = language.xpath('.//*[@data-person]')
     assert [profile.attrib['data-person'] for profile in profiles] == [p['id'] for p in people], f'Incomplete speaker gallery in {lang}'
@@ -63,7 +68,8 @@ for lang in ['fr', 'en']:
         assert profile.xpath('.//*[@class="speaker-affiliation"]')[0].text_content() == person['affiliation'][lang]
         assert profile.xpath('.//*[@class="speaker-roles"]')[0].text_content() == ' · '.join(speakers['roles'][role][lang] for role in person['roles'])
     gallery = language.xpath(f'.//*[@id="speakers-{lang}"]')[0]
-    assert gallery.getnext().attrib['id'] == f'international-{lang}', 'Speaker gallery must precede institutions'
+    assert gallery.getparent().attrib['id'] == f'international-{lang}', 'Speaker gallery must follow the international introduction'
+    assert gallery.getnext().xpath(f'.//*[@id="institutions-heading-{lang}"]'), 'Speaker gallery must immediately precede represented institutions'
     assert language.xpath(f'.//nav[@class="section-nav"]/a[@href="#speakers-{lang}"]'), 'Missing speaker navigation'
     cards = language.xpath('.//*[@data-institution]')
     assert [card.attrib['data-institution'] for card in cards] == [i['id'] for i in institutions], f'Incomplete institution list in {lang}'
