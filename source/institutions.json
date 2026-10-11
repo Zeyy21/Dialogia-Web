@@ -423,5 +423,20 @@
     "logo": "/assets/institutions/cirres.png",
     "logo_source": "/documents/DIALOGIA-2026-FR.pdf#page=16",
     "logo_background": "light"
+  },
+  {
+    "id": "loyola",
+    "name": {
+      "en": "Loyola University",
+      "fr": "Université Loyola"
+    },
+    "country": {
+      "en": "Spain",
+      "fr": "Espagne"
+    },
+    "url": "https://www.uloyola.es/",
+    "logo": "/assets/institutions/loyola.jpeg",
+    "logo_source": "User-provided WhatsApp Image 2026-10-09 at 4.28.15 PM.jpeg",
+    "logo_background": "light"
   }
 ]

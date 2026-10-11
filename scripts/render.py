@@ -124,6 +124,7 @@ def page(lang):
  workshops = p.index('WORKSHOPS' if lang=='en' else 'ATELIERS')
  booklet_path = booklets[lang]['path']
  booklet = ROOT / 'dist' / booklet_path.lstrip('/')
+ booklet_format = 'PDF' if booklet.suffix.lower() == '.pdf' else 'Word (.docx)'
  download = booklet_path + '?v=' + hashlib.sha256(booklet.read_bytes()).hexdigest()[:12]
  opposite='en' if lang=='fr' else 'fr'
  return f'''<div data-language="{lang}" id="{anchor('top')}">
@@ -141,7 +142,7 @@ def page(lang):
   <section class="hero"><div class="shell">
    {s(0,'p','eyebrow hero-eyebrow')}
    <div class="hero-grid"><div class="hero-main"><h1>{s(1,'span')}{s(2,'span','title-second')}</h1>{s(3,'p','hero-subtitle')}<div class="hero-actions">{program_button()}{register()}</div></div>
-    <aside class="hero-information">{s(4,'p','event-date')}<div class="venue">{s(5)}{s(6)}</div><a class="booklet-link" href="{download}" download><span>{ui['booklet']}<small>{ui['doclang']} · Word (.docx)</small></span>{icon("download")}</a></aside>
+    <aside class="hero-information">{s(4,'p','event-date')}<div class="venue">{s(5)}{s(6)}</div><a class="booklet-link" href="{download}" download><span>{ui['booklet']}<small>{ui['doclang']} · {booklet_format}</small></span>{icon("download")}</a></aside>
    </div>
    <div class="day-overview">{''.join(f'<a href="#day-{n}-{lang}" data-open-day="day-{n}-{lang}">{s(i,"span","overview-date")}{s(i+1,"span","overview-label")}<span class="overview-arrow">{icon("down")}</span></a>' for i,n in [(10,19),(12,20),(14,21)])}</div>
   </div></section>

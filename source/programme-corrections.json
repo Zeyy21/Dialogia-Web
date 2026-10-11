@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-11",
+  "source": "Organizer corrections supplied by the user; language-specific Workshop 3 passages confirmed against the final PDFs. The governance paragraph in the French edition is translated into French for the website.",
+  "fr": {
+    "197": "De la théorie à l’application : évaluation humaine et expérimentation de DIALOGIA à partir de 9 textes et vidéos",
+    "221": "14 h 30 – 15 h 15 Gouvernance éthique et développement responsable · Supervision humaine, responsabilité, transparence, équité, protection des données, fiabilité des sources, mécanismes de contestation et de correction, et participation des experts et des traditions religieuses à la gouvernance.",
+    "223": "15 h 30 – 17 h 00 Synthèse générale, validation des résultats et feuille de route · Restitution des résultats des trois ateliers, discussion des conclusions scientifiques, identification des améliorations nécessaires et définition des prochaines étapes : recherche, développement de DIALOGIA, corpus, protocole d’évaluation, partenariats, publications et financement."
+  },
+  "en": {
+    "197": "From Theory to Practice: Human Evaluation and Experimental Assessment of DIALOGIA Using 9 Texts and Videos",
+    "223": "14 h 30 – 15 h 15 Governance and Responsible Development · Knowledge organization, diversity of perspectives, source reliability, explainability of responses, usability, and user experience.",
+    "225": "15 h 30 – 17 h 00 General Synthesis, Validation of Findings and Roadmap · Presentation of findings from the three workshops, discussion of scientific conclusions, identification of necessary improvements, and definition of next steps: research, DIALOGIA development, documentary corpora, evaluation protocols, partnerships, publications, and funding."
+  }
+}

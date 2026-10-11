@@ -4,13 +4,13 @@ A single-page conference website in French and English. The default language is 
 
 ## Official content
 
-The website follows the revised French and English booklets dated **10 October 2026**, the **“-2” editions supplied on 10 October 2026**. `source/fr.json` and `source/en.json` are imported directly from their respective official DOCX files. Each language preserves its document's titles, scientific rationale, programme overview, detailed schedule, 25 presentation abstracts, discussion and workshop participants, scientific committee and organising institutions. Repeated print-only labels are omitted; the attendance statement appears in the international section, and participating institutions appear in the carousel.
+The website text was imported from the revised French and English DOCX booklets dated **10 October 2026** (the **“-2” editions**), then updated with the organiser’s corrections supplied on **11 October 2026**. `source/fr.json` and `source/en.json` contain the current website text. `source/programme-corrections.json` records the authorised replacements so verification can still check the rest of each source against its original DOCX. Each language preserves its document's titles, scientific rationale, programme overview, detailed schedule, 25 presentation abstracts, discussion and workshop participants, scientific committee and organising institutions. Repeated print-only labels are omitted; the attendance statement appears in the international section, and participating institutions appear in the carousel.
 
 The second revision adds Jaume Flaquer Garcia — Loyola University / PLURIEL immediately before Raphaël Georgy in Session 1 and the Axis 1 abstracts. Both programmes use “Preaching in the Age of Artificial Intelligence: Challenges and Implications”, as supplied; his French abstract uses “La prédication à l’épreuve de l’intelligence artificielle”. The full French abstract and all four English paragraphs are included. The official cover counts remain unchanged in the supplied booklets.
 
-Each language downloads its unchanged official Word booklet: `dist/documents/DIALOGIA-2026-FR.docx` or `dist/documents/DIALOGIA-2026-EN.docx`. `source/booklets.json` records the original filenames, public paths and SHA-256 hashes. Download URLs include a content version. Programme buttons open the matching language's on-page overview. Earlier PDFs remain in the repository as historical files and are not linked; PDF conversion products are internal QA artifacts only.
+Each language downloads its unchanged final PDF booklet supplied on **11 October 2026**: `dist/documents/DIALOGIA-2026-FR.pdf` or `dist/documents/DIALOGIA-2026-EN.pdf`. `source/booklets.json` records the original PDF filenames, public paths and SHA-256 hashes; its `text_source` entries retain the DOCX provenance used to verify the website text. Download URLs include a content version. Programme buttons open the matching language’s on-page overview. Earlier DOCX files remain in the repository for source verification and are not linked.
 
-The four organising institution logos remain linked inside the menu bar. The carousel has 28 distinct institution and research-centre cards, including CPRMV, Chaire Raoul-Dandurand, IÉR, CIRRES, TRENDS Global and Université Laval. Centre Thucydide appears once despite being pictured twice in the booklet. Vechta is absent, and KPH uses the booklet's Wien/Niederösterreich name. The organiser-requested TRENDS Group name and logo remain first; TRENDS Global has its own linked card. The cover's stated total of 24 institutions is preserved as supplied.
+The four organising institution logos remain linked inside the menu bar. The carousel has 29 distinct institution and research-centre cards, including CPRMV, Chaire Raoul-Dandurand, IÉR, CIRRES, TRENDS Global, Université Laval and Loyola University (Spain). Loyola uses the organiser-supplied JPEG unchanged and links to its official website. Centre Thucydide appears once despite being pictured twice in the booklet. Vechta is absent, and KPH uses the booklet's Wien/Niederösterreich name. The organiser-requested TRENDS Group name and logo remain first; TRENDS Global has its own linked card. The cover's stated total of 24 institutions is preserved as supplied.
 
 `source/conference-info.json` contains the final cover's attendance statement (28 academics, 24 institutions, 10 countries) and the earlier organiser-supplied context: represented countries, the research initiative and launches, online participation, required registration and the 70-person venue capacity. `source/institutions.json` records bilingual institution names, countries, official websites and logo provenance. Logos retain their original artwork and colours; SVG viewports isolate UQAM, AUB and USJ from their official composite artwork without altering it. Université Laval's SVG is taken from its official website.
 
@@ -42,31 +42,32 @@ Configuration follows [Vercel’s static-site build guidance](https://vercel.com
 - `dist/styles.css`: responsive layout and visual design.
 - `dist/app.js`: mobile menu, language switching, programme navigation and the accessible institution carousel.
 - `source/fr.json` and `source/en.json`: passages imported from each official language edition.
-- `source/booklets.json`: original booklet filenames, public paths and SHA-256 hashes.
+- `source/booklets.json`: final PDF filenames, public paths and SHA-256 hashes, plus retained DOCX text-source provenance.
+- `source/programme-corrections.json`: organiser-authorised website text replacements dated 11 October 2026.
 - `source/institutions.json`: represented institutions and the sources of their logo assets.
 - `source/conference-info.json`: additional organiser-supplied event information and its French translation.
-- `scripts/import_booklets.py`: imports both DOCX sources and copies the unchanged originals into `dist/documents`.
+- `scripts/import_booklets.py`: replaces PDF downloads without changing the curated website text, or imports DOCX sources and copies unchanged originals into `dist/documents`.
 - `scripts/render.py`: renders the page from source paragraphs.
-- `scripts/verify.py`: checks both DOCX hashes, exact source fidelity, substantive content coverage, 25 abstracts per language, matching timings and authors, language-specific downloads, programme anchors and local assets; requires lxml.
+- `scripts/verify.py`: checks PDF and DOCX hashes, exact source fidelity with the recorded organiser corrections, substantive content coverage, 25 abstracts per language, matching timings and authors, language-specific PDF downloads, programme anchors and local assets; requires lxml.
 
 To replace the official booklets, run:
 
 ```sh
-python3 scripts/import_booklets.py --fr /path/to/revised-fr.docx --en /path/to/revised-en.docx
+python3 scripts/import_booklets.py --fr /path/to/final-fr.pdf --en /path/to/final-en.pdf
 python3 scripts/render.py
 python3 scripts/verify.py
 ```
 
-Serve `dist` with a local HTTP server to preview it. Static hosting serves the same directory. For changes that do not replace the booklets, run the renderer and verifier only.
+Serve `dist` with a local HTTP server to preview it. Static hosting serves the same directory. For changes that do not replace the booklets, run the renderer and verifier only. PDF replacement preserves the language JSONs and their text-source provenance. A future DOCX import requires reviewing and updating the recorded programme corrections before validation.
 
 ## Source inconsistencies
 
 Each website language preserves its own official document. The following differences require an organiser decision before changing the source wording:
 
-- **Workshop 1:** both titles specify **14 texts and videos**, but the independent evaluation refers to **9**. The French and English objectives also differ.
-- **Workshop 3:** the two editions have different titles, objectives and activity descriptions. At **13 h 45**, French describes oversight and ethical principles, while English describes knowledge architecture. At **14 h 30**, French lists a roadmap; English labels governance and responsible development but retains a French description about knowledge organisation and user experience. At **15 h 30**, French lists ethical governance and English lists a general debrief.
+- **Workshop 1:** the organiser’s 11 October correction changes both titles from **14** to **9 texts and videos**. The three facilitators remain Zeyyad Saleh, Wael Saleh and Eissa Ali AlMannaei. The French and English objectives still differ.
+- **Workshop 3:** the organiser’s 11 October correction replaces the **14 h 30** and **15 h 30** entries in each language. The final PDFs confirm distinct governance descriptions: English covers knowledge organisation and user experience; French covers ethical governance and responsible development. The French PDF’s governance paragraph is printed in English; the website translates it into French. Both website languages include the expanded final synthesis and roadmap at **15 h 30**, after the **15 h 15** coffee break. Earlier workshop titles, objectives and the **13 h 45** descriptions retain their language-specific wording.
 - **19 October, Session 3:** the overview covers **14 h 00–15 h 45**, while the detailed session heading ends at **15 h 15**, followed by discussion until **15 h 45**.
 - **20 October:** the introductory format paragraph places workshops in the afternoon, although Workshop 1 begins at **11 h 30** in both editions.
 - **21 October:** the overview groups special activities, debrief and closing under **15 h 30–17 h 30**; the detailed programme places special activities at **17 h 00** and official closing at **17 h 30**.
 
-These source differences are documented rather than reconciled during import. Verification checks shared times and authors while retaining language-specific wording.
+Remaining source differences are documented rather than reconciled during import. Verification checks shared times and authors while retaining language-specific wording and the explicitly recorded organiser corrections.

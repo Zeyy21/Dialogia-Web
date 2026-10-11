@@ -1,12 +1,22 @@
 {
   "fr": {
-    "original_filename": "DIALOGIA_Montreal_2026_Livret_FR_FINAL_IMPRESSION_10-10-2026-2.docx",
-    "path": "/documents/DIALOGIA-2026-FR.docx",
-    "sha256": "04f305f41d3b071bcd9c221a9d021f38e64a2beec70e2ca6ad70d674d48b8e5b"
+    "original_filename": "DIALOGIA_Montreal_2026_Livret_FR_FINAL_IMPRESSION_10-10-2026.pdf",
+    "path": "/documents/DIALOGIA-2026-FR.pdf",
+    "sha256": "e356c9e1ce5de3a42ee3fc3d01c9cd3d8b655f59cf08f01c5a2ce5274feaec8f",
+    "text_source": {
+      "original_filename": "DIALOGIA_Montreal_2026_Livret_FR_FINAL_IMPRESSION_10-10-2026-2.docx",
+      "path": "/documents/DIALOGIA-2026-FR.docx",
+      "sha256": "04f305f41d3b071bcd9c221a9d021f38e64a2beec70e2ca6ad70d674d48b8e5b"
+    }
   },
   "en": {
-    "original_filename": "DIALOGIA_Montreal_2026_Booklet_EN_FINAL_PRINT_READY_10-10-2026-2.docx",
-    "path": "/documents/DIALOGIA-2026-EN.docx",
-    "sha256": "a5cd7710708a0c364428f27f02bd240631014a5c751066fe9aab7eab1027af87"
+    "original_filename": "DIALOGIA_Montreal_2026_Booklet_EN_FINAL_PRINT_READY_10-10-2026.pdf",
+    "path": "/documents/DIALOGIA-2026-EN.pdf",
+    "sha256": "850910c99ddb2ffba43e777a9e805fb612257c34dd83d9326b960b354cfad8a0",
+    "text_source": {
+      "original_filename": "DIALOGIA_Montreal_2026_Booklet_EN_FINAL_PRINT_READY_10-10-2026-2.docx",
+      "path": "/documents/DIALOGIA-2026-EN.docx",
+      "sha256": "a5cd7710708a0c364428f27f02bd240631014a5c751066fe9aab7eab1027af87"
+    }
   }
 }

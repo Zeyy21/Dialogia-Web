@@ -14,6 +14,7 @@ sources = {lang: json.loads((root / f'source/{lang}.json').read_text()) for lang
 institutions = json.loads((root / 'source/institutions.json').read_text())
 conference_info = json.loads((root / 'source/conference-info.json').read_text())
 booklets = json.loads((root / 'source/booklets.json').read_text())
+programme_corrections = json.loads((root / 'source/programme-corrections.json').read_text())
 passages = doc.xpath('//*[@data-source]')
 for element in passages:
     lang, index = element.attrib['data-source'].split(':')
@@ -31,10 +32,20 @@ def normalized(text):
 
 for lang in ['fr', 'en']:
     booklet = root / 'dist' / booklets[lang]['path'].lstrip('/')
-    booklet_hash = hashlib.sha256(booklet.read_bytes()).hexdigest()
+    booklet_bytes = booklet.read_bytes()
+    assert booklet.suffix.lower() == '.pdf' and booklet_bytes.startswith(b'%PDF-'), f'Official {lang} booklet must be a PDF'
+    booklet_hash = hashlib.sha256(booklet_bytes).hexdigest()
     assert booklet_hash == booklets[lang]['sha256'], f'Official {lang} file was modified'
-    paragraphs = read_booklet(booklet)
-    assert sources[lang] == source_passages(paragraphs, lang), f'{lang} DOCX/source mismatch'
+    text_source = booklets[lang]['text_source']
+    source_booklet = root / 'dist' / text_source['path'].lstrip('/')
+    assert hashlib.sha256(source_booklet.read_bytes()).hexdigest() == text_source['sha256'], f'Base {lang} text source was modified'
+    paragraphs = read_booklet(source_booklet)
+    expected_passages = source_passages(paragraphs, lang)
+    for index, replacement in programme_corrections[lang].items():
+        assert index.isdecimal() and int(index) < len(expected_passages), f'Invalid {lang} programme correction index: {index}'
+        assert isinstance(replacement, str) and replacement.strip(), f'Empty {lang} programme correction: {index}'
+        expected_passages[int(index)] = replacement
+    assert sources[lang] == expected_passages, f'{lang} base DOCX and approved programme corrections/source mismatch'
     assert normalized(conference_info[lang]['attendance']) in normalized(' '.join(paragraphs[:7])), f'Missing {lang} cover attendance'
     language = doc.xpath(f'//*[@data-language="{lang}"]')[0]
     cards = language.xpath('.//*[@data-institution]')
@@ -80,15 +91,16 @@ for lang in ['fr', 'en']:
     assert len(lyse) == 1 and len(lyse[0].xpath('./div/p')) == 3, 'Incomplete Lyse Langlois abstract'
     assert len(language.xpath('.//details[@class="day"]')) == 3
     assert len(language.xpath('.//details[@class="session"]')) == 8
-    for link in language.xpath('.//a[contains(@href,"/documents/")]'):
+    booklet_links = language.xpath('.//a[contains(@href,"/documents/") or contains(@href,".pdf") or contains(@href,".docx")]')
+    assert booklet_links, f'Missing {lang} booklet download links'
+    for link in booklet_links:
         url = urlsplit(link.attrib['href'])
         assert url.path == booklets[lang]['path'], f'Wrong language or superseded booklet linked in {lang}'
         assert parse_qs(url.query).get('v') == [booklet_hash[:12]], 'Stale booklet cache version'
-        assert 'download' in link.attrib, 'Booklet link should download the official Word file'
+        assert 'download' in link.attrib, 'Booklet link should download the official PDF file'
     overview_links = language.xpath('.//a[@data-open-details]')
     assert len(overview_links) == 2, 'Missing programme navigation buttons'
     assert all(a.attrib['href'] == f'#overview-{lang}' and a.attrib['data-open-details'] == f'overview-{lang}' for a in overview_links)
-    assert not language.xpath('.//a[contains(@href,".pdf")]'), 'Superseded PDF is still linked'
 
 # Preserve language-specific wording while checking shared timings and speakers.
 timings = {}
@@ -101,6 +113,7 @@ assert timings['fr'] == timings['en'], 'French and English programme times diffe
 assert authors['fr'] == authors['en'], 'French and English abstract authors differ'
 assert len({item['id'] for item in institutions}) == len(institutions), 'Duplicate institution'
 assert 'ulaval' in {item['id'] for item in institutions}
+assert 'loyola' in {item['id'] for item in institutions}, 'Missing Universidad Loyola'
 assert 'vechta' not in {item['id'] for item in institutions}, 'Institution absent from the final booklet'
 assert next(item for item in institutions if item['id'] == 'trends')['name'] == {'en': 'TRENDS Group', 'fr': 'TRENDS Group'}
 config = json.loads((root/'registration.json').read_text())
@@ -109,11 +122,11 @@ if config['url']:
 print(f'PASS: {len(passages)} displayed passages match the bilingual source text exactly.')
 print('PASS: Every substantive booklet passage is on the page, including 25 abstracts per language.')
 print('PASS: Jaume Flaquer Garcia precedes Raphaël Georgy in both programmes and abstract lists.')
-print('PASS: Both programmes and abstracts match their revised official DOCX; times and authors agree.')
-print('PASS: Downloads use unchanged language-matched Word originals; programme buttons open the website overview.')
+print('PASS: Both programmes and abstracts match the preserved DOCX text plus approved programme corrections; times and authors agree.')
+print('PASS: Downloads use unchanged language-matched final PDFs; programme buttons open the website overview.')
 print('PASS: Internal links, booklet links, unique IDs and local assets.')
 print(f'PASS: All {len(institutions)} represented institutions, header logos, supplied conference information and footer credit.')
 print('Registration:', 'connected' if config['url'] else 'awaiting Google sign-in')
 for lang in ['EN','FR']:
-    file = root / f'dist/documents/DIALOGIA-2026-{lang}.docx'
+    file = root / 'dist' / booklets[lang.lower()]['path'].lstrip('/')
     print(f'{lang} booklet SHA-256: {hashlib.sha256(file.read_bytes()).hexdigest()}')
