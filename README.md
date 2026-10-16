@@ -4,9 +4,11 @@ A single-page conference website in French and English. The default language is 
 
 ## Official content
 
-The website text was imported from the revised French and English DOCX booklets dated **10 October 2026** (the **“-2” editions**), then updated with the organiser’s corrections supplied on **11 and 14 October 2026**. `source/fr.json` and `source/en.json` contain the current website text. `source/programme-corrections.json` records the authorised replacements so verification can still check the rest of each source against its original DOCX. Each language preserves its document's titles, scientific rationale, programme overview, detailed schedule, 25 presentation abstracts, discussion and workshop participants, scientific committee and organising institutions. Repeated print-only labels are omitted; the attendance statement appears in the international section, and participating institutions appear in the carousel.
+The website text was imported from the revised French and English DOCX booklets dated **10 October 2026** (the **“-2” editions**), then updated with the organiser’s corrections supplied on **11, 14 and 16 October 2026**. `source/fr.json` and `source/en.json` contain the current website text. `source/programme-corrections.json` records the authorised replacements so verification can still check the rest of each source against its original DOCX. Each language preserves its document's titles, scientific rationale, programme overview, detailed schedule, 26 presentation abstracts, discussion and workshop participants, scientific committee and organising institutions. Repeated print-only labels are omitted; the attendance statement appears in the international section, and participating institutions appear in the carousel.
 
 The organiser’s 13 October corrections, supplied on 14 October, replace Raphaël Georgy’s title in both programme and abstract headings and his full abstract in each language. Ali Mostfa’s name is corrected in both programmes and speaker galleries; the portrait’s original source caption and asset path remain in the provenance record.
+
+The organiser’s 16 October correction replaces Ali Mostfa’s pending programme title in both languages and adds his full two-paragraph abstract after Renée Hattar in Axis 3, using the same expandable presentation layout. The corrections record includes these additions for source verification.
 
 The second revision adds Jaume Flaquer Garcia — Loyola University / PLURIEL immediately before Raphaël Georgy in Session 1 and the Axis 1 abstracts. Both programmes use “Preaching in the Age of Artificial Intelligence: Challenges and Implications”, as supplied; his French abstract uses “La prédication à l’épreuve de l’intelligence artificielle”. The full French abstract and all four English paragraphs are included. The official cover counts remain unchanged in the supplied booklets.
 
@@ -49,14 +51,14 @@ Configuration follows [Vercel’s static-site build guidance](https://vercel.com
 - `dist/app.js`: mobile menu, language switching, programme navigation and the accessible institution carousel.
 - `source/fr.json` and `source/en.json`: passages imported from each official language edition.
 - `source/booklets.json`: final PDF filenames, public paths and SHA-256 hashes, plus retained DOCX text-source provenance.
-- `source/programme-corrections.json`: organiser-authorised website text replacements through 14 October 2026.
+- `source/programme-corrections.json`: organiser-authorised website text replacements through 16 October 2026.
 - `source/institutions.json`: represented institutions and the sources of their logo assets.
 - `source/speakers.json`: portrait/name matches, bilingual affiliations and roles, and source provenance.
 - `dist/assets/speakers/`: optimised portraits extracted from the supplied speaker document.
 - `source/conference-info.json`: additional organiser-supplied event information and its French translation.
 - `scripts/import_booklets.py`: replaces PDF downloads without changing the curated website text, or imports DOCX sources and copies unchanged originals into `dist/documents`.
 - `scripts/render.py`: renders the page from source paragraphs.
-- `scripts/verify.py`: checks PDF and DOCX hashes, exact source fidelity with the recorded organiser corrections, substantive content coverage, 25 abstracts per language, matching timings and authors, language-specific PDF downloads, programme anchors, all 30 speaker profiles and portrait hashes, and local assets; requires lxml and pypdf. Attendance is checked against the current PDF covers and the country list against the represented institutions.
+- `scripts/verify.py`: checks PDF and DOCX hashes, exact source fidelity with the recorded organiser corrections, substantive content coverage, 26 abstracts per language, matching timings and authors, language-specific PDF downloads, programme anchors, all 30 speaker profiles and portrait hashes, and local assets; requires lxml and pypdf. Attendance is checked against the current PDF covers and the country list against the represented institutions.
 
 To replace the official booklets, run:
 

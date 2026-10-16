@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-14",
-  "source": "Organizer corrections supplied by the user; language-specific Workshop 3 passages confirmed against the final PDFs. The governance paragraph in the French edition is translated into French for the website. Organizer corrections dated 13 October, supplied by the user on 14 October 2026: Ali Mostfa spelling and final French and English titles and abstracts for Raphaël Georgy.",
+  "date": "2026-10-16",
+  "source": "Organizer corrections supplied by the user; language-specific Workshop 3 passages confirmed against the final PDFs. The governance paragraph in the French edition is translated into French for the website. Organizer corrections dated 13 October, supplied by the user on 14 October 2026: Ali Mostfa spelling and final French and English titles and abstracts for Raphaël Georgy. Organizer correction supplied on 16 October 2026: final bilingual title and two-paragraph abstract for Ali Mostfa, added after Renée Hattar in Axis 3. Insertion indices refer to the original source before additions.",
   "fr": {
     "197": "De la théorie à l’application : évaluation humaine et expérimentation de DIALOGIA à partir de 9 textes et vidéos",
     "221": "14 h 30 – 15 h 15 Gouvernance éthique et développement responsable · Supervision humaine, responsabilité, transparence, équité, protection des données, fiabilité des sources, mécanismes de contestation et de correction, et participation des experts et des traditions religieuses à la gouvernance.",
@@ -8,7 +8,8 @@
     "123": "\"Répondre comme un imam ?\" Le seuil d'autorité dans la conception des agents conversationnels consacrés aux religions",
     "251": "\"Répondre comme un imam ?\" Le seuil d'autorité dans la conception des agents conversationnels consacrés aux religions",
     "252": "« Un chatbot doit-il répondre comme un imam ? » La question se pose à quiconque conçoit un agent conversationnel destiné à faire connaître une religion. Elle touche au cœur du colloque : jusqu'où une IA peut-elle aller, d'un outil qui assiste (chercher, traduire, résumer), à une instance qui médiatise (choisir, hiérarchiser, reformuler ce que d'autres ont dit), puis qui fait autorité (trancher elle-même, énoncer la norme, parler comme un imam) ? La communication se propose d'explorer la place de l'arbitrage humain dans cette question, et de montrer qu'il se joue en amont, dans la conception même de l'outil, avant tout usage : choix des sources, place faite à la diversité des interprétations, manière de générer les réponses, supervision humaine. Les travaux sur la religion numérique ont montré que l'autorité religieuse en ligne ne s'impose pas d'elle-même : elle se construit dans les échanges et dépend des choix des communautés qui l'adoptent (Cheong, Campbell, Bunt). Je propose d'en préciser le lieu et le moment : la fabrique de l'outil. J'avance un critère de conception, ancré mais ouvert : enraciné dans une tradition, mais donnant à comprendre plus qu'à défendre. Je le mets en regard d'un précédent historique, l'édition du Coran publiée au Caire en 1924, arbitrée par des savants. J'en tire une grille de conditions pour une plateforme de dialogue interreligieux assistée par l'IA, attentive à la fiabilité des sources, aux biais et au risque d'essentialiser les traditions.",
-    "160": "Ali Mostfa - UCLY"
+    "160": "Ali Mostfa - UCLY",
+    "161": "L’habitabilité du monde à l’épreuve de l’intelligence artificielle"
   },
   "en": {
     "197": "From Theory to Practice: Human Evaluation and Experimental Assessment of DIALOGIA Using 9 Texts and Videos",
@@ -17,6 +18,31 @@
     "123": "\"Answer Like an Imam?\" The Threshold of Authority in the Design of Conversational Agents about Religion",
     "256": "\"Answer Like an Imam?\" The Threshold of Authority in the Design of Conversational Agents about Religion",
     "257": "\"Should a chatbot answer like an imam?\" The question arises for anyone designing a conversational agent intended to help people learn about a religion. It goes to the heart of this conference: how far can an AI go, from a tool that assists (searching, translating, summarizing), to an entity that mediates (selecting, ranking, rephrasing what others have said), and then to one that acts as an authority (deciding for itself, stating the norm, speaking like an imam)? This paper sets out to explore the place of human arbitration in this question, and to show that it takes place upstream, in the very design of the tool, before any use: the choice of sources, the room given to the diversity of interpretations, the way answers are generated, and human supervision. Research on digital religion has shown that religious authority online does not simply impose itself: it is built through interaction and depends on the choices of the communities that adopt it (Cheong, Campbell, Bunt). I propose to pinpoint where and when this happens: in the making of the tool. I put forward a design criterion, anchored yet open: rooted in a tradition, but aimed at fostering understanding rather than at defending it. I read it alongside a historical precedent, the 1924 Cairo edition of the Qur'an, arbitrated by scholars. From this, I derive a set of conditions for an AI-assisted interreligious dialogue platform, attentive to the reliability of sources, to bias, and to the risk of essentializing traditions.",
-    "160": "Ali Mostfa - UCLY"
+    "160": "Ali Mostfa - UCLY",
+    "161": "The Habitability of the World in the Age of Artificial Intelligence"
+  },
+  "insertions": {
+    "fr": [
+      {
+        "before": 316,
+        "passages": [
+          "Ali Mostfa · UCLY",
+          "L’habitabilité du monde à l’épreuve de l’intelligence artificielle",
+          "A partir de la notion d’habitabilité développée dans notre ouvrage Dialogue pour un monde plus habitable. Contribution à une éthique de la rencontre, cette intervention propose d’interroger les effets de l’intelligence artificielle sur les conditions du dialogue interreligieux. Si les systèmes conversationnels facilitent l’accès aux savoirs et la compréhension des traditions, ils peuvent également reproduire des assignations identitaires et réduire la pluralité des expériences religieuses à des représentations figées.",
+          "L’enjeu consiste à examiner dans quelles conditions ces médiations peuvent favoriser le décentrement, la reconnaissance mutuelle et la transformation des cadres de compréhension. L’habitabilité devient ainsi une perspective critique pour penser un dialogue dans lequel chacun conserve la possibilité de se définir, de contester les représentations produites et de contribuer à la construction d’un monde commun."
+        ]
+      }
+    ],
+    "en": [
+      {
+        "before": 321,
+        "passages": [
+          "Ali Mostfa · UCLY",
+          "The Habitability of the World in the Age of Artificial Intelligence",
+          "Drawing on the concept of habitability developed in our book Dialogue for a More Habitable World: A Contribution to an Ethics of Encounter, this presentation examines the implications of artificial intelligence for the conditions of interreligious dialogue. While conversational AI systems facilitate access to knowledge and foster understanding of religious traditions, they may also reproduce imposed identity categories and reduce the plurality of religious experiences to fixed representations.",
+          "The central question is under what conditions these technological mediations can encourage a shift beyond established perspectives, mutual recognition, and the transformation of interpretive frameworks. Habitability thus provides a critical lens through which to conceptualize a form of dialogue in which individuals retain the capacity to define themselves, challenge the representations constructed about them, and contribute to the creation of a shared world."
+        ]
+      }
+    ]
   }
 }

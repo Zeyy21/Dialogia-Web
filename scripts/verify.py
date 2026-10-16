@@ -52,6 +52,12 @@ for lang in ['fr', 'en']:
         assert index.isdecimal() and int(index) < len(expected_passages), f'Invalid {lang} programme correction index: {index}'
         assert isinstance(replacement, str) and replacement.strip(), f'Empty {lang} programme correction: {index}'
         expected_passages[int(index)] = replacement
+    for insertion in sorted(programme_corrections.get('insertions', {}).get(lang, []), key=lambda item: item['before'], reverse=True):
+        index = insertion['before']
+        added = insertion['passages']
+        assert isinstance(index, int) and 0 <= index <= len(expected_passages)
+        assert added and all(isinstance(text, str) and text.strip() for text in added)
+        expected_passages[index:index] = added
     assert sources[lang] == expected_passages, f'{lang} base DOCX and approved programme corrections/source mismatch'
     cover_text = PdfReader(booklet).pages[0].extract_text()
     assert normalized(conference_info[lang]['attendance']) in normalized(cover_text), f'Attendance must match the current {lang} PDF cover'
@@ -91,8 +97,8 @@ for lang in ['fr', 'en']:
     required = set(range(len(sources[lang]))) - redundant_print_labels
     assert required.issubset(indices), f'Missing booklet content in {lang}: {required-indices}'
     papers=doc.xpath(f'//*[@data-language="{lang}"]//details[contains(concat(" ",normalize-space(@class)," ")," paper ")]')
-    assert len(papers)==25, f'Expected all 25 abstracts in {lang}'
-    assert [len(axis.xpath('.//details[@class="paper"]')) for axis in language.xpath('.//details[@class="abstract-axis"]')] == [6, 6, 5, 8]
+    assert len(papers)==26, f'Expected all 26 abstracts in {lang}'
+    assert [len(axis.xpath('.//details[@class="paper"]')) for axis in language.xpath('.//details[@class="abstract-axis"]')] == [6, 6, 6, 8]
     jaume = [paper for paper in papers if paper.xpath('./summary//span[@class="paper-author"]')[0].text_content().startswith('Jaume Flaquer Garcia')]
     assert len(jaume) == 1, f'Missing or duplicated Jaume abstract in {lang}'
     assert papers[papers.index(jaume[0]) + 1].xpath('./summary//span[@class="paper-author"]')[0].text_content().startswith('Raphaël Georgy'), f'Jaume abstract must precede Raphaël in {lang}'
@@ -143,7 +149,7 @@ config = json.loads((root/'registration.json').read_text())
 if config['url']:
     assert all(a.attrib['href'] == config['url'] for a in doc.xpath('//*[@data-registration]'))
 print(f'PASS: {len(passages)} displayed passages match the bilingual source text exactly.')
-print('PASS: Every substantive booklet passage is on the page, including 25 abstracts per language.')
+print('PASS: Every substantive booklet passage is on the page, including 26 abstracts per language.')
 print('PASS: Jaume Flaquer Garcia precedes Raphaël Georgy in both programmes and abstract lists.')
 print('PASS: Both programmes and abstracts match the preserved DOCX text plus approved programme corrections; times and authors agree.')
 print('PASS: Downloads use unchanged language-matched final PDFs; programme buttons open the website overview.')
